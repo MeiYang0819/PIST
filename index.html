@@ -269,23 +269,18 @@
   .step[data-page="6"]{ --title-size: 15px; --content-size: 12px; }
   .step[data-page="7"]{ --title-size: 15px; --content-size: 12px; }
   .step[data-page="8"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="9"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="10"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="11"]{ --title-size: 15px; --content-size: 12px; }
 
-
-  /* 指定頁 h2 置右（1=注意事項、2=FAQ-薪資轉帳相關、3=FAQ-體健檢報告相關、4=報到文件用途說、7=上傳檔案、10=資料送出前-核檢區） */
+  /* 指定頁 h2 置右（1=注意事項、2=FAQ-薪資轉帳相關、3=FAQ-體健檢報告相關、4=報到文件用途說、8=資料送出前-核檢區） */
 .step[data-page="1"] h2,
 .step[data-page="2"] h2,
 .step[data-page="3"] h2,
 .step[data-page="4"] h2,
-.step[data-page="7"] h2,
-.step[data-page="10"] h2 {
+.step[data-page="7"] h2 {
   text-align: left !important;
 }
 
-  /* 第07頁：範例圖片改上下 */ 
-  #step-7 .samples {
+  /* 第04頁：範例圖片改上下 */ 
+  #step-4 .samples {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--sample-gap);
@@ -293,7 +288,7 @@
   margin-top: 10px;
 }
 
-#step-7 .sample-box {
+#step-4 .sample-box {
   background: var(--sample-bg);
   border: 1px dashed var(--control-border);
   border-radius: var(--sample-radius);
@@ -303,14 +298,14 @@
   align-items: center;
 }
 
-#step-7 .sample-img {
+#step-4 .sample-img {
   width: 100%;
   height: var(--sample-max-h);
   object-fit: contain;
   image-rendering: auto;
 }
 
-#step-7 .sample-cap {
+#step-4 .sample-cap {
   margin-top: 6px;
   font-size: var(--content-size);
   color: var(--muted);
@@ -356,7 +351,7 @@
     <main class="content" id="content">
       <!-- 第1頁 -->
       <section class="step active" data-page="1" id="step-1">
-        <h2>⏰ 注意事項</h2>
+        <h2>　　 ⏰ 注意事項</h2>
         <ol class="note-list">
           <li>此表單僅限錄取者使用.</li>
           <li>若非上述身分請立即退出此表單.</li>
@@ -365,25 +360,14 @@
           <li>填寫表單若遇到困難請向報到群組提出職場禮貌詢問.</li>
           <li>若對表單有疑問不確定資訊,請先詢問後再填寫.</li>
         </ol>
+        </section>
 
-        <div class="fieldset center-block">
-          <div style="font-weight:800;">是否同意上述事項</div>
-          <div class="radio-row" role="radiogroup" aria-label="是否同意上述事項">
-            <label><input type="radio" name="agree1" value="yes"> 是</label>
-            <label><input type="radio" name="agree1" value="no"> 否</label>
-          </div>
-          <div class="exit" id="exitMsg">👋 尚未開始,就要結束,再會了...</div>
-        </div>
-      </section>
-
-      <!-- 第2頁：資料-1 -->
+      <!-- 第1-1頁：資料-1 -->
       <section class="step active" data-page="2" id="step-2">
-        <h2>💰 FAQ-薪資轉帳相關</h2>
+        <h2>　　 💰 FAQ-薪資轉帳相關</h2>
         <ol class="note-list">
           <li>本公司配合薪資轉帳銀:</li>
-          <ul>
-            <li>台新銀行
-          </ul>  
+              <br>台新銀行</br> 
           <li>是否能接受數位帳戶:</li>
           <ul>
             <li>公司可受理綜合活期儲蓄存款、活期性存款.
@@ -402,20 +386,11 @@
             <li>不能
           </ul>
         </ol>
+        </section>
 
-        <div class="fieldset center-block">
-          <div style="font-weight:800;">是否已詳讀並了解薪資轉帳相關FAQ</div>
-          <div class="radio-row" role="radiogroup" aria-label="是否已詳讀並了解薪資轉帳相關FAQ">
-            <label><input type="radio" name="agree1" value="yes"> 了解</label>
-            <label><input type="radio" name="agree1" value="no"> 有異議</label>
-          </div>
-          <div class="exit" id="exitMsg">🚨 若有疑問,可詢問人資承辦...</div>
-        </div>
-      </section>
-
-      <!-- 第3頁：資料-2 -->
+      <!-- 第1-2頁：資料-2 -->
       <section class="step active" data-page="3" id="step-3">
-        <h2>🩺 FAQ-體健檢報告相關</h2>
+        <h2>　　 🩺 FAQ-體健檢報告相關</h2>
         <ol class="note-list">
           <li>是否可以僅繳交一份體健檢報告:</li>
           <ul>
@@ -442,20 +417,11 @@
             <li>第一年自行負擔；第二年公司負責。</li>
           </ul>
         </ol>
+        </section>
 
-        <div class="fieldset center-block">
-          <div style="font-weight:800;">是否已詳讀並了解體健檢報告相關FAQ</div>
-          <div class="radio-row" role="radiogroup" aria-label="是否已詳讀並了解體健檢報告相關FAQ">
-            <label><input type="radio" name="agree1" value="yes"> 了解</label>
-            <label><input type="radio" name="agree1" value="no"> 有異議</label>
-          </div>
-          <div class="exit" id="exitMsg">🚨 若有疑問,可詢問人資承辦...</div>
-        </div>
-      </section>
-
-      <!-- 第4頁：資料-3 -->
+      <!-- 第1-3頁：資料-3 -->
       <section class="step active" data-page="4" id="step-4">
-        <h2>📑 報到文件用途說明</h2>
+        <h2>　　 📑 報到文件用途說明</h2>
         <ol class="note-list">
           <li>一般勞工體格檢查報告：</li>
           <ul>
@@ -491,6 +457,7 @@
             <li>❗️複驗學歷證明</li>
           </ul>
         </ol>
+        </section>
 
         <div class="fieldset center-block">
           <div style="font-weight:800;">是否了解上述說明</div>
@@ -502,13 +469,13 @@
         </div>
       </section>
 
-      <!-- 第5頁：擁有文件 -->
+      <!-- 第2頁：擁有文件 -->
 <section class="step" data-page="5" id="step-5">
   <div class="file-row">
     <div>© 擁有下列文件請打勾</div>
     <div class="fieldset">
       <div class="checks">
-        <label><input type="checkbox" id="chk1"> 1. 台新國際商業銀行-實體存摺</label>
+        <label><input type="checkbox" id="chk1"> 1. 台新國際商業銀行</label>
         <label><input type="checkbox" id="chk2"> 2. 中餐證照</label>
         <label><input type="checkbox" id="chk3"> 3. 西餐證照</label>
         <label><input type="checkbox" id="chk4"> 4. AH&LA 證書</label>
@@ -520,7 +487,7 @@
   </div>
 </section>
 
-<!-- 第6頁：繳交文件 -->
+<!-- 第3頁：繳交文件 -->
 <section class="step" data-page="6" id="step-6">
   <div class="file-row">
     <div>© 報到日必要繳交五大文件</div>
@@ -539,7 +506,7 @@
   </div>
 </section>
 
-<!-- 第7頁：上傳檔案 -->
+<!-- 第4頁：上傳檔案 -->
 <section class="step" data-page="7" id="step-7">
   <h2>　　 ⏫ 上傳檔案</h2>
   <ol class="note-list">
@@ -579,7 +546,7 @@
   </div>
 </section>
 
-<!-- 第8頁：上傳文件相關 -->
+<!-- 第5頁：上傳文件相關 -->
 <section class="step" data-page="8" id="step-8">
   <div class="file-row">
     <div>台新國際商業銀行戶頭</div>
@@ -630,7 +597,7 @@
   </div>
 </section>
 
-<!-- 第9頁：員工基本資料 -->
+<!-- 第6頁：員工基本資料 -->
 <section class="step" data-page="9" id="step-9">
   <div class="row">
     <label for="company">© 公司名稱 <small>⏍ 請確認後再行點選</small></label>
@@ -668,7 +635,7 @@
   </div>
 </section>
 
-<!-- 第10頁：資料送出前-核檢區 -->
+<!-- 第7頁：資料送出前-核檢區 -->
 <section class="step" data-page="10" id="step-10">
   <h2>❗️資料送出前-核檢區</h2>
   <div class="fieldset">
@@ -686,7 +653,7 @@
   </div>
 </section>
 
-<!-- 第11頁：全數完成 -->
+<!-- 第8頁：全數完成 -->
 <section class="step" data-page="11" id="step-11">
   <h2>✅ 全數完成</h2>
   <div style="text-align:center; line-height:1.8;">
@@ -714,13 +681,13 @@
     </div>
 
     <footer class="footer" id="footer">
-      © Copyright 2025 MYs System-b1.0.0-11-13
+      © Copyright 2025 MYs System
     </footer>
   </div>
 <script>
 
 /* --------系統常數（可調）-------- */
-const TOTAL_STEPS = 13;  /* 總頁數（顯示用；更新為 13） */
+const TOTAL_STEPS = 8;  /* 總頁數（顯示用） */
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
@@ -815,8 +782,8 @@ let currentPage = 1;
 let IS_LOCKED = false;
 function pad2(n) { return String(n).padStart(2, '0'); }
 
-/* 指定頁為紫色：1, 2, 3, 4, 7, 10；其餘黑色 */
-function pageIsPurple(n) { return [1, 2, 3, 4, 7, 10].includes(n); }
+/* 指定頁為紫色：1, 2, 3；其餘黑色 */
+function pageIsPurple(n) { return [1, 2, 3].includes(n); }
 
 function updateHeaderStep() {
   $("#headerStep").textContent = `第${pad2(currentPage)}頁/共${TOTAL_STEPS}頁`;
@@ -848,7 +815,6 @@ function showStep(pageNumber) {
     setTimeout(() => { lockAllAndHideNav(); updateNavState(); }, 0);
   }
 }
-</script>
 
 /* ====== 各頁驗證（submit=false：不顯示紅字；true：顯示紅字） ====== */
 function validatePage(n, submit=false){
@@ -859,25 +825,25 @@ function validatePage(n, submit=false){
       $("#exitMsg").classList.toggle("show", no && !yes);  // 顯示未選擇同意時的訊息
       return yes; // 必須選擇「是」才能繼續
     }
-    case 2: {  // 第2頁：薪資轉帳相關
+    case 1-1: {  // 第1-1頁：薪資轉帳相關
       const yes = $('input[name="agree1"][value="yes"]').checked;
       const no  = $('input[name="agree1"][value="no"]').checked;
       $("#exitMsg").classList.toggle("show", no && !yes);  // 顯示未選擇同意時的訊息
       return yes; // 必須選擇「了解」才能繼續
     }
-    case 3: {  // 第3頁：體檢報告相關
+    case 1-2: {  // 第1-2頁：體檢報告相關
       const yes = $('input[name="agree1"][value="yes"]').checked;
       const no  = $('input[name="agree1"][value="no"]').checked;
       $("#exitMsg").classList.toggle("show", no && !yes);  // 顯示未選擇同意時的訊息
       return yes; // 必須選擇「了解」才能繼續
     }
-    case 4: {  // 第4頁：報到文件用途說明
+    case 1-3: {  // 第1-3頁：報到文件用途說明
       const yes = $('input[name="agree1"][value="yes"]').checked;
       const no  = $('input[name="agree1"][value="no"]').checked;
       $("#exitMsg").classList.toggle("show", no && !yes);  // 顯示未選擇同意時的訊息
       return yes; // 必須選擇「了解」才能繼續
     }
-    case 5: {  // 第5頁：文件擁有驗證
+    case 2: {  // 第2頁：文件擁有驗證
       const chk1 = $("#chk1").checked;
       const chk2 = $("#chk2").checked;
       const chk3 = $("#chk3").checked;
@@ -886,7 +852,7 @@ function validatePage(n, submit=false){
       $("#errDocuments").style.display = isValid ? "none" : "block";
       return isValid;
     }
-    case 6: {  // 第6頁：繳交文件
+    case 3: {  // 第3頁：繳交文件
       const chk1 = $("#chk1").checked;
       const chk2 = $("#chk2").checked;
       const chk3 = $("#chk3").checked;
@@ -896,17 +862,17 @@ function validatePage(n, submit=false){
       $("#errDocuments").style.display = allChecked ? "none" : "block";
       return allChecked;
     }
-    case 7: {  // 第7頁：上傳檔案同意
+    case 4: {  // 第4頁：上傳檔案同意
       const yes = $('input[name="agreeUpload"][value="yes"]').checked;
       $("#errAgreeUpload").style.display = (!yes && shouldShowErr("agreeUpload", submit)) ? "block" : "none";
       return yes;
     }
-    case 8: {  // 第8頁：上傳檔案選擇
+    case 5: {  // 第5頁：上傳檔案選擇
       const filesSelected = $("#idFront").files?.length > 0 && $("#idBack").files?.length > 0;
       $("#errFiles").style.display = filesSelected ? "none" : "block";
       return filesSelected;
     }
-    case 9: {  // 第9頁：員工基本資料
+    case 6: {  // 第6頁：員工基本資料
       const companyInvalid = $("#company").value.trim() === "";
       const teamInvalid = $("#team").value === "";
       const workTypeInvalid = $("#workType").value === "";
@@ -931,12 +897,12 @@ function validatePage(n, submit=false){
 
       return valid;
     }
-    case 10: {  // 第10頁：資料送出前核檢
+    case 7: {  // 第7頁：資料送出前核檢
       const yes = $('input[name="agreeUpload"][value="yes"]').checked;
       $("#errAgreeUpload").style.display = (!yes && shouldShowErr("agreeUpload", submit)) ? "block" : "none";
       return yes;
     }
-    case 11: {  // 第11頁：全數完成
+    case 8: {  // 第8頁：全數完成
       const f = $("#idFront").files?.length > 0;
       const b = $("#idBack").files?.length > 0;
       const allChecked = ["#chk1", "#chk2", "#chk3", "#chk4"].every(sel => $(sel).checked);
@@ -991,37 +957,37 @@ function clearCurrentPage(){
 
 /* ====== 事件綁定與初始化 ====== */
 function bindLiveValidation(){
-  /* 第1頁 */
+  /* 第1頁：說明-1 */
   $$('input[name="agree1"]').forEach(r => r.addEventListener('change', () => { markTouched('agree1'); updateNavState(); }));
 
-  /* 第2頁 */
+  /* 第1-1頁：說明-2 */
   $$('input[name="agree1"]').forEach(r => r.addEventListener('change', () => { markTouched('agree1'); updateNavState(); }));
 
-  /* 第3頁 */
+  /* 第1-2頁：說明-3 */
   $$('input[name="agree1"]').forEach(r => r.addEventListener('change', () => { markTouched('agree1'); updateNavState(); }));
 
-  /* 第4頁 */
+  /* 第1-3頁：說明-4 */
   $$('input[name="agree1"]').forEach(r => r.addEventListener('change', () => { markTouched('agree1'); updateNavState(); }));
 
-  /* 第5頁：文件擁有驗證 */
+  /* 第2頁：文件擁有驗證 */
   $$('input[name="chk1"], input[name="chk2"], input[name="chk3"], input[name="chk4"]').forEach(r => r.addEventListener('change', () => { markTouched('documentsChecked'); updateNavState(); }));
 
-  /* 第6頁：繳交文件 */
+  /* 第3頁：繳交文件 */
   $$('input[name="chk1"], input[name="chk2"], input[name="chk3"], input[name="chk4"], input[name="chk5"]').forEach(r => r.addEventListener('change', () => { markTouched('documentsChecked'); updateNavState(); }));
 
-  /* 第7頁：上傳檔案同意 */
+  /* 第4頁：上傳檔案同意 */
   $$('input[name="agreeUpload"]').forEach(r => r.addEventListener('change', () => { markTouched('agreeUpload'); updateNavState(); }));
 
-  /* 第8頁：檔案上傳選擇 */
+  /* 第5頁：檔案上傳選擇 */
   $$('input[name="idFront"], input[name="idBack"]').forEach(r => r.addEventListener('change', () => { markTouched('filesUploaded'); updateNavState(); }));
 
-  /* 第9頁：員工基本資料 */
+  /* 第6頁：員工基本資料 */
   $$('input[name="company"], input[name="team"], input[name="workType"], input[name="fullName"], input[name="gender"]').forEach(r => r.addEventListener('change', () => { markTouched('personalData'); updateNavState(); }));
 
-  /* 第10頁：資料送出前核檢 */
+  /* 第7頁：資料送出前核檢 */
   $$('input[name="preA"], input[name="preA"], input[name="preB"], input[name="preC"], input[name="preD"], input[name="preE"]').forEach(r => r.addEventListener('change', () => { markTouched('preflightChecked'); updateNavState(); }));
 
-  /* 第11頁：所有文件核對 */
+  /* 第8頁：所有文件核對 */
   $$('input[name="chk1"], input[name="chk2"], input[name="chk3"], input[name="chk4"]').forEach(r => r.addEventListener('change', () => { markTouched('checkDocuments'); updateNavState(); }));
 }
 
