@@ -891,12 +891,12 @@ function validatePage(n, submit=false){
       const no = $(`input[name="agreeUpload"][value="no"]`).checked;
 
       if (!yes && submit) {
-      $("#errAgreeUpload").style.display = "block";
+        $("#errAgreeUpload").style.display = "block";
       } else {
-      $("#errAgreeUpload").style.display = "none";
+        $("#errAgreeUpload").style.display = "none";
       }
 
-  return yes;
+      return yes;
     }
 
     /* ------ 第6頁：上傳檔案（勞工體檢＋食品體檢必上傳） ------ */
@@ -922,7 +922,7 @@ function validatePage(n, submit=false){
         $("#errWorkType").style.display = !c ? "block" : "none";
       }
       return a && b && c;
-    }}
+    }
 
     /* ------ 第8頁：核檢 6 項 ------ */
     case 8:
@@ -957,6 +957,9 @@ function updateNavState(){
 
   /* 預設：不通過就不能下一頁 */
   let disabled = IS_LOCKED || !validNow;
+
+  btnNext.disabled = disabled;
+}
 
 /* 清除當頁（目前沒有按鈕呼叫，函式保留） */
 function clearCurrentPage(){
