@@ -277,12 +277,12 @@
   .step[data-page="7"]{ --title-size: 15px; --content-size: 12px; }
   .step[data-page="8"]{ --title-size: 15px; --content-size: 12px; }
 
-    /* 指定頁 h2 置右（1=注意事項、2=FAQ-薪資轉帳相關、3=FAQ-體健檢報告相關、4=報到文件用途說、7=資料送出前-核檢區） */
+    /* 指定頁 h2 靠左（1=注意事項、2=FAQ-薪資轉帳相關、3=FAQ-體健檢報告相關、4=報到文件用途說、7=資料送出前-核檢區） */
 .step[data-page="1"] h2,
 .step[data-page="2"] h2,
 .step[data-page="3"] h2,
 .step[data-page="4"] h2,
-.step[data-page="7"] h2,
+.step[data-page="7"] h2 {
   text-align: left !important;
 }
 
@@ -358,7 +358,7 @@
     <main class="content" id="content">
       <!-- 第1頁（注意事項 + FAQ 區塊合併） -->
       <section class="step active" data-page="1" id="step-1">
-        <h2>⏰ 注意事項</h2>
+        <h2>　　 ⏰ 注意事項</h2>
         <ol class="note-list">
           <li>此表單僅限錄取者使用.</li>
           <li>若非上述身分請立即退出此表單.</li>
@@ -441,7 +441,7 @@
 
       <!-- 第2頁：擁有文件 -->
 <section class="step" data-page="2" id="step-2">
-  <h2>❗️擁有下列文件請打勾</h2>
+  <h2>　　 ❗️擁有下列文件請打勾</h2>
   <div class="fieldset">
     <div class="checks">
       <label><input type="checkbox" id="chk1"> 1. 台新國際商業銀行</label>
