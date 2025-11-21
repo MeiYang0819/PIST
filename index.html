@@ -287,8 +287,8 @@
   .step[data-page="8"]{ --title-size: 15px; --content-size: 12px; }
   .step[data-page="9"]{ --title-size: 15px; --content-size: 12px; }
 
-  /* 第4頁：範例圖片改上下 */ 
-  #step-4 .samples {
+  /* 第5頁：範例圖片改上下 */ 
+  #step-5 .samples {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--sample-gap);
@@ -296,7 +296,7 @@
     margin-top: 10px;
   }
 
-  #step-4 .sample-box {
+  #step-5 .sample-box {
     background: var(--sample-bg);
     border: 1px dashed var(--control-border);
     border-radius: var(--sample-radius);
@@ -306,20 +306,20 @@
     align-items: center;
   }
 
-  #step-4 .sample-img {
+  #step-5 .sample-img {
     width: 100%;
     height: var(--sample-max-h);
     object-fit: contain;
     image-rendering: auto;
   }
 
-  #step-4 .sample-cap {
+  #step-5 .sample-cap {
     margin-top: 6px;
     font-size: var(--content-size);
     color: var(--muted);
     text-align: center;
   }
-
+    
   /* ====== 登入遮罩樣式（沿用樣式當密碼鎖） ====== */
   .gate{ position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; }
   .gate-card{ width:min(520px, 92vw); background:rgba(30,30,30,0.95); border:1px solid var(--border); border-radius:16px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.45); }
@@ -418,7 +418,7 @@
         </ol>
 
         <!-- 報到文件用途說明 -->
-        <h2>📑 報到文件用途說明</h2>
+        <h2> 　　📑 報到文件用途說明</h2>
         <ol class="note-list">
           <li>一般勞工體格檢查報告:</li>
           <p>❗️依據《職業安全衛生法》§20,勞工健康保護規則§16~17</br> 
@@ -452,7 +452,7 @@
 
       <!-- 第3頁：擁有文件 -->
       <section class="step" data-page="3" id="step-3">
-        <h2> ❗️擁有下列文件請打勾</h2>
+        <h2>　❗️擁有下列文件請打勾</h2>
         <div class="fieldset">
           <div class="checks">
             <label><input type="checkbox" id="ownChk1"> 1. 台新國際商業銀行</label>
@@ -468,7 +468,7 @@
 
       <!-- 第4頁：報到日必要繳交文件 -->
       <section class="step" data-page="4" id="step-4">
-        <h2> ❗️報到日必要繳交五大文件</h2>
+        <h2>　❗️報到日必要繳交五大文件</h2>
         <div class="fieldset">
           <div class="checks">
             <label><input type="checkbox" id="needChk1"> 1. 經認證醫療機構-勞工體格檢查報告</label>
@@ -576,7 +576,7 @@
 
       <!-- 第7頁：員工基本資料 -->
       <section class="step" data-page="7" id="step-7">
-        <h2> 　　📋 員工基本資料</h2>
+        <h2>📋 員工基本資料</h2>
         <div class="row">
           <label for="company">© 公司名稱 <small>⏍ 請確認後再行點選</small></label>
           <select id="company">
@@ -615,7 +615,7 @@
 
       <!-- 第8頁：資料送出前-核檢區 -->
       <section class="step" data-page="8" id="step-8">
-        <h2> ❗️資料送出前-核檢區</h2>
+        <h2> 　　❗️資料送出前-核檢區</h2>
         <div class="fieldset">
           <div class="checks">
             <label><input type="checkbox" id="preA"> 1. 以上輸入資料都進行雙重確認.</label>
