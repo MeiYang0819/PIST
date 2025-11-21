@@ -775,8 +775,8 @@ let currentPage = 1;
 let IS_LOCKED = false;
 function pad2(n) { return String(n).padStart(2, '0'); }
 
-/* 指定頁為紫色：1, 2, 3, 4, ５ ；其餘黑色 */
-function pageIsPurple(n) { return [1, 2, 3, 4, ５].includes(n); }
+/* 指定頁為紫色：1, 2, 3, 4, 5 ；其餘黑色 */
+function pageIsPurple(n) { return [1, 2, 3, 4, 5].includes(n); }
 
 function updateHeaderStep() {
   $("#headerStep").textContent = `第${pad2(currentPage)}頁/共${TOTAL_STEPS}頁`;
@@ -890,12 +890,13 @@ function validatePage(n, submit=false){
       const yes = $(`input[name="agreeUpload"][value="yes"]`).checked;
       const no = $(`input[name="agreeUpload"][value="no"]`).checked;
 
-      if (!yes && submit) $("#errAgreeUpload").style.display = "block";
-      if (yes) $("#errAgreeUpload").style.display = "none";
-      return yes;
-    }
+      if (!yes && submit) {
+      $("#errAgreeUpload").style.display = "block";
+      } else {
+      $("#errAgreeUpload").style.display = "none";
+      }
 
-      return !!yes;
+  return yes;
     }
 
     /* ------ 第6頁：上傳檔案（勞工體檢＋食品體檢必上傳） ------ */
