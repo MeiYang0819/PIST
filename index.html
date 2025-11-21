@@ -166,7 +166,7 @@
     margin-top: var(--section-gap);
   }
 
-  /* 第1頁特別：整組置中 + 選項置中 */
+  /* 第1頁：整組置中 + 選項置中 */
   .center-block { display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; }
   .radio-row { display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
   .exit {
@@ -256,9 +256,9 @@
     transform: translateY(calc(-1 * var(--kv-offset)));
   }
 
-  /* footer Logo（新增：縮小版商標） */
+  /* footer Logo（縮小版商標） */
   .footer-logo {
-    height: 16px;              /* 你選 B：高度 16px */
+    height: 16px;              /* 高度 16px */
     vertical-align: middle;
     margin-right: 6px;
   }
@@ -276,13 +276,6 @@
   .step[data-page="6"]{ --title-size: 15px; --content-size: 12px; }
   .step[data-page="7"]{ --title-size: 15px; --content-size: 12px; }
   .step[data-page="8"]{ --title-size: 15px; --content-size: 12px; }
-
-  /* 指定頁 h2 置右（1=注意事項+FAQ區、4=上傳檔案、7=資料送出前-核檢區） */
-.step[data-page="1"] h2,
-.step[data-page="4"] h2,
-.step[data-page="7"] h2 {
-  text-align: left !important;
-}
 
   /* 第04頁：範例圖片改上下 */ 
   #step-4 .samples {
@@ -439,42 +432,38 @@
 
       <!-- 第2頁：擁有文件 -->
 <section class="step" data-page="2" id="step-2">
-  <div class="file-row">
-    <div>© 擁有下列文件請打勾</div>
-    <div class="fieldset">
-      <div class="checks">
-        <label><input type="checkbox" id="chk1"> 1. 台新國際商業銀行</label>
-        <label><input type="checkbox" id="chk2"> 2. 中餐證照</label>
-        <label><input type="checkbox" id="chk3"> 3. 西餐證照</label>
-        <label><input type="checkbox" id="chk4"> 4. AH&LA 證書</label>
-      </div>
-      <div class="note-list" style="margin-left:0;">
-        📣 不接受PDF檔,如須上傳PDF檔,請先轉成JPG檔後再上傳.
-      </div>
+  <h2>❗️擁有下列文件請打勾</h2>
+  <div class="fieldset">
+    <div class="checks">
+      <label><input type="checkbox" id="chk1"> 1. 台新國際商業銀行</label>
+      <label><input type="checkbox" id="chk2"> 2. 中餐證照</label>
+      <label><input type="checkbox" id="chk3"> 3. 西餐證照</label>
+      <label><input type="checkbox" id="chk4"> 4. AH&LA 證書</label>
+    </div>
+    <div class="note-list" style="margin-left:0;">
+      📣 不接受PDF檔,如須上傳PDF檔,請先轉成JPG檔後再上傳.
     </div>
   </div>
 </section>
 
-<!-- 第3頁：繳交文件 -->
+      <!-- 第3頁：繳交文件 -->
 <section class="step" data-page="3" id="step-3">
-  <div class="file-row">
-    <div>© 報到日必要繳交五大文件</div>
-    <div class="fieldset">
-      <div class="checks">
-        <label><input type="checkbox" id="chk1"> 1. 經認證醫療機構-勞工體格檢查報告</label>
-        <label><input type="checkbox" id="chk2"> 2. 經認證醫療機構-近一年食品從業人員體檢報告</label>
-        <label><input type="checkbox" id="chk3"> 3. 身分證</label>
-        <label><input type="checkbox" id="chk4"> 4. 兩吋照片一張</label>
-        <label><input type="checkbox" id="chk5"> 5. 最高學歷證書、學生證、學費證明擇一驗證</label>
-      </div>
-      <div class="note-list" style="margin-left:0;">
-        📣 準備完成後,才行下一步開始上傳檔案,填寫基本資料.
-      </div>
+  <h2>❗️報到日必要繳交五大文件</h2>
+  <div class="fieldset">
+    <div class="checks">
+      <label><input type="checkbox" id="chk1"> 1. 經認證醫療機構-勞工體格檢查報告</label>
+      <label><input type="checkbox" id="chk2"> 2. 經認證醫療機構-近一年食品從業人員體檢報告</label>
+      <label><input type="checkbox" id="chk3"> 3. 身分證</label>
+      <label><input type="checkbox" id="chk4"> 4. 兩吋照片一張</label>
+      <label><input type="checkbox" id="chk5"> 5. 最高學歷證書、學生證、學費證明擇一驗證</label>
+    </div>
+    <div class="note-list" style="margin-left:0;">
+      📣 準備完成後,才行下一步開始上傳檔案,填寫基本資料.
     </div>
   </div>
 </section>
 
-<!-- 第4頁：上傳檔案 -->
+      <!-- 第4頁：上傳檔案 -->
 <section class="step" data-page="4" id="step-4">
   <h2>　　 ⏫ 上傳檔案</h2>
   <ol class="note-list">
@@ -514,7 +503,7 @@
   </div>
 </section>
 
-<!-- 第5頁：上傳文件相關 -->
+      <!-- 第5頁：上傳文件相關 -->
 <section class="step" data-page="5" id="step-5">
   <div class="file-row">
     <div>台新國際商業銀行戶頭</div>
@@ -765,8 +754,8 @@ let currentPage = 1;
 let IS_LOCKED = false;
 function pad2(n) { return String(n).padStart(2, '0'); }
 
-/* 指定頁為紫色：1, 2, 3；其餘黑色 */
-function pageIsPurple(n) { return [1, 2, 3].includes(n); }
+/* 指定頁為紫色：1, 2, 3, 4；其餘黑色 */
+function pageIsPurple(n) { return [1, 2, 3, 4].includes(n); }
 
 function updateHeaderStep() {
   $("#headerStep").textContent = `第${pad2(currentPage)}頁/共${TOTAL_STEPS}頁`;
@@ -819,12 +808,8 @@ function validatePage(n, submit=false){
 
     /* ------ 第2頁（文件擁有） ------ */
     case 2: {
-      const chk1 = $("#chk1")?.checked;
-      const chk2 = $("#chk2")?.checked;
-      const chk3 = $("#chk3")?.checked;
-      const chk4 = $("#chk4")?.checked;
-      const isValid = chk1 || chk2 || chk3 || chk4;
-      return isValid;
+      /* 第2頁所有情況均可下一步 → 永遠通過 */
+      return true;
     }
 
     /* ------ 第3頁（繳交文件） ------ */
@@ -846,16 +831,20 @@ function validatePage(n, submit=false){
 
     /* ------ 第5頁（文件上傳） ------ */
     case 5: {
-      const f1 = $("#idFront").files?.length > 0;
-      const f2 = $("#idLaborCheck").files?.length > 0;
-      const f3 = $("#idFoodCheck").files?.length > 0;
+  const f1 = $("#idFront").files?.length > 0; // 台新銀行 → 非必填
+  const f2 = $("#idLaborCheck").files?.length > 0; // 勞工體格 → 必填
+  const f3 = $("#idFoodCheck").files?.length > 0;  // 食品體檢 → 必填
 
-      $("#errFront").style.display = (!f1 && submit) ? "block" : "none";
-      $("#errLaborCheck").style.display = (!f2 && submit) ? "block" : "none";
-      $("#errFoodCheck").style.display = (!f3 && submit) ? "block" : "none";
+  // 銀行戶頭不強制、不顯示錯誤
+  $("#errFront").style.display = "none";
 
-      return f1 && f2 && f3;
-    }
+  // 這兩項要強制上傳
+  $("#errLaborCheck").style.display = (!f2 && submit) ? "block" : "none";
+  $("#errFoodCheck").style.display = (!f3 && submit) ? "block" : "none";
+
+  // 回傳：只要 f2、f3 有上傳即可
+  return f2 && f3;
+}
 
     /* ------ 第6頁（基本資料） ------ */
     case 6: {
