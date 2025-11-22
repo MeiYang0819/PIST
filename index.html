@@ -499,44 +499,54 @@
       </section>
 
       <!-- 第5頁：上傳檔案說明＋同意 -->
-      <section class="step" data-page="5" id="step-5">
-        <h2> 　　⏫ 上傳檔案</h2>
-        <ol class="note-list">
-          <li>上傳之個人準備文件.</li>
-          <li>有正確及錯誤範例.</li>
-          <li>檔案須符合本公司限定規格.</li>
-          <li>哀鳳手機請用手機內建備忘錄掃描.</li>
-        </ol>
+<section class="step" data-page="5" id="step-5">
+  <h2> 　　⏫ 上傳檔案</h2>
+  <ol class="note-list">
+    <li>上傳之個人準備文件.</li>
+    <li>有正確及錯誤範例.</li>
+    <li>檔案須符合本公司限定規格.</li>
+    <li>哀鳳手機請用手機內建備忘錄掃描.</li>
+  </ol>
 
-        <!-- 範例改上下 -->
-        <div class="samples" aria-label="身分證範本">
-          <figure class="sample-box">
-            <img class="sample-img" src="assets/身分證範本-正面.jpg" alt="❗️範例-身分證上傳限定規格-正面">
-            <figcaption class="sample-cap">✅ 正確範例-身分證上傳限定規格-正面</figcaption>
-          </figure>
-          <figure class="sample-box">
-            <img class="sample-img" src="assets/身分證範本-背面.png" alt="❗️範例-身分證上傳限定規格-背面">
-            <figcaption class="sample-cap">✅ 正確範例-身分證上傳限定規格-背面</figcaption>
-          </figure>
-          <figure class="sample-box">
-            <img class="sample-img" src="assets/錯誤範例-1.jpg" alt="❗️錯誤範例-1.jpg">
-            <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角且要歪頭看</figcaption>
-          </figure>
-          <figure class="sample-box">
-            <img class="sample-img" src="assets/錯誤範例-2.jpg" alt="❗️錯誤範例-2.jpg">
-            <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角且有小手入鏡</figcaption>
-          </figure>
-        </div>
+  <!-- 範例改上下 -->
+  <div class="samples" aria-label="身分證範本">
 
-        <div class="fieldset" style="margin-top:16px;">
-          <div style="font-weight:800; margin-bottom:8px; text-align:center;">是否同意上述事項</div>
-          <div class="radio-row" role="radiogroup">
-            <label><input type="radio" name="agreeUpload" value="yes"> 同意</label>
-            <label><input type="radio" name="agreeUpload" value="no"> 不同意</label>
-          </div>
-          <div class="error" id="errAgreeUpload" style="text-align:center;">⚠️ 需同意才能繼續填寫</div>
-        </div>
-      </section>
+    <!-- 操作影片★★★ -->
+    <figure class="sample-box">
+      <video class="sample-img" controls playsinline style="max-height:220px; width:100%; object-fit:contain;">
+        <source src="assets/ios掃描範例.mp4" type="video/mp4">
+        ❌ 您的裝置不支援影片播放
+      </video>
+      <figcaption class="sample-cap">📹 iPhone 備忘錄掃描文件操作示範</figcaption>
+    </figure>
+
+    <figure class="sample-box">
+      <img class="sample-img" src="assets/體檢報告範本.jpg" alt="❗️體檢報告範本.jpg">
+      <figcaption class="sample-cap">✅ 正確範例-體檢報告上傳限定規格</figcaption>
+    </figure>
+    <figure class="sample-box">
+      <img class="sample-img" src="assets/錯誤範例-1" alt="❗️錯誤範例-1">
+      <figcaption class="sample-cap">❌ 錯誤範例-雖格式正確但須要好閱讀</figcaption>
+    </figure>
+    <figure class="sample-box">
+      <img class="sample-img" src="assets/錯誤範例-2.jpg" alt="❗️錯誤範例-2.jpg">
+      <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角</figcaption>
+    </figure>
+    <figure class="sample-box">
+      <img class="sample-img" src="assets/錯誤範例-3.jpg" alt="❗️錯誤範例-3.jpg">
+      <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角且有小手入鏡</figcaption>
+    </figure>
+  </div>
+
+  <div class="fieldset" style="margin-top:16px;">
+    <div style="font-weight:800; margin-bottom:8px; text-align:center;">是否同意上述事項</div>
+    <div class="radio-row" role="radiogroup">
+      <label><input type="radio" name="agreeUpload" value="yes"> 同意</label>
+      <label><input type="radio" name="agreeUpload" value="no"> 不同意</label>
+    </div>
+    <div class="error" id="errAgreeUpload" style="text-align:center;">⚠️ 需同意才能繼續填寫</div>
+  </div>
+</section>
 
       <!-- 第6頁：上傳文件相關 -->
       <section class="step" data-page="6" id="step-6">
