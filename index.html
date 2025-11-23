@@ -68,7 +68,13 @@
   }
 
   /* ===== 全站背景底色 ===== */
-  html, body { height: 100%; margin: 0; overflow-x: hidden; }
+  html, body { 
+    height: 100%; 
+    margin: 0; 
+    /* overflow-x: hidden; */ /* 舊的設定 */
+    overflow: hidden; /* 【修改】防止 iOS 整個頁面回彈 */
+  }
+  
   body {
     font-family:
       "GenSenRounded",
@@ -98,8 +104,14 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-    display: grid;
-    grid-template-rows: auto 1fr auto auto; /* header / content / actionbar / footer */
+    
+    /* display: grid; */ /* 【修改】Grid 在 iOS 容易造成滑動卡住 */
+    /* grid-template-rows: auto 1fr auto auto; */ /* header / content / actionbar / footer */
+    
+    /* 【新增】改用 Flexbox 解決 iOS 滑動問題 */
+    display: flex;
+    flex-direction: column;
+    
     overflow: hidden;
     background: var(--panel-bg) !important; /* 以變數為最終背景 */
   }
@@ -114,6 +126,7 @@
 
   /* 頁首（中間置中標題；右上角顯示步驟） */
   .header {
+    flex-shrink: 0; /* 【新增】防止被壓縮 */
     position: relative;
     padding: 12px 16px;
     border-bottom: 1px solid var(--border);
@@ -135,13 +148,16 @@
   }
 
   /* 內容：只在此區滾動；底部預留操作列與頁尾高度 */
-  /* 【修正】加入 touch-action 與 display: block 優化 iOS 滾動體驗 */
   .content {
+    /* 【新增】Flex 設定，讓內容區自動佔滿並允許縮小 */
+    flex: 1;
+    min-height: 0; /* 關鍵：解決 iOS flex item 內容溢出無法捲動 */
+    
     padding: 16px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
-    display: block;
+    touch-action: pan-y; /* 【新增】強化觸控滾動判定 */
+    
     padding-bottom: calc(var(--actionbar-h) + var(--footer-h) + 16px);
   }
 
@@ -247,6 +263,7 @@
 
   /* 底部固定操作列（全頁共用） */
   .actionbar {
+    flex-shrink: 0; /* 【新增】防止被壓縮 */
     position: relative; display:flex; gap:10px; justify-content:space-between; align-items:center;
     padding: var(--actionbar-pad-y) var(--actionbar-pad-x) calc(var(--actionbar-pad-y) + env(safe-area-inset-bottom));
     border-top: 1px solid var(--border); background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);
@@ -259,6 +276,7 @@
 
   /* Sticky Footer（每頁都會看到） */
   .footer {
+    flex-shrink: 0; /* 【新增】防止被壓縮 */
     border-top:1px solid var(--border);
     padding:10px 14px calc(10px + env(safe-area-inset-bottom));
     text-align:center; color: var(--muted); font-size: var(--footer-size);
@@ -834,14 +852,19 @@ function showStep(pageNumber) {
   updateNavState();
   updateSubmitButtonState(); // ★ 第 8 頁提交按鈕狀態
 
-  /* 【修正】切換頁面後，強制重新計算底部高度，避免被操作列擋住 */
-  autoFitActionbarHeight();
-
   if (pageNumber === TOTAL_STEPS) {
     setUpdatedNow();
     setTimeout(() => { lockAllAndHideNav(); updateNavState(); }, 0);
   }
 }
+
+/* ====== 第 5 頁圖片縮小 ====== */
+/* 【調整】將此處的硬編碼樣式移回 CSS 變數控制 */
+/* document.querySelectorAll("#step-5 .sample-img").forEach((img) => {
+  img.style.maxHeight = "160px";
+  img.style.objectFit = "contain";
+});
+*/
 
 /* ====== 第 6 頁檔案預覽（PDF、圖片皆可） ====== */
 function bindFilePreview(inputId, txtId, thumbId) {
