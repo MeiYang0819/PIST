@@ -2,6 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
+  <!-- 鎖縮放：避免打字後需要自行縮小；搭配 iOS 聚焦字級=16 一起使用 -->
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no" />
   <title>📑 報到須知單</title>
 
@@ -59,7 +60,7 @@
     /* 面板背景變數（由 data-* 控制） */
     --panel-bg: linear-gradient(0deg,rgba(43,37,37,1) 0%, rgba(0,0,0,1) 100%); /* 預設黑 */
 
-    /*//* --------第4頁：範例圖片尺寸/外觀（可自行調整）--------*/*/
+    /* --------第4頁：範例圖片尺寸/外觀（可自行調整）--------*/
     --sample-gap: 10px;         /* 圖片之間的間距（可調） */
     --sample-max-h: 180px;      /* 圖片最大高度（可調） */
     --sample-pad: 8px;          /* 每張圖外框內距（可調） */
@@ -68,13 +69,7 @@
   }
 
   /* ===== 全站背景底色 ===== */
-  html, body { 
-    height: 100%; 
-    margin: 0; 
-    /* overflow-x: hidden; */ /* 舊的設定 */
-    overflow: hidden; /* 【修改】防止 iOS 整個頁面回彈 */
-  }
-  
+  html, body { height: 100%; margin: 0; overflow-x: hidden; }
   body {
     font-family:
       "GenSenRounded",
@@ -104,14 +99,8 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-    
-    /* display: grid; */ /* 【修改】Grid 在 iOS 容易造成滑動卡住 */
-    /* grid-template-rows: auto 1fr auto auto; */ /* header / content / actionbar / footer */
-    
-    /* 【新增】改用 Flexbox 解決 iOS 滑動問題 */
-    display: flex;
-    flex-direction: column;
-    
+    display: grid;
+    grid-template-rows: auto 1fr auto auto; /* header / content / actionbar / footer */
     overflow: hidden;
     background: var(--panel-bg) !important; /* 以變數為最終背景 */
   }
@@ -126,7 +115,6 @@
 
   /* 頁首（中間置中標題；右上角顯示步驟） */
   .header {
-    flex-shrink: 0; /* 【新增】防止被壓縮 */
     position: relative;
     padding: 12px 16px;
     border-bottom: 1px solid var(--border);
@@ -149,15 +137,9 @@
 
   /* 內容：只在此區滾動；底部預留操作列與頁尾高度 */
   .content {
-    /* 【新增】Flex 設定，讓內容區自動佔滿並允許縮小 */
-    flex: 1;
-    min-height: 0; /* 關鍵：解決 iOS flex item 內容溢出無法捲動 */
-    
     padding: 16px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-y; /* 【新增】強化觸控滾動判定 */
-    
     padding-bottom: calc(var(--actionbar-h) + var(--footer-h) + 16px);
   }
 
@@ -263,7 +245,6 @@
 
   /* 底部固定操作列（全頁共用） */
   .actionbar {
-    flex-shrink: 0; /* 【新增】防止被壓縮 */
     position: relative; display:flex; gap:10px; justify-content:space-between; align-items:center;
     padding: var(--actionbar-pad-y) var(--actionbar-pad-x) calc(var(--actionbar-pad-y) + env(safe-area-inset-bottom));
     border-top: 1px solid var(--border); background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);
@@ -276,7 +257,6 @@
 
   /* Sticky Footer（每頁都會看到） */
   .footer {
-    flex-shrink: 0; /* 【新增】防止被壓縮 */
     border-top:1px solid var(--border);
     padding:10px 14px calc(10px + env(safe-area-inset-bottom));
     text-align:center; color: var(--muted); font-size: var(--footer-size);
@@ -354,6 +334,7 @@
   margin: 0 auto;
   }
 
+
   /* ====== 登入遮罩樣式（沿用樣式當密碼鎖） ====== */
   .gate{ position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; }
   .gate-card{ width:min(520px, 92vw); background:rgba(30,30,30,0.95); border:1px solid var(--border); border-radius:16px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.45); }
@@ -367,6 +348,7 @@
   </style>
 </head>
 <body>
+  <!-- 密碼進入遮罩 -->
   <div class="gate" id="passGate">
     <div class="gate-card">
       <h3>輸入密碼後即可填寫</h3>
@@ -389,8 +371,8 @@
       <div class="header-step" id="headerStep">第01頁/共09頁</div>
     </header>
 
-    <form id="onboardForm">
     <main class="content" id="content">
+      <!-- 第1頁：注意事項 -->
       <section class="step active" data-page="1" id="step-1">
         <h2> 　　⏰ 注意事項</h2>
         <ol class="note-list">
@@ -412,7 +394,9 @@
         </div>
       </section>
 
+      <!-- 第2頁：FAQ（薪資轉帳＋體健檢報告＋報到文件用途） -->
       <section class="step" data-page="2" id="step-2">
+        <!-- FAQ-薪資轉帳相關 -->
         <h2> 　　💰 FAQ-薪資轉帳相關</h2>
         <ol class="note-list">
           <li>本公司配合薪資轉帳銀:</li>
@@ -429,6 +413,7 @@
           <p>❗️不能</p>
         </ol>
 
+        <!-- FAQ-體健檢報告相關 -->
         <h2>🩺 FAQ-體健檢報告相關</h2>
         <ol class="note-list">
           <li>是否可以僅繳交一份體健檢報告:</li>
@@ -447,6 +432,7 @@
           <p>❗️第一年自行負擔;第二年公司負責.</p> 
         </ol>
 
+        <!-- 報到文件用途說明 -->
         <h2> 　　📑 報到文件用途說明</h2>
         <ol class="note-list">
           <li>一般勞工體格檢查報告:</li>
@@ -479,6 +465,7 @@
         </div>
       </section>
 
+      <!-- 第3頁：擁有文件 -->
       <section class="step" data-page="3" id="step-3">
         <h2>　❗️擁有下列文件請打勾</h2>
         <div class="fieldset">
@@ -494,8 +481,9 @@
         </div>
       </section>
 
+      <!-- 第4頁：報到日必要繳交文件 -->
       <section class="step" data-page="4" id="step-4">
-        <h2>　❗️報到日必要帶齊五大文件</h2>
+        <h2>　❗️報到日必要繳交五大文件</h2>
         <div class="fieldset">
           <div class="checks">
             <label><input type="checkbox" id="needChk1"> 1. 經認證醫療機構-勞工體格檢查報告</label>
@@ -510,21 +498,24 @@
         </div>
       </section>
 
+      <!-- 第5頁：上傳檔案說明＋同意 -->
       <section class="step" data-page="5" id="step-5">
-  <h2> 　　⏫ 上傳檔案</h2>
-  <ol class="note-list">
-    <li>上傳之個人準備文件.</li>
-    <li>有正確及錯誤範例.</li>
-    <li>檔案須符合本公司限定規格.</li>
-    <li>哀鳳手機請用手機內建備忘錄掃描.</li>
-  </ol>
+        <h2> 　　⏫ 上傳檔案</h2>
+        <ol class="note-list">
+          <li>上傳之個人準備文件.</li>
+          <li>有正確及錯誤範例.</li>
+          <li>檔案須符合本公司限定規格.</li>
+          <li>哀鳳手機請用手機內建備忘錄掃描.</li>
+        </ol>
 
-  <div class="samples" aria-label="身分證範本">
+        <!-- 範例改上下 -->
+        <div class="samples" aria-label="身分證範本">
 
+    <!-- 操作影片★★★ -->
     <figure class="sample-box">
       <video class="sample-img" controls playsinline style="max-height:220px; width:100%; object-fit:contain;">
         <source src="assets/ios掃描範例.mp4" type="video/mp4">
-        ❌ 你/妳的裝置不支援影片播放
+        ❌ 您的裝置不支援影片播放
       </video>
       <figcaption class="sample-cap">📹 iPhone 備忘錄掃描文件操作示範</figcaption>
     </figure>
@@ -555,14 +546,15 @@
     </div>
     <div class="error" id="errAgreeUpload" style="text-align:center;">⚠️ 需同意才能繼續填寫</div>
   </div>
-</section>
+      </section>
 
+      <!-- 第6頁：上傳文件相關 -->
       <section class="step" data-page="6" id="step-6">
         <div class="file-row">
           <div>台新國際商業銀行戶頭</div>
           <label class="file-input">
             <span class="file-btn">選擇檔案</span>
-            <input id="idFront" name="idFront" type="file" accept=".pdf,image/*" />
+            <input id="idFront" type="file" accept=".pdf,image/*" />
           </label>
           <div class="file-name" id="nameFront">
             <img class="thumb" id="thumbFront" alt="縮圖預覽"><span id="nameFrontTxt">尚未選取檔案</span>
@@ -574,7 +566,7 @@
           <div>勞工體格檢查報告</div>
           <label class="file-input">
             <span class="file-btn">選擇檔案</span>
-            <input id="idLaborCheck" name="idLaborCheck" type="file" accept=".pdf,image/*" />
+            <input id="idLaborCheck" type="file" accept=".pdf,image/*" />
           </label>
           <div class="file-name" id="nameLaborCheck">
             <img class="thumb" id="thumbLaborCheck" alt="縮圖預覽"><span id="nameLaborCheckTxt">尚未選取檔案</span>
@@ -586,7 +578,7 @@
           <div>食品從業人員體檢報告</div>
           <label class="file-input">
             <span class="file-btn">選擇檔案</span>
-            <input id="idFoodCheck" name="idFoodCheck" type="file" accept=".pdf,image/*" />
+            <input id="idFoodCheck" type="file" accept=".pdf,image/*" />
           </label>
           <div class="file-name" id="nameFoodCheck">
             <img class="thumb" id="thumbFoodCheck" alt="縮圖預覽"><span id="nameFoodCheckTxt">尚未選取檔案</span>
@@ -607,12 +599,25 @@
         </div>
       </section>
 
+      <!-- 第7頁：員工基本資料 -->
       <section class="step" data-page="7" id="step-7">
+        <h2>📋 員工基本資料</h2>
+        <div class="row">
+          <label for="company">© 公司名稱 <small>⏍ 請確認後再行點選</small></label>
+          <select id="company">
+            <option value="" selected disabled>請選擇</option>
+            <option>Drunk Caffee 爛醉咖啡</option>
+            <option>FIZZ FIZZ.TEIPEI</option>
+            <option>Social Company 有趣人類社交局</option>
+          </select>
+          <div class="error" id="errcompany">⚠️ 尚未選擇公司</div>
+        </div>
+<section class="step" data-page="7" id="step-7">
   <h2>📋 員工基本資料</h2>
 
   <div class="row">
     <label for="company">© 公司名稱 <small>⏍ 請確認後再行點選</small></label>
-    <select id="company" name="company">
+    <select id="company">
       <option value="" selected disabled>請選擇</option>
       <option>Drunk Caffee 爛醉咖啡</option>
       <option>FIZZ FIZZ.TEIPEI</option>
@@ -621,9 +626,22 @@
     <div class="error" id="errcompany">⚠️ 尚未選擇公司</div>
   </div>
 
+        <div class="row">
+          <label for="team">© 隸屬團隊 <small>⏍ 若不確定歸屬,請詢問面試主管後再行點選</small></label>
+          <select id="team">
+            <option value="" selected disabled>請選擇</option>
+            <option>外場-Serve Teams</option>
+            <option>吧檯-Bar Teams</option>
+            <option>內廚-Kitchen Teams</option>
+            <option>收銀-Cashier Teams</option>
+            <option>公關-Public Relations Teams</option>
+            <option>其他-Other</option>
+          </select>
+          <div class="error" id="errTeam">⚠️ 尚未選擇隸屬團隊</div>
+        </div>
   <div class="row">
     <label for="team">© 隸屬團隊 <small>⏍ 若不確定歸屬,請詢問面試主管後再行點選</small></label>
-    <select id="team" name="team">
+    <select id="team">
       <option value="" selected disabled>請選擇</option>
       <option>外場-Serve Teams</option>
       <option>吧檯-Bar Teams</option>
@@ -635,9 +653,19 @@
     <div class="error" id="errTeam">⚠️ 尚未選擇隸屬團隊</div>
   </div>
 
+        <div class="row">
+          <label for="workType">© 工作型態 <small>⏍ 若不確定部門,請詢問面試主管後再行點選</small></label>
+          <select id="workType">
+            <option value="" selected disabled>請選擇</option>
+            <option>正職/全時工時-Full Time</option>
+            <option>兼職/部分工時-Part Time</option>
+          </select>
+          <div class="error" id="errWorkType">⚠️ 尚未選擇工作型態</div>
+        </div>
+      </section>
   <div class="row">
     <label for="workType">© 工作型態 <small>⏍ 若不確定部門,請詢問面試主管後再行點選</small></label>
-    <select id="workType" name="workType">
+    <select id="workType">
       <option value="" selected disabled>請選擇</option>
       <option>正職/全時工時-Full Time</option>
       <option>兼職/部分工時-Part Time</option>
@@ -645,15 +673,32 @@
     <div class="error" id="errWorkType">⚠️ 尚未選擇工作型態</div>
   </div>
 
+      <div class="row">
+  <label for="fullName">© 本名</label>
+  <input id="fullName" type="text" placeholder="請輸入本名" />
+  <div class="error" id="errFullName">⚠️ 此欄位不得為空</div>
+</div>
+
+<div class="row">
+  <label for="gender">© 性別 <small>⏍ 以身分證為主</small></label>
+  <select id="gender">
+    <option value="" selected disabled>請選擇</option>
+    <option>男</option>
+    <option>女</option>
+    <option>多元</option>
+  </select>
+  <div class="error" id="errGender">⚠️ 尚未選擇性別</div>
+</div>
+      
   <div class="row">
     <label for="fullName">© 本名</label>
-    <input id="fullName" name="fullName" type="text" placeholder="請輸入本名" />
+    <input id="fullName" type="text" placeholder="請輸入本名" />
     <div class="error" id="errFullName">⚠️ 此欄位不得為空</div>
   </div>
 
   <div class="row">
     <label for="gender">© 性別 <small>⏍ 以身分證為主</small></label>
-    <select id="gender" name="gender">
+    <select id="gender">
       <option value="" selected disabled>請選擇</option>
       <option>男</option>
       <option>女</option>
@@ -663,6 +708,7 @@
   </div>
 </section>
   
+      <!-- 第8頁：資料送出前-核檢區 -->
       <section class="step" data-page="8" id="step-8">
         <h2>　❗️資料送出前-核檢區</h2>
         <div class="fieldset">
@@ -680,6 +726,7 @@
         </div>
       </section>
 
+      <!-- 第9頁：全數完成 -->
       <section class="step" data-page="9" id="step-9">
         <h2>✅ 全數完成</h2>
         <div style="text-align:center; line-height:1.8;">
@@ -694,8 +741,8 @@
         </div>
       </section>
     </main>
-      </form>
 
+    <!-- 底部固定操作列（全頁共用） -->
     <div class="actionbar" id="actionbar">
       <div class="left-actions">
         <button class="btn btn--nav" id="btnPrev" type="button">上一頁</button>
@@ -704,10 +751,11 @@
         <button class="btn btn--nav" id="btnNext" type="button">下一頁</button>
       </div>
     </div>
-    
-　　<footer class="footer" id="footer">
+
+　　<!-- 商標；版權 -->
+    <footer class="footer" id="footer">
       <img src="assets/MYs_logo_去背1.png" alt="MYs Logo" class="footer-logo">
-      © Copyright 2025 MYs System-b1.0.0.11.19-2025
+      ︳© Copyright 2025 MYs System-b1.0.0.11.19-2025
     </footer>
   </div>
 
@@ -850,7 +898,6 @@ function showStep(pageNumber) {
   updateHeaderStep();
   $("#content").scrollTo({ top: 0, behavior: "instant" });
   updateNavState();
-  updateSubmitButtonState(); // ★ 第 8 頁提交按鈕狀態
 
   if (pageNumber === TOTAL_STEPS) {
     setUpdatedNow();
@@ -858,13 +905,11 @@ function showStep(pageNumber) {
   }
 }
 
-/* ====== 第 5 頁圖片縮小 ====== */
-/* 【調整】將此處的硬編碼樣式移回 CSS 變數控制 */
-/* document.querySelectorAll("#step-5 .sample-img").forEach((img) => {
+/* ====== 第 5 頁圖片縮小（恢復小圖片） ====== */
+document.querySelectorAll("#step-5 .sample-img").forEach((img) => {
   img.style.maxHeight = "160px";
   img.style.objectFit = "contain";
 });
-*/
 
 /* ====== 第 6 頁檔案預覽（PDF、圖片皆可） ====== */
 function bindFilePreview(inputId, txtId, thumbId) {
@@ -936,24 +981,27 @@ function validatePage(n, submit=false){
       );
 
     /* ------ 第5頁：上傳檔案同意（需同意才可下一步） ------ */
-    case 5: {
-      const yes = $(`input[name="agreeUpload"][value="yes"]`).checked;
-      const no  = $(`input[name="agreeUpload"][value="no"]`).checked;
+case 5: {
+  const yes = $(`input[name="agreeUpload"][value="yes"]`).checked;
+  const no  = $(`input[name="agreeUpload"][value="no"]`).checked;
 
-      if (no) {
-        $("#errAgreeUpload").style.display = "block";
-      }
+  /* ★ 按「不同意」立即顯示錯誤 */
+  if (no) {
+    $("#errAgreeUpload").style.display = "block";
+  }
 
-      if (yes) {
-        $("#errAgreeUpload").style.display = "none";
-      }
+  /* ★ 按「同意」立即隱藏錯誤 */
+  if (yes) {
+    $("#errAgreeUpload").style.display = "none";
+  }
 
-      if (!yes && submit) {
-        $("#errAgreeUpload").style.display = "block";
-      }
+  /* ★ 點下一步（submit=true）時，也要觸發一次 */
+  if (!yes && submit) {
+    $("#errAgreeUpload").style.display = "block";
+  }
 
-      return yes;
-    }
+  return yes;
+}
 
     /* ------ 第6頁：上傳檔案（勞工體檢＋食品體檢必上傳） ------ */
     case 6: {
@@ -969,31 +1017,32 @@ function validatePage(n, submit=false){
 
     /* ------ 第7頁：基本資料 ------ */
     case 7: {
-      const a = $("#company").value !== "";
-      const b = $("#team").value !== "";
-      const c = $("#workType").value !== "";
+  const a = $("#company").value !== "";
+  const b = $("#team").value !== "";
+  const c = $("#workType").value !== "";
 
-      /* 本名 & 性別 */
-      const d = $("#fullName").value.trim() !== "";
-      const e = $("#gender").value !== "";
+  /* ★ 本名 & 性別 */
+  const d = $("#fullName").value.trim() !== "";
+  const e = $("#gender").value !== "";
 
-      if (submit) {
-        $("#errcompany").style.display = !a ? "block" : "none";
-        $("#errTeam").style.display = !b ? "block" : "none";
-        $("#errWorkType").style.display = !c ? "block" : "none";
+  if (submit) {
+    $("#errcompany").style.display = !a ? "block" : "none";
+    $("#errTeam").style.display = !b ? "block" : "none";
+    $("#errWorkType").style.display = !c ? "block" : "none";
 
-        /* 錯誤提示 */
-        $("#errFullName").style.display = !d ? "block" : "none";
-        $("#errGender").style.display = !e ? "block" : "none";
-      }
+    /* ★ 錯誤提示 */
+    $("#errFullName").style.display = !d ? "block" : "none";
+    $("#errGender").style.display = !e ? "block" : "none";
+  }
 
-      return a && b && c && d && e; 
-    }
+  return a && b && c && d && e;   /* ★ 新增 d & e */
+  return a && b && c && d && e; 
+}
 
     /* ------ 第8頁：核檢 6 項 ------ */
     case 8:
       return ["#preA", "#preB", "#preC", "#preD", "#preE", "#preF"].every(
-        (id) => $(id)?.checked
+        (id) => $(id).checked
       );
 
     /* ------ 第9頁：完成頁 ------ */
@@ -1017,35 +1066,14 @@ function updateNavState(){
 
   if (!btnNext) return;
 
+  btnNext.style.display = onLast ? "none" : "inline-block";
+
   const validNow = validatePage(currentPage, false);
 
   /* 預設：不通過就不能下一頁 */
   let disabled = IS_LOCKED || !validNow;
 
-  /* 第 8 頁一律隱藏「下一頁」，改用提交鈕 */
-  if (currentPage === 8) {
-    btnNext.style.display = "none";
-  } else {
-    btnNext.style.display = onLast ? "none" : "inline-block";
-  }
-
   btnNext.disabled = disabled;
-}
-
-/* 第 8 頁「提交」按鈕啟用條件（6 個核檢都勾） */
-function updateSubmitButtonState(){
-  const btnSubmit = $("#btnSubmit");
-  if (!btnSubmit) return;
-
-  if (currentPage !== 8 || IS_LOCKED) {
-    btnSubmit.disabled = true;
-    return;
-  }
-
-  const ok = ["#preA", "#preB", "#preC", "#preD", "#preE", "#preF"].every(
-    (id) => $(id)?.checked
-  );
-  btnSubmit.disabled = !ok;
 }
 
 /* 清除當頁（目前沒有按鈕呼叫，函式保留） */
@@ -1063,7 +1091,6 @@ function clearCurrentPage(){
   if(cur.id==="step-2"){ $("#exitMsg2").classList.remove("show"); }
 
   updateNavState();
-  updateSubmitButtonState();
 }
 
 /* ====== 事件綁定 ====== */
@@ -1092,10 +1119,7 @@ function bindLiveValidation(){
 
   /* 所有 checkbox（第3、4、6、8頁等） */
   $$('input[type="checkbox"]').forEach(c =>
-    c.addEventListener('change', () => {
-      updateNavState();
-      updateSubmitButtonState();
-    })
+    c.addEventListener('change', () => updateNavState())
   );
 
   /* 上傳檔案 */
@@ -1108,117 +1132,24 @@ function bindLiveValidation(){
     s.addEventListener('change', () => updateNavState())
   );
 
-  /* 本名（即時驗證） */
+  /* ★ 本名（即時驗證） */
   $("#fullName")?.addEventListener("input", () => updateNavState());
 
-  /* 性別（即時驗證） */
+  /* ★ 性別（即時驗證） */
   $("#gender")?.addEventListener("change", () => updateNavState());
-}
-
-/* 第 8 頁實際提交（送到 Apps Script） */
-function handleFinalSubmit(){
-  if (IS_LOCKED) return;
-
-  /* 再檢查一次第 8 頁 */
-  const okPreCheck = validatePage(8, true);
-  if (!okPreCheck) {
-    alert("請先勾選完 6 項核檢再提交。");
-    return;
-  }
-
-  /* 再檢查一次第 7 頁基本資料（避免漏填） */
-  const okBasic = validatePage(7, true);
-  if (!okBasic) {
-    alert("❌請先回上一頁,完成員工基本資料");
-    showStep(7);
-    return;
-  }
-
-  const formEl = document.getElementById("onboardForm");
-  if (!formEl) {
-    alert("🚨 找不到表單元素,請聯絡人資承辦");
-    return;
-  }
-
-  const btnSubmit = $("#btnSubmit");
-  if (btnSubmit) {
-    btnSubmit.disabled = true;
-    btnSubmit.textContent = "送出中...";
-  }
-
-  // ★ 呼叫 Apps Script 後端（submitOnboardForm）
-  google.script.run
-    .withSuccessHandler((res) => {
-      if (btnSubmit) {
-        btnSubmit.disabled = true;
-        btnSubmit.textContent = "已送出";
-      }
-
-      if (!res || !res.status) {
-        alert("🚨 送出結果不明,請聯絡人資承辦");
-        return;
-      }
-
-      if (res.status === "duplicate") {
-        alert("🔔 你/妳此表單已填寫過,無法再次提交");
-        return;
-      }
-
-      if (res.status === "ok") {
-        alert("✔ 提交成功,系統已收到資料");
-        setUpdatedNow();
-        showStep(9);
-        return;
-      }
-
-      if (res.status === "error") {
-        alert("送出失敗：" + (res.message || ""));
-        if (btnSubmit) {
-          btnSubmit.disabled = false;
-          btnSubmit.textContent = "提交";
-        }
-      }
-    })
-    .withFailureHandler((err) => {
-      if (btnSubmit) {
-        btnSubmit.disabled = false;
-        btnSubmit.textContent = "提交";
-      }
-      alert("⚠️ 系統發生錯誤，請稍後再試\n" + err.message);
-    })
-    .submitOnboardForm(formEl);
 }
 
 /* 高度調整 */
 function autoFitActionbarHeight(){
   const bar = $("#actionbar"); if(!bar) return;
   const h = bar.offsetHeight;
-  /* 【修復滾動】設置 actionbar 實際高度 */
   document.documentElement.style.setProperty('--actionbar-h', `${h}px`);
-  /* 【移除-修復佈局】刪除強制重排程式碼，避免造成頁面頂部留白或閃爍 */
-  /* const content = $("#content");
-  if (content) {
-    content.style.overflowY = 'hidden';
-    content.offsetHeight; 
-    content.style.overflowY = 'auto';
-  } */
 }
 (function observeBar(){
   const bar=$("#actionbar");
-  /* 【調整】移除舊的 ResizeObserver 檢查，確保在所有支援的環境中執行 */
-  if(!bar) return;
-   
-  /* 【新增】使用 MutationObserver 監測 actionbar 內容變化（例如按鈕顯示/隱藏） */
-  if ('MutationObserver' in window) {
-    const mo = new MutationObserver(autoFitActionbarHeight);
-    mo.observe(bar, { attributes: true, childList: true, subtree: true });
-  }
-   
-  /* 【保留】原始的 ResizeObserver 監測高度變化 */
-  if ('ResizeObserver' in window) {
-    const ro = new ResizeObserver(autoFitActionbarHeight);
-    ro.observe(bar);
-  }
+  if(!bar || !('ResizeObserver' in window)) return;
+  const ro = new ResizeObserver(()=> autoFitActionbarHeight());
+  ro.observe(bar);
 })();
 
 /* ====== 導航按鈕 ====== */
@@ -1238,9 +1169,6 @@ function bindActionBar(){
       showStep(currentPage+1);
     }
   });
-
-  /* ★ 第 8 頁提交鈕 */
-  $("#btnSubmit")?.addEventListener("click", handleFinalSubmit);
 }
 
 /* ====== 初始化 ====== */
@@ -1250,7 +1178,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
   bindActionBar();
   autoFitActionbarHeight();
   updateStampUI();
-  updateSubmitButtonState();
 });
 </script>
 </body>
