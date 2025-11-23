@@ -1,3 +1,5 @@
+記憶以下三段成是碼
+
 <!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -347,349 +349,366 @@
   </style>
 </head>
 <body>
-    <div class="gate" id="passGate">
-    <div class="gate-card">
-      <h3>輸入密碼後即可填寫</h3>
-      <p>請向人資承辦索取密碼🔐</p>
-      <div class="row">
-        <label for="gatePwd">輸入金鑰🔑</label>
-        <input id="gatePwd" type="password" placeholder="請輸入密碼" />
-        <button type="button" id="togglePwdVisibility">顯示密碼</button>
-        <div class="error" id="gatePwdErr">❌ 密碼錯誤，請再試一次</div>
-      </div>
-      <div class="gate-actions">
-        <button class="btn" id="gatePwdStart" type="button">確定</button>
-      </div>
-    </div>
-  </div>
+  <!-- 密碼進入遮罩 -->
+  <div class="gate" id="passGate">
+    <div class="gate-card">
+      <h3>輸入密碼後即可填寫</h3>
+      <p>請向人資承辦索取密碼🔐</p>
+      <div class="row">
+        <label for="gatePwd">輸入金鑰🔑</label>
+        <input id="gatePwd" type="password" placeholder="請輸入密碼" />
+        <button type="button" id="togglePwdVisibility">顯示密碼</button>
+        <div class="error" id="gatePwdErr">❌ 密碼錯誤，請再試一次</div>
+      </div>
+      <div class="gate-actions">
+        <button class="btn" id="gatePwdStart" type="button">確定</button>
+      </div>
+    </div>
+  </div>
 
-  <div class="container" role="region" aria-label="勞工名卡建檔表 分步表單" data-scheme="black">
-    <header class="header">
-      <div class="header-title">📑 報到須知單</div>
-      <div class="header-step" id="headerStep">第01頁/共09頁</div>
-    </header>
+  <div class="container" role="region" aria-label="勞工名卡建檔表 分步表單" data-scheme="black">
+    <header class="header">
+      <div class="header-title">📑 報到須知單</div>
+      <div class="header-step" id="headerStep">第01頁/共09頁</div>
+    </header>
 
-    <form id="onboardForm">
-    <main class="content" id="content">
-            <section class="step active" data-page="1" id="step-1">
-        <h2> 　　⏰ 注意事項</h2>
-        <ol class="note-list">
-          <li>此表單僅限錄取者使用.</li>
-          <li>若非上述身分請立即退出此表單.</li>
-          <li>請依照下列表單順序執行填寫.</li>
-          <li>上傳之個人資料悉依個資相關法令規範辦理保存.</li>
-          <li>填寫表單若遇到困難請向報到群組提出職場禮貌詢問.</li>
-          <li>若對表單有疑問不確定資訊,請先詢問後再填寫.</li>
-        </ol>
+    <form id="onboardForm">
+    <main class="content" id="content">
+      <!-- 第1頁：注意事項 -->
+      <section class="step active" data-page="1" id="step-1">
+        <h2> 　　⏰ 注意事項</h2>
+        <ol class="note-list">
+          <li>此表單僅限錄取者使用.</li>
+          <li>若非上述身分請立即退出此表單.</li>
+          <li>請依照下列表單順序執行填寫.</li>
+          <li>上傳之個人資料悉依個資相關法令規範辦理保存.</li>
+          <li>填寫表單若遇到困難請向報到群組提出職場禮貌詢問.</li>
+          <li>若對表單有疑問不確定資訊,請先詢問後再填寫.</li>
+        </ol>
 
-        <div class="fieldset center-block">
-          <div style="font-weight:800;">是否了解上述注意事項</div>
-          <div class="radio-row" role="radiogroup" aria-label="是否了解上述注意事項">
-            <label><input type="radio" name="agree1" value="yes"> 了解</label>
-            <label><input type="radio" name="agree1" value="no"> 有異議</label>
-          </div>
-          <div class="exit" id="exitMsg1">🚨 若有疑問,可詢問人資承辦...</div>
-        </div>
-      </section>
+        <div class="fieldset center-block">
+          <div style="font-weight:800;">是否了解上述注意事項</div>
+          <div class="radio-row" role="radiogroup" aria-label="是否了解上述注意事項">
+            <label><input type="radio" name="agree1" value="yes"> 了解</label>
+            <label><input type="radio" name="agree1" value="no"> 有異議</label>
+          </div>
+          <div class="exit" id="exitMsg1">🚨 若有疑問,可詢問人資承辦...</div>
+        </div>
+      </section>
 
-            <section class="step" data-page="2" id="step-2">
-                <h2> 　　💰 FAQ-薪資轉帳相關</h2>
-        <ol class="note-list">
-          <li>本公司配合薪資轉帳銀:</li>
-          <p>❗️台新銀行</p> 
-          <li>是否能接受數位帳戶:</li>
-          <p>❗️公司可受理綜合活期儲蓄存款及活期性存款.</p>
-          <li>已有上述符合之帳戶是否還要開立帳戶:</li>
-          <p>❗️毋須開立.</p>
-          <li>若沒有帳戶是否要去臨櫃開立:</li>
-          <p>⏍ 毋須開立.</br> 
-             ⏍ 本公司與該行是薪轉戶專案,將提供限定證明去辦理開戶.</br> 
-             ⏍ 須完成報到程序後給予.</p>
-          <li>是否能使用別間銀行存摺:</li>
-          <p>❗️不能</p>
-        </ol>
+      <!-- 第2頁：FAQ（薪資轉帳＋體健檢報告＋報到文件用途） -->
+      <section class="step" data-page="2" id="step-2">
+        <!-- FAQ-薪資轉帳相關 -->
+        <h2> 　　💰 FAQ-薪資轉帳相關</h2>
+        <ol class="note-list">
+          <li>本公司配合薪資轉帳銀:</li>
+          <p>❗️台新銀行</p> 
+          <li>是否能接受數位帳戶:</li>
+          <p>❗️公司可受理綜合活期儲蓄存款及活期性存款.</p>
+          <li>已有上述符合之帳戶是否還要開立帳戶:</li>
+          <p>❗️毋須開立.</p>
+          <li>若沒有帳戶是否要去臨櫃開立:</li>
+          <p>⏍ 毋須開立.</br> 
+             ⏍ 本公司與該行是薪轉戶專案,將提供限定證明去辦理開戶.</br> 
+             ⏍ 須完成報到程序後給予.</p>
+          <li>是否能使用別間銀行存摺:</li>
+          <p>❗️不能</p>
+        </ol>
 
-                <h2>🩺 FAQ-體健檢報告相關</h2>
-        <ol class="note-list">
-          <li>是否可以僅繳交一份體健檢報告:</li>
-          <p>❗️可以僅繳交一份,但請注意:</br>
-             ⏍ 未滿40歲,提交的體檢報告必須在5年內.</br>
-             ⏍ 40歲以上,未滿65歲,提交的體檢報告必須在3年內.</br>
-             ⏍ 年滿65歲,提交的體檢報告必須在1年內.</br>
-             ⏍ 符合上述原則,可以不必再實施體檢.</p>
-          <li>糞便傷寒必須要檢查,若檢核無該選項:</li>
-          <p>❗️請重新或補做傷寒檢查項目.</p>
-          <li>是否可使用之前任職公司的體健檢報告:</li>
-          <p>❗️回應與第一則則相同.</p> 
-          <li>查詢認證體檢醫院機構:</li>
-          <p>❗️<a href="https://hrpts.osha.gov.tw/Home/CertifiedHospInfoSearch" target="_blank" style="color:#60a5fa; text-decoration:underline;">請點擊此文字連結查詢</a>.</p>
-          <li>體檢費用:</li>
-          <p>❗️第一年自行負擔;第二年公司負責.</p> 
-        </ol>
+        <!-- FAQ-體健檢報告相關 -->
+        <h2>🩺 FAQ-體健檢報告相關</h2>
+        <ol class="note-list">
+          <li>是否可以僅繳交一份體健檢報告:</li>
+          <p>❗️可以僅繳交一份,但請注意:</br>
+             ⏍ 未滿40歲,提交的體檢報告必須在5年內.</br>
+             ⏍ 40歲以上,未滿65歲,提交的體檢報告必須在3年內.</br>
+             ⏍ 年滿65歲,提交的體檢報告必須在1年內.</br>
+             ⏍ 符合上述原則,可以不必再實施體檢.</p>
+          <li>糞便傷寒必須要檢查,若檢核無該選項:</li>
+          <p>❗️請重新或補做傷寒檢查項目.</p>
+          <li>是否可使用之前任職公司的體健檢報告:</li>
+          <p>❗️回應與第一則則相同.</p> 
+          <li>查詢認證體檢醫院機構:</li>
+          <p>❗️<a href="https://hrpts.osha.gov.tw/Home/CertifiedHospInfoSearch" target="_blank" style="color:#60a5fa; text-decoration:underline;">請點擊此文字連結查詢</a>.</p>
+          <li>體檢費用:</li>
+          <p>❗️第一年自行負擔;第二年公司負責.</p> 
+        </ol>
 
-                <h2> 　　📑 報到文件用途說明 </h2>
-        <ol class="note-list">
-          <li>一般勞工體格檢查報告:</li>
-          <p>❗️依據《職業安全衛生法》§20,勞工健康保護規則§16~17</br> 
-             ⏍ 未滿40歲,提交的體檢報告必須在5年內.</br> 
-             ⏍ 40歲以上,未滿65歲,提交的體檢報告必須在3年內.</br> 
-             ⏍ 年滿65歲,提交的體檢報告必須在1年內.</br> 
-             ⏍ 符合上述原則,可以不必再實施體檢.</p>
-          <li>食品從業人員體檢報告：</li> 
-          <p>❗️依據《食品安全衛生管理法》§8,食品良好衛生規範準則§5</p>
-          <li>檢查期限:</li>
-          <p>❗️回應與第一則則相同.</p>
-          <li>查詢認證體檢醫院機構:</li>
-          <p>本年度-近一年.</p>
-          <li>身分證:</li>
-          <p>❗️用於加、退保使用.</p>
-          <li>兩吋照片一張:</li>
-          <p>❗️用於個人資料建檔使用.</p>
-          <li>最高學歷證書,學生證,學費單,請擇一驗證:</li>
-          <p>❗️複驗學歷證明.</p>
-        </ol>
+        <!-- 報到文件用途說明 -->
+        <h2> 　　📑 報到文件用途說明</h2>
+        <ol class="note-list">
+          <li>一般勞工體格檢查報告:</li>
+          <p>❗️依據《職業安全衛生法》§20,勞工健康保護規則§16~17</br> 
+             ⏍ 未滿40歲,提交的體檢報告必須在5年內.</br> 
+             ⏍ 40歲以上,未滿65歲,提交的體檢報告必須在3年內.</br> 
+             ⏍ 年滿65歲,提交的體檢報告必須在1年內.</br> 
+             ⏍ 符合上述原則,可以不必再實施體檢.</p>
+          <li>食品從業人員體檢報告：</li> 
+          <p>❗️依據《食品安全衛生管理法》§8,食品良好衛生規範準則§5</p>
+          <li>檢查期限:</li>
+          <p>❗️回應與第一則則相同.</p>
+          <li>查詢認證體檢醫院機構:</li>
+          <p>本年度-近一年.</p>
+          <li>身分證:</li>
+          <p>❗️用於加、退保使用.</p>
+          <li>兩吋照片一張:</li>
+          <p>❗️用於個人資料建檔使用.</p>
+          <li>最高學歷證書,學生證,學費單,請擇一驗證:</li>
+          <p>❗️複驗學歷證明.</p>
+        </ol>
 
-        <div class="fieldset center-block">
-          <div style="font-weight:800;">是否了解上述 FAQ 與報到文件用途</div>
-          <div class="radio-row" role="radiogroup" aria-label="是否了解上述 FAQ 與報到文件用途">
-            <label><input type="radio" name="agree2" value="yes"> 了解</label>
-            <label><input type="radio" name="agree2" value="no"> 有異議</label>
-          </div>
-          <div class="exit" id="exitMsg2">🚨 若有疑問,可詢問人資承辦...</div>
-        </div>
-      </section>
+        <div class="fieldset center-block">
+          <div style="font-weight:800;">是否了解上述 FAQ 與報到文件用途</div>
+          <div class="radio-row" role="radiogroup" aria-label="是否了解上述 FAQ 與報到文件用途">
+            <label><input type="radio" name="agree2" value="yes"> 了解</label>
+            <label><input type="radio" name="agree2" value="no"> 有異議</label>
+          </div>
+          <div class="exit" id="exitMsg2">🚨 若有疑問,可詢問人資承辦...</div>
+        </div>
+      </section>
 
-            <section class="step" data-page="3" id="step-3">
-        <h2>　❗️擁有下列文件請打勾</h2>
-        <div class="fieldset">
-          <div class="checks">
-            <label><input type="checkbox" id="ownChk1"> 1. 台新國際商業銀行</label>
-            <label><input type="checkbox" id="ownChk2"> 2. 中餐證照</label>
-            <label><input type="checkbox" id="ownChk3"> 3. 西餐證照</label>
-            <label><input type="checkbox" id="ownChk4"> 4. AH&LA 證書</label>
-          </div>
-          <div class="note-list" style="margin-left:0;">
-            📣 不接受PDF檔,如須上傳PDF檔,請先轉成JPG檔後再上傳.
-          </div>
-        </div>
-      </section>
+      <!-- 第3頁：擁有文件 -->
+      <section class="step" data-page="3" id="step-3">
+        <h2>　❗️擁有下列文件請打勾</h2>
+        <div class="fieldset">
+          <div class="checks">
+            <label><input type="checkbox" id="ownChk1"> 1. 台新國際商業銀行</label>
+            <label><input type="checkbox" id="ownChk2"> 2. 中餐證照</label>
+            <label><input type="checkbox" id="ownChk3"> 3. 西餐證照</label>
+            <label><input type="checkbox" id="ownChk4"> 4. AH&LA 證書</label>
+          </div>
+          <div class="note-list" style="margin-left:0;">
+            📣 不接受PDF檔,如須上傳PDF檔,請先轉成JPG檔後再上傳.
+          </div>
+        </div>
+      </section>
 
-            <section class="step" data-page="4" id="step-4">
-        <h2>　❗️報到日必要帶齊五大文件</h2>
-        <div class="fieldset">
-          <div class="checks">
-            <label><input type="checkbox" id="needChk1"> 1. 經認證醫療機構-勞工體格檢查報告</label>
-            <label><input type="checkbox" id="needChk2"> 2. 經認證醫療機構-近一年食品從業人員體檢報告</label>
-            <label><input type="checkbox" id="needChk3"> 3. 身分證</label>
-            <label><input type="checkbox" id="needChk4"> 4. 兩吋照片一張</label>
-            <label><input type="checkbox" id="needChk5"> 5. 最高學歷證書、學生證、學費證明擇一驗證</label>
-          </div>
-          <div class="note-list" style="margin-left:0;">
-            📣 準備完成後,才行下一步開始上傳檔案,填寫基本資料.
-          </div>
-        </div>
-      </section>
+      <!-- 第4頁：報到日必要繳交文件 -->
+      <section class="step" data-page="4" id="step-4">
+        <h2>　❗️報到日必要帶齊五大文件</h2>
+        <div class="fieldset">
+          <div class="checks">
+            <label><input type="checkbox" id="needChk1"> 1. 經認證醫療機構-勞工體格檢查報告</label>
+            <label><input type="checkbox" id="needChk2"> 2. 經認證醫療機構-近一年食品從業人員體檢報告</label>
+            <label><input type="checkbox" id="needChk3"> 3. 身分證</label>
+            <label><input type="checkbox" id="needChk4"> 4. 兩吋照片一張</label>
+            <label><input type="checkbox" id="needChk5"> 5. 最高學歷證書、學生證、學費證明擇一驗證</label>
+          </div>
+          <div class="note-list" style="margin-left:0;">
+            📣 準備完成後,才行下一步開始上傳檔案,填寫基本資料.
+          </div>
+        </div>
+      </section>
 
-      <section class="step" data-page="5" id="step-5">
-  <h2> 　　⏫ 上傳檔案</h2>
-  <ol class="note-list">
-    <li>上傳之個人準備文件.</li>
-    <li>有正確及錯誤範例.</li>
-    <li>檔案須符合本公司限定規格.</li>
-    <li>哀鳳手機請用手機內建備忘錄掃描.</li>
-  </ol>
+      <!-- 第5頁：上傳檔案說明＋同意 -->
+<section class="step" data-page="5" id="step-5">
+  <h2> 　　⏫ 上傳檔案</h2>
+  <ol class="note-list">
+    <li>上傳之個人準備文件.</li>
+    <li>有正確及錯誤範例.</li>
+    <li>檔案須符合本公司限定規格.</li>
+    <li>哀鳳手機請用手機內建備忘錄掃描.</li>
+  </ol>
 
-    <div class="samples" aria-label="身分證範本">
+  <!-- 範例改上下 -->
+  <div class="samples" aria-label="身分證範本">
 
-        <figure class="sample-box">
-      <video class="sample-img" controls playsinline style="max-height:var(--sample-video-max-h); width:100%; object-fit:contain;">
-        <source src="assets/ios掃描範例.mp4" type="video/mp4">
-        ❌ 你/妳的裝置不支援影片播放
-      </video>
-      <figcaption class="sample-cap">📹 iPhone 備忘錄掃描文件操作示範</figcaption>
-    </figure>
+    <!-- 操作影片★★★ -->
+    <figure class="sample-box">
+      <video class="sample-img" controls playsinline style="max-height:220px; width:100%; object-fit:contain;">
+        <source src="assets/ios掃描範例.mp4" type="video/mp4">
+        ❌ 你/妳的裝置不支援影片播放
+      </video>
+      <figcaption class="sample-cap">📹 iPhone 備忘錄掃描文件操作示範</figcaption>
+    </figure>
 
-    <figure class="sample-box">
-      <img class="sample-img" src="assets/體檢報告範本.jpg" alt="❗️體檢報告範本.jpg">
-      <figcaption class="sample-cap">✅ 正確範例-體檢報告上傳限定規格</figcaption>
-    </figure>
-    <figure class="sample-box">
-      <img class="sample-img" src="assets/錯誤範例-1.jpg" alt="❗️錯誤範例-1">
-      <figcaption class="sample-cap">❌ 錯誤範例-雖格式正確但須要好閱讀</figcaption>
-    </figure>
-    <figure class="sample-box">
-      <img class="sample-img" src="assets/錯誤範例-2.jpg" alt="❗️錯誤範例-2.jpg">
-      <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角</figcaption>
-    </figure>
-    <figure class="sample-box">
-      <img class="sample-img" src="assets/錯誤範例-3.jpg" alt="❗️錯誤範例-3.jpg">
-      <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角且有小手入鏡</figcaption>
-    </figure>
-  </div>
+    <figure class="sample-box">
+      <img class="sample-img" src="assets/體檢報告範本.jpg" alt="❗️體檢報告範本.jpg">
+      <figcaption class="sample-cap">✅ 正確範例-體檢報告上傳限定規格</figcaption>
+    </figure>
+    <figure class="sample-box">
+      <img class="sample-img" src="assets/錯誤範例-1.jpg" alt="❗️錯誤範例-1">
+      <figcaption class="sample-cap">❌ 錯誤範例-雖格式正確但須要好閱讀</figcaption>
+    </figure>
+    <figure class="sample-box">
+      <img class="sample-img" src="assets/錯誤範例-2.jpg" alt="❗️錯誤範例-2.jpg">
+      <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角</figcaption>
+    </figure>
+    <figure class="sample-box">
+      <img class="sample-img" src="assets/錯誤範例-3.jpg" alt="❗️錯誤範例-3.jpg">
+      <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角且有小手入鏡</figcaption>
+    </figure>
+  </div>
 
-  <div class="fieldset" style="margin-top:16px;">
-    <div style="font-weight:800; margin-bottom:8px; text-align:center;">是否同意上述事項</div>
-    <div class="radio-row" role="radiogroup">
-      <label><input type="radio" name="agreeUpload" value="yes"> 同意</label>
-      <label><input type="radio" name="agreeUpload" value="no"> 不同意</label>
-    </div>
-    <div class="error" id="errAgreeUpload" style="text-align:center;">⚠️ 需同意才能繼續填寫</div>
-  </div>
+  <div class="fieldset" style="margin-top:16px;">
+    <div style="font-weight:800; margin-bottom:8px; text-align:center;">是否同意上述事項</div>
+    <div class="radio-row" role="radiogroup">
+      <label><input type="radio" name="agreeUpload" value="yes"> 同意</label>
+      <label><input type="radio" name="agreeUpload" value="no"> 不同意</label>
+    </div>
+    <div class="error" id="errAgreeUpload" style="text-align:center;">⚠️ 需同意才能繼續填寫</div>
+  </div>
 </section>
 
-            <section class="step" data-page="6" id="step-6">
-        <div class="file-row">
-          <div>台新國際商業銀行戶頭</div>
-          <label class="file-input">
-            <span class="file-btn">選擇檔案</span>
-            <input id="idFront" name="idFront" type="file" accept=".pdf,image/*" />
-          </label>
-          <div class="file-name" id="nameFront">
-            <img class="thumb" id="thumbFront" alt="縮圖預覽"><span id="nameFrontTxt">尚未選取檔案</span>
-          </div>
-        </div>
-        <div class="error" id="errFront">⚠️ 請選擇台新國際商業銀行戶頭檔案</div>
+      <!-- 第6頁：上傳文件相關 -->
+      <section class="step" data-page="6" id="step-6">
+        <div class="file-row">
+          <div>台新國際商業銀行戶頭</div>
+          <label class="file-input">
+            <span class="file-btn">選擇檔案</span>
+            <input id="idFront" name="idFront" type="file" accept=".pdf,image/*" />
+          </label>
+          <div class="file-name" id="nameFront">
+            <img class="thumb" id="thumbFront" alt="縮圖預覽"><span id="nameFrontTxt">尚未選取檔案</span>
+          </div>
+        </div>
+        <div class="error" id="errFront">⚠️ 請選擇台新國際商業銀行戶頭檔案</div>
 
-        <div class="file-row">
-          <div>勞工體格檢查報告</div>
-          <label class="file-input">
-            <span class="file-btn">選擇檔案</span>
-            <input id="idLaborCheck" name="idLaborCheck" type="file" accept=".pdf,image/*" />
-          </label>
-          <div class="file-name" id="nameLaborCheck">
-            <img class="thumb" id="thumbLaborCheck" alt="縮圖預覽"><span id="nameLaborCheckTxt">尚未選取檔案</span>
-          </div>
-        </div>
-        <div class="error" id="errLaborCheck">⚠️ 請選擇勞工體格檢查報告檔案</div>
+        <div class="file-row">
+          <div>勞工體格檢查報告</div>
+          <label class="file-input">
+            <span class="file-btn">選擇檔案</span>
+            <input id="idLaborCheck" name="idLaborCheck" type="file" accept=".pdf,image/*" />
+          </label>
+          <div class="file-name" id="nameLaborCheck">
+            <img class="thumb" id="thumbLaborCheck" alt="縮圖預覽"><span id="nameLaborCheckTxt">尚未選取檔案</span>
+          </div>
+        </div>
+        <div class="error" id="errLaborCheck">⚠️ 請選擇勞工體格檢查報告檔案</div>
 
-        <div class="file-row">
-          <div>食品從業人員體檢報告</div>
-          <label class="file-input">
-            <span class="file-btn">選擇檔案</span>
-            <input id="idFoodCheck" name="idFoodCheck" type="file" accept=".pdf,image/*" />
-          </label>
-          <div class="file-name" id="nameFoodCheck">
-            <img class="thumb" id="thumbFoodCheck" alt="縮圖預覽"><span id="nameFoodCheckTxt">尚未選取檔案</span>
-          </div>
-          </div>
-        <div class="error" id="errFoodCheck">⚠️ 請選擇食品從業人員體檢報告檔案</div>
+        <div class="file-row">
+          <div>食品從業人員體檢報告</div>
+          <label class="file-input">
+            <span class="file-btn">選擇檔案</span>
+            <input id="idFoodCheck" name="idFoodCheck" type="file" accept=".pdf,image/*" />
+          </label>
+          <div class="file-name" id="nameFoodCheck">
+            <img class="thumb" id="thumbFoodCheck" alt="縮圖預覽"><span id="nameFoodCheckTxt">尚未選取檔案</span>
+          </div>
+        </div>
+        <div class="error" id="errFoodCheck">⚠️ 請選擇食品從業人員體檢報告檔案</div>
 
-        <div class="fieldset">
-          <div class="checks">
-            <label><input type="checkbox" id="fileChk1"> 1. 文件清晰且無反光</label>
-            <label><input type="checkbox" id="fileChk2"> 2. 文件四邊完整入鏡</label>
-            <label><input type="checkbox" id="fileChk3"> 3. 文件「完整」對準在框框內</label>
-            <label><input type="checkbox" id="fileChk4"> 4. 上述都已確認完成動作</label>
-          </div>
-          <div class="note-list" style="margin-left:0;">
-            📣 不接受PDF檔,如須上傳PDF檔,請先轉成JPG檔後再上傳.
-          </div>
-        </div>
-      </section>
+        <div class="fieldset">
+          <div class="checks">
+            <label><input type="checkbox" id="fileChk1"> 1. 文件清晰且無反光</label>
+            <label><input type="checkbox" id="fileChk2"> 2. 文件四邊完整入鏡</label>
+            <label><input type="checkbox" id="fileChk3"> 3. 文件「完整」對準在框框內</label>
+            <label><input type="checkbox" id="fileChk4"> 4. 上述都已確認完成動作</label>
+          </div>
+          <div class="note-list" style="margin-left:0;">
+            📣 不接受PDF檔,如須上傳PDF檔,請先轉成JPG檔後再上傳.
+          </div>
+        </div>
+      </section>
 
-      <section class="step" data-page="7" id="step-7">
-  <h2>📋 員工基本資料</h2>
+      <!-- 第7頁：員工基本資料 -->
+<section class="step" data-page="7" id="step-7">
+  <h2>📋 員工基本資料</h2>
 
-  <div class="row">
-    <label for="company">© 公司名稱 <small>⏍ 請確認後再行點選</small></label>
-    <select id="company" name="company">
-      <option value="" selected disabled>請選擇</option>
-      <option>Drunk Caffee 爛醉咖啡</option>
-      <option>FIZZ FIZZ.TEIPEI</option>
-      <option>Social Company 有趣人類社交局</option>
-    </select>
-    <div class="error" id="errcompany">⚠️ 尚未選擇公司</div>
-  </div>
+  <div class="row">
+    <label for="company">© 公司名稱 <small>⏍ 請確認後再行點選</small></label>
+    <select id="company" name="company">
+      <option value="" selected disabled>請選擇</option>
+      <option>Drunk Caffee 爛醉咖啡</option>
+      <option>FIZZ FIZZ.TEIPEI</option>
+      <option>Social Company 有趣人類社交局</option>
+    </select>
+    <div class="error" id="errcompany">⚠️ 尚未選擇公司</div>
+  </div>
 
-  <div class="row">
-    <label for="team">© 隸屬團隊 <small>⏍ 若不確定歸屬,請詢問面試主管後再行點選</small></label>
-    <select id="team" name="team">
-      <option value="" selected disabled>請選擇</option>
-      <option>外場-Serve Teams</option>
-      <option>吧檯-Bar Teams</option>
-      <option>內廚-Kitchen Teams</option>
-      <option>收銀-Cashier Teams</option>
-      <option>公關-Public Relations Teams</option>
-      <option>其他-Other</option>
-    </select>
-    <div class="error" id="errTeam">⚠️ 尚未選擇隸屬團隊</div>
-  </div>
+  <div class="row">
+    <label for="team">© 隸屬團隊 <small>⏍ 若不確定歸屬,請詢問面試主管後再行點選</small></label>
+    <select id="team" name="team">
+      <option value="" selected disabled>請選擇</option>
+      <option>外場-Serve Teams</option>
+      <option>吧檯-Bar Teams</option>
+      <option>內廚-Kitchen Teams</option>
+      <option>收銀-Cashier Teams</option>
+      <option>公關-Public Relations Teams</option>
+      <option>其他-Other</option>
+    </select>
+    <div class="error" id="errTeam">⚠️ 尚未選擇隸屬團隊</div>
+  </div>
 
-  <div class="row">
-    <label for="workType">© 工作型態 <small>⏍ 若不確定部門,請詢問面試主管後再行點選</small></label>
-    <select id="workType" name="workType">
-      <option value="" selected disabled>請選擇</option>
-      <option>正職/全時工時-Full Time</option>
-      <option>兼職/部分工時-Part Time</option>
-    </select>
-    <div class="error" id="errWorkType">⚠️ 尚未選擇工作型態</div>
-  </div>
+  <div class="row">
+    <label for="workType">© 工作型態 <small>⏍ 若不確定部門,請詢問面試主管後再行點選</small></label>
+    <select id="workType" name="workType">
+      <option value="" selected disabled>請選擇</option>
+      <option>正職/全時工時-Full Time</option>
+      <option>兼職/部分工時-Part Time</option>
+    </select>
+    <div class="error" id="errWorkType">⚠️ 尚未選擇工作型態</div>
+  </div>
 
-  <div class="row">
-    <label for="fullName">© 本名</label>
-    <input id="fullName" name="fullName" type="text" placeholder="請輸入本名" />
-    <div class="error" id="errFullName">⚠️ 此欄位不得為空</div>
-  </div>
+  <div class="row">
+    <label for="fullName">© 本名</label>
+    <input id="fullName" name="fullName" type="text" placeholder="請輸入本名" />
+    <div class="error" id="errFullName">⚠️ 此欄位不得為空</div>
+  </div>
 
-  <div class="row">
-    <label for="gender">© 性別 <small>⏍ 以身分證為主</small></label>
-    <select id="gender" name="gender">
-      <option value="" selected disabled>請選擇</option>
-      <option>男</option>
-      <option>女</option>
-      <option>多元</option>
-    </select>
-    <div class="error" id="errGender">⚠️ 尚未選擇性別</div>
-  </div>
+  <div class="row">
+    <label for="gender">© 性別 <small>⏍ 以身分證為主</small></label>
+    <select id="gender" name="gender">
+      <option value="" selected disabled>請選擇</option>
+      <option>男</option>
+      <option>女</option>
+      <option>多元</option>
+    </select>
+    <div class="error" id="errGender">⚠️ 尚未選擇性別</div>
+  </div>
 </section>
-  
-            <section class="step" data-page="8" id="step-8">
-        <h2>　❗️資料送出前-核檢區</h2>
-        <div class="fieldset">
-          <div class="checks">
-            <label><input type="checkbox" id="preA"> 1. 以上輸入資料都進行雙重確認.</label>
-            <label><input type="checkbox" id="preB"> 2. 本人聲明無偽造之不法情形.</label>
-            <label><input type="checkbox" id="preC"> 3. 上傳檔案都符合本公司格式.</label>
-            <label><input type="checkbox" id="preD"> 4. 請仔細思考認真填寫此表單.</label>
-            <label><input type="checkbox" id="preE"> 5. 提交表單後無法更改資訊,請確認填寫資料正確再提交.</label>
-            <label><input type="checkbox" id="preF"> 6. 提交表單後,請完成截圖回報機制.</label>
-          </div>
-        </div>
-        <div class="right-actions" style="display:flex; gap:10px; justify-content:center; position:relative; bottom:0">
-          <button class="btn btn--nav" id="btnSubmit" type="button" disabled>提交</button>
-        </div>
-      </section>
+  
+      <!-- 第8頁：資料送出前-核檢區 -->
+      <section class="step" data-page="8" id="step-8">
+        <h2>　❗️資料送出前-核檢區</h2>
+        <div class="fieldset">
+          <div class="checks">
+            <label><input type="checkbox" id="preA"> 1. 以上輸入資料都進行雙重確認.</label>
+            <label><input type="checkbox" id="preB"> 2. 本人聲明無偽造之不法情形.</label>
+            <label><input type="checkbox" id="preC"> 3. 上傳檔案都符合本公司格式.</label>
+            <label><input type="checkbox" id="preD"> 4. 請仔細思考認真填寫此表單.</label>
+            <label><input type="checkbox" id="preE"> 5. 提交表單後無法更改資訊,請確認填寫資料正確再提交.</label>
+            <label><input type="checkbox" id="preF"> 6. 提交表單後,請完成截圖回報機制.</label>
+          </div>
+        </div>
+        <div class="right-actions" style="display:flex; gap:10px; justify-content:center; position:relative; bottom:0">
+          <button class="btn btn--nav" id="btnSubmit" type="button" disabled>提交</button>
+        </div>
+      </section>
 
-            <section class="step" data-page="9" id="step-9">
-        <h2>✅ 全數完成</h2>
-        <div style="text-align:center; line-height:1.8;">
-          © 報到須知單
-          <hr style="border:0;border-top:1px solid var(--border);margin:10px 0;">
-          <div>❗️請截圖此畫面給承辦人</div>
-          <hr style="border:0;border-top:1px solid var(--border);margin:10px 0;">
-          <div>系統已收到資料,將進入處理排程,表單已填寫完畢.</div>
-          <div style="margin-top:10px;color:var(--muted);font-size:11px;">
-            建立時間：<span id="stampCreated">—</span>　提交時間：<span id="stampUpdated">—</span>
-          </div>
-        </div>
-      </section>
-    </main>
-      </form>
+      <!-- 第9頁：全數完成 -->
+      <section class="step" data-page="9" id="step-9">
+        <h2>✅ 全數完成</h2>
+        <div style="text-align:center; line-height:1.8;">
+          © 報到須知單
+          <hr style="border:0;border-top:1px solid var(--border);margin:10px 0;">
+          <div>❗️請截圖此畫面給承辦人</div>
+          <hr style="border:0;border-top:1px solid var(--border);margin:10px 0;">
+          <div>系統已收到資料,將進入處理排程,表單已填寫完畢.</div>
+          <div style="margin-top:10px;color:var(--muted);font-size:11px;">
+            建立時間：<span id="stampCreated">—</span>　提交時間：<span id="stampUpdated">—</span>
+          </div>
+        </div>
+      </section>
+    </main>
+      </form>
 
-        <div class="actionbar" id="actionbar">
-      <div class="left-actions">
-        <button class="btn btn--nav" id="btnPrev" type="button">上一頁</button>
-      </div>
-      <div class="right-actions" style="display:flex; gap:10px;">
-        <button class="btn btn--nav" id="btnNext" type="button">下一頁</button>
-      </div>
-    </div>
-    
-　　    <footer class="footer" id="footer">
-      <img src="assets/MYs_logo_去背1.png" alt="MYs Logo" class="footer-logo">
-      © Copyright 2025 MYs System-b1.0.0.11.19-2025
-    </footer>
-  </div>
+    <!-- 底部固定操作列（全頁共用） -->
+    <div class="actionbar" id="actionbar">
+      <div class="left-actions">
+        <button class="btn btn--nav" id="btnPrev" type="button">上一頁</button>
+      </div>
+      <div class="right-actions" style="display:flex; gap:10px;">
+        <button class="btn btn--nav" id="btnNext" type="button">下一頁</button>
+      </div>
+    </div>
+    
+　　<!-- 商標；版權 -->
+    <footer class="footer" id="footer">
+      <img src="assets/MYs_logo_去背1.png" alt="MYs Logo" class="footer-logo">
+      © Copyright 2025 MYs System-b1.0.0.11.19-2025
+    </footer>
+  </div>
 
 <script>
 /* --------系統常數（可調）-------- */
