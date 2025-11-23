@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <!-- 鎖縮放：避免打字後需要自行縮小；搭配 iOS 聚焦字級=16 一起使用 -->
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no" />
-  <title>📑 報到須知單</title>
+  <meta charset="utf-8" />
+  <======== 檔案用途：報到須知單前端（HTML/CSS/JS）======== >
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no" />
+  <title>📑 報到須知單</title>
 
   <style>
   :root {
@@ -67,7 +67,7 @@
     --sample-pad: 8px;          /* 每張圖外框內距（可調） */
     --sample-bg: rgba(255,255,255,0.04); /* 圖片外框底色（可調） */
     --sample-radius: 12px;      /* 圖片外框圓角（可調） */
-        
+        
     /* [新增] 第 5 頁影片/圖片最大高度（可調） */
     --sample-video-max-h: 220px; /* 第 5 頁操作影片最大高度（可調） */
   }
@@ -315,14 +315,14 @@
   #step-5 .sample-img {
     width: 100%;
     /* 統一使用變數控制最大高度 */
-    max-height: var(--sample-max-h); 
+    max-height: var(--sample-max-h); 
     object-fit: contain;
     image-rendering: auto;
   }
-  
+  
   /* 【調整】第5頁影片最大高度使用專門變數 */
   #step-5 .sample-box video.sample-img {
-    max-height: var(--sample-video-max-h); 
+    max-height: var(--sample-video-max-h); 
   }
 
   #step-5 .sample-cap {
@@ -439,7 +439,7 @@
           <p>❗️第一年自行負擔;第二年公司負責.</p> 
         </ol>
 
-                <h2> 　　📑 報到文件用途說明</h2>
+                <h2> 　　📑 報到文件用途說明 </h2>
         <ol class="note-list">
           <li>一般勞工體格檢查報告:</li>
           <p>❗️依據《職業安全衛生法》§20,勞工健康保護規則§16~17</br> 
