@@ -1080,7 +1080,8 @@
         function pageIsPurple(n) { return [1, 2, 3, 4, 5, 8].includes(n); }
 
         function updateHeaderStep() {
-            $("#headerStep").textContent = `第${pad2(currentPage)}頁/共${pad2{TOTAL_STEPS}頁`;
+            /* 【修正】修正語法錯誤：pad2{...} 改為 pad2(...) */
+            $("#headerStep").textContent = `第${pad2(currentPage)}頁/共${pad2(TOTAL_STEPS)}頁`;
             const scheme = pageIsPurple(currentPage) ? "purple" : "black";
             $(".container").setAttribute("data-scheme", scheme);
         }
