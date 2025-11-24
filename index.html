@@ -75,7 +75,7 @@
 
         /* ----------統一字級------------ */
         .fz-title {font-size: var(--fz-title);}
-        .fz-subtitle {font-size: var(--fz-subtitle);
+        .fz-subtitle {font-size: var(--fz-subtitle);} /* 【修正】補上遺失的括號 */
         .fz-section {font-size: var(--fz-section);}
         .fz-body {font-size: var(--fz-body);}
         .fz-note {font-size: var(--fz-note);}
@@ -85,7 +85,6 @@
         html, body {
             height: 100%;
             margin: 0;
-            /* overflow-x: hidden; */ /* 移除舊設定 */
             overflow: hidden; /* 【關鍵修正】鎖定外部卷軸，只讓內部 Flex 滾動 */
         }
 
