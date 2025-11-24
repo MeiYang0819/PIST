@@ -71,20 +71,40 @@
         }
 
         /* --------選單字體大小調整（所有選單）-------- */
-        select {font-size: 14px !important; /* 調小所有選單的字體 */}
+        select {
+            font-size: 14px !important; /* 調小所有選單的字體 */
+        }
 
         /* ----------統一字級------------ */
-        .fz-title {font-size: var(--fz-title);}
-        .fz-subtitle {font-size: var(--fz-subtitle);} /* 【修正】補上遺失的括號 */
-        .fz-section {font-size: var(--fz-section);}
-        .fz-body {font-size: var(--fz-body);}
-        .fz-note {font-size: var(--fz-note);}
-        .fz-xs {font-size: var(--fz-xs);}
+        .fz-title {
+            font-size: var(--fz-title);
+        }
+
+        .fz-subtitle {
+            font-size: var(--fz-subtitle);
+        }
+
+        .fz-section {
+            font-size: var(--fz-section);
+        }
+
+        .fz-body {
+            font-size: var(--fz-body);
+        }
+
+        .fz-note {
+            font-size: var(--fz-note);
+        }
+
+        .fz-xs {
+            font-size: var(--fz-xs);
+        }
 
         /* ===== 全站背景底色 ===== */
         html, body {
             height: 100%;
             margin: 0;
+            /* overflow-x: hidden; */ /* 移除舊設定 */
             overflow: hidden; /* 【關鍵修正】鎖定外部卷軸，只讓內部 Flex 滾動 */
         }
 
@@ -743,26 +763,26 @@
 
                     <figure class="sample-box">
                         <video class="sample-img" controls playsinline style="max-height:220px; width:100%; object-fit:contain;">
-                            <source src="assets/ios掃描範例.mp4" type="video/mp4">
+                            <source src="https://mys0819.github.io/PIST/assets/ios掃描範例.mp4" type="video/mp4">
                             ❌ 您的裝置不支援影片播放
                         </video>
                         <figcaption class="sample-cap">📹 iPhone 備忘錄掃描文件操作示範</figcaption>
                     </figure>
 
                     <figure class="sample-box">
-                        <img class="sample-img" src="assets/體檢報告範本.jpg" alt="❗️體檢報告範本.jpg">
+                        <img class="sample-img" src="https://mys0819.github.io/PIST/assets/體檢報告範本.jpg" alt="❗️體檢報告範本.jpg">
                         <figcaption class="sample-cap">✅ 正確範例-體檢報告上傳限定規格</figcaption>
                     </figure>
                     <figure class="sample-box">
-                        <img class="sample-img" src="assets/錯誤範例-1.jpg" alt="❗️錯誤範例-1">
+                        <img class="sample-img" src="https://mys0819.github.io/PIST/assets/錯誤範例-1.jpg" alt="❗️錯誤範例-1">
                         <figcaption class="sample-cap">❌ 錯誤範例-雖格式正確但須要好閱讀</figcaption>
                     </figure>
                     <figure class="sample-box">
-                        <img class="sample-img" src="assets/錯誤範例-2.jpg" alt="❗️錯誤範例-2.jpg">
+                        <img class="sample-img" src="https://mys0819.github.io/PIST/assets/錯誤範例-2.jpg" alt="❗️錯誤範例-2.jpg">
                         <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角</figcaption>
                     </figure>
                     <figure class="sample-box">
-                        <img class="sample-img" src="assets/錯誤範例-3.jpg" alt="❗️錯誤範例-3.jpg">
+                        <img class="sample-img" src="https://mys0819.github.io/PIST/assets/錯誤範例-3.jpg" alt="❗️錯誤範例-3.jpg">
                         <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角且有小手入鏡</figcaption>
                     </figure>
                 </div>
@@ -922,7 +942,7 @@
         </div>
 
         <footer class="footer" id="footer">
-            <img src="assets/MYs_logo_去背1.png" alt="MYs Logo" class="footer-logo">
+            <img src="https://mys0819.github.io/PIST/assets/MYs_logo_去背1.png" alt="MYs Logo" class="footer-logo">
             ︳© Copyright 2025 MYs System-b1.0.0.11.19-2025
         </footer>
     </form>
@@ -932,6 +952,9 @@
         const TOTAL_STEPS = 9;  /* 總頁數（顯示用） */
         const $ = (sel) => document.querySelector(sel);
         const $$ = (sel) => document.querySelectorAll(sel);
+
+        /* ★★★ 這裡要貼您的 GAS 部署網址 ★★★ */
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbxb_L0jhcwMvQFVSsnzj13y9y97se_XtkL3ZfB6Sz7QMlj8ae3rc9OyzPGukYzL3h6Y/exec";
 
         /* 表單時間戳（建立/更新） */
         const FORM_META = { createdAt: null, updatedAt: null };
@@ -1259,56 +1282,88 @@
             }
         }
 
-        /* 清除當頁（目前沒有按鈕呼叫，函式保留） */
-        function clearCurrentPage() {
-            const cur = $(`.step.active`);
-            if (!cur) return;
-
-            cur.querySelectorAll('input[type="text"],input[type="email"]').forEach(i => i.value = "");
-            cur.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
-            cur.querySelectorAll('input[type="radio"],input[type="checkbox"]').forEach(c => c.checked = false);
-
-            cur.querySelectorAll('.error').forEach(e => e.style.display = "none");
-
-            if (cur.id === "step-1") { $("#exitMsg1").classList.remove("show"); }
-            if (cur.id === "step-2") { $("#exitMsg2").classList.remove("show"); }
-
-            updateNavState();
+        /* === 檔案轉 Base64 === */
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    // 移除 "data:image/png;base64," 前綴
+                    const base64 = reader.result.split(',')[1];
+                    resolve({
+                        name: file.name,
+                        mimeType: file.type,
+                        base64: base64
+                    });
+                };
+                reader.onerror = error => reject(error);
+            });
         }
 
-        /* ====== 傳送資料到後端 ====== */
-        function submitData() {
+        /* === 提交資料 (Webhook 模式) === */
+        async function submitData() {
             const btn = $("#btnSubmit");
             if (!btn) return;
+
+            if (GAS_URL.includes("請貼上")) {
+                alert("請先在程式碼中設定正確的 GAS_URL");
+                return;
+            }
 
             /* 鎖定按鈕避免重複點擊 */
             btn.textContent = "資料傳送中...";
             btn.disabled = true;
 
-            /* 抓取整個 form 表單 */
-            const formEl = document.getElementById('mainForm');
+            // 1. 收集文字資料
+            const payload = {
+                company:  $("#company").value,
+                team:     $("#team").value,
+                workType: $("#workType").value,
+                fullName: $("#fullName").value,
+                gender:   $("#gender").value,
+                fileFront: null,
+                fileLaborCheck: null,
+                fileFoodCheck: null
+            };
 
-            google.script.run
-                .withSuccessHandler((res) => {
-                    if (res.status === 'ok') {
-                        /* 成功 -> 前往第 9 頁（完成頁） */
-                        showStep(9);
-                    } else if (res.status === 'duplicate') {
-                        alert("❌ 提交失敗：本名重複，您可能已經填寫過。");
-                        btn.textContent = "提交";
-                        btn.disabled = false;
-                    } else {
-                        alert("❌ 錯誤：" + (res.message || "未知原因"));
-                        btn.textContent = "提交";
-                        btn.disabled = false;
-                    }
-                })
-                .withFailureHandler((err) => {
-                    alert("⚠️ 系統連線錯誤：" + err);
+            // 2. 處理檔案 (轉 Base64)
+            try {
+                const f1 = $("#idFront").files[0];
+                const f2 = $("#idLaborCheck").files[0];
+                const f3 = $("#idFoodCheck").files[0];
+
+                if (f1) payload.fileFront      = await fileToBase64(f1);
+                if (f2) payload.fileLaborCheck = await fileToBase64(f2);
+                if (f3) payload.fileFoodCheck  = await fileToBase64(f3);
+
+                // 3. 發送 POST 請求 (no-cors 模式無法讀取回應，所以改用標準 CORS)
+                // 注意：GAS 回傳必須是用 ContentService.createTextOutput
+                const response = await fetch(GAS_URL, {
+                    method: "POST",
+                    body: JSON.stringify(payload)
+                });
+
+                const res = await response.json();
+
+                if (res.status === 'ok') {
+                    /* 成功 -> 前往第 9 頁（完成頁） */
+                    showStep(9);
+                } else if (res.status === 'duplicate') {
+                    alert("❌ 提交失敗：本名重複，您可能已經填寫過。");
                     btn.textContent = "提交";
                     btn.disabled = false;
-                })
-                .submitOnboardForm(formEl);
+                } else {
+                    alert("❌ 錯誤：" + (res.message || "未知原因"));
+                    btn.textContent = "提交";
+                    btn.disabled = false;
+                }
+
+            } catch (err) {
+                alert("⚠️ 傳送失敗：" + err);
+                console.error(err);
+                btn.textContent = "提交";
+                btn.disabled = false;
+            }
         }
 
         /* ====== 事件綁定 ====== */
