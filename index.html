@@ -1,1135 +1,1358 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <!-- 鎖縮放：避免打字後需要自行縮小；搭配 iOS 聚焦字級=16 一起使用 -->
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no" />
-  <title>📑 報到須知單</title>
+    <meta charset="utf-8" />
+    <!-- 鎖縮放：避免打字後需要自行縮小；搭配 iOS 聚焦字級=16 一起使用 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no" />
+    <title>📑 報到須知單</title>
 
-  <style>
-  :root {
-    /* --------系統共用常數（可全站調整）-------- */
-    --card-w: 980px;            /* 表單面板最大寬度（可調） */
-    --radius: 16px;             /* 面板圓角（可調） */
-    --border: #2a2a2a;          /* 邊框色（可調） */
-    --ink: #eaeaea;             /* 主要文字色（可調） */
-    --muted: #bcbcbc;           /* 次要文字色（與 ⏍ 同色） ← 依需求改這一行 */
-    --danger: #fff2cc;          /* 錯誤色（可調；黃色） */
-    --ok: #22c55e;              /* 成功/通過色（可調） */
-    --accent: #60a5fa;          /* 重點色/聚焦邊框（可調） */
-    --btn-bg: #bc2d2d;          /* 按鈕底色（可調） */
-    --btn-border: #2a2a2a;      /* 按鈕邊框（可調） */
+    <style>
+        :root {
+            /* --------系統共用常數（可全站調整）-------- */
+            --card-w: 980px; /* 表單面板最大寬度（可調） */
+            --radius: 16px; /* 面板圓角（可調） */
+            --border: #2a2a2a; /* 邊框色（可調） */
+            --ink: #eaeaea; /* 主要文字色（可調） */
+            --muted: #bcbcbc; /* 次要文字色（與 ⏍ 同色） ← 依需求改這一行 */
+            --danger: #fff2cc; /* 錯誤色（可調；黃色） */
+            --ok: #22c55e; /* 成功/通過色（可調） */
+            --accent: #60a5fa; /* 重點色/聚焦邊框（可調） */
+            --btn-bg: #bc2d2d; /* 按鈕底色（可調） */
+            --btn-border: #2a2a2a; /* 按鈕邊框（可調） */
 
-    --title-size: 20px;         /* 頁面標題字級（可調；每頁可覆蓋） */
-    --content-size: 12px;       /* 內文/表單基準字級（可調；每頁可覆蓋） */
-    --footer-size: 11px;        /* 頁尾字級（可調） */
+            --title-size: 24px; /* 頁面標題字級（可調；每頁可覆蓋） */
+            --content-size: 12px; /* 內文/表單基準字級（可調；每頁可覆蓋） */
+            --footer-size: 11px; /* 頁尾字級（可調） */
 
-    /* --------全域字級控制變數（可自行調整）--------*/
-    --label-size: 13px;         /* 欄位標題字級（例如：公司名稱；可調） */
-    --hint-size: 10px;          /* 小字提示（label small；可調） */
-    --input-size: 12px;         /* 輸入框/選單內文字字級（可調） */
-    --placeholder-size: 12px;   /* placeholder 字級（可調） */
-    --error-size: 12px;         /* 錯誤訊息字級（可調） */
+            /* --------全域字級控制變數（可自行調整）--------*/
+            --label-size: 15px; /* 欄位標題字級（例如：公司名稱；可調） */
+            --hint-size: 11.5px; /* 小字提示（label small；可調） */
+            --input-size: 14px; /* 輸入框/選單內文字字級（可調） */
+            --placeholder-size: 14px; /* placeholder 字級（可調） */
+            --error-size: 14px; /* 錯誤訊息字級（可調） */
 
-    --section-gap: 16px;        /* 區塊與段落間距（可調） */
-    --control-pad: 10px 12px;   /* 控制項內距（可調） */
-    --control-radius: 12px;     /* 控制項圓角（可調） */
-    --control-bg: #0f0f0f;      /* 控制項背景（可調） */
-    --control-border: #262626;  /* 控制項邊框（可調） */
-    --control-focus: #60a5fa;   /* 控制項聚焦外框色（可調） */
+            --section-gap: 16px; /* 區塊與段落間距（可調） */
+            --control-pad: 10px 12px; /* 控制項內距（可調） */
+            --control-radius: 12px; /* 控制項圓角（可調） */
+            --control-bg: #0f0f0f; /* 控制項背景（可調） */
+            --control-border: #262626; /* 控制項邊框（可調） */
+            --control-focus: #60a5fa; /* 控制項聚焦外框色（可調） */
 
-    --input-height: 38px;       /* 控制項高度（讓框框同高；可調） */
+            --input-height: 38px; /* 控制項高度（讓框框同高；可調） */
 
-    --actionbar-h: 64px;        /* 底部固定操作列高度（可調；JS 覆蓋實際高度） */
-    --footer-h: 44px;           /* 頁尾高度（可調） */
-    --kv-offset: 0px;           /* 鍵盤彈出時向上位移量（JS 寫入） */
+            --actionbar-h: 64px; /* 底部固定操作列高度（可調；JS 覆蓋實際高度） */
+            --footer-h: 44px; /* 頁尾高度（可調） */
+            --kv-offset: 0px; /* 鍵盤彈出時向上位移量（JS 寫入） */
 
-    /* --------選單字體大小調整（所有選單）-------- */
-    select {
-      font-size: 12px !important;  /* 調小所有選單的字體 */
-    }
+            /* --------選單字體大小調整（所有選單）-------- */
+            select {
+            font-size: 14px !important; /* 調小所有選單的字體 */
+            }
 
-    /* 上一頁/下一頁縮小用（可調） */
-    --nav-btn-min-h: 32px;      /* 只影響「上一頁 / 下一頁」兩顆按鈕的最小高度（可調） */
-    --nav-btn-pad: 4px 10px;    /* 只影響「上一頁 / 下一頁」兩顆按鈕的內距（可調） */
+        /* 上一頁/下一頁縮小用（可調） */
+        --nav-btn-min-h: 32px; /* 只影響「上一頁 / 下一頁」兩顆按鈕的最小高度（可調） */
+        --nav-btn-pad: 4px 10px; /* 只影響「上一頁 / 下一頁」兩顆按鈕的內距（可調） */
 
-    /* 操作列內距（可調，縮小整列高度） */
-    --actionbar-pad-y: 6px;     /* 操作列上下內距（可調） */
-    --actionbar-pad-x: 12px;    /* 操作列左右內距（可調） */
+        /* 操作列內距（可調，縮小整列高度） */
+        --actionbar-pad-y: 6px; /* 操作列上下內距（可調） */
+        --actionbar-pad-x: 12px; /* 操作列左右內距（可調） */
 
-    /* 面板背景變數（由 data-* 控制） */
-    --panel-bg: linear-gradient(0deg,rgba(43,37,37,1) 0%, rgba(0,0,0,1) 100%); /* 預設黑 */
+        /* 面板背景變數（由 data-* 控制） */
+        --panel-bg: linear-gradient(0deg,rgba(43,37,37,1) 0%, rgba(0,0,0,1) 100%); /* 預設黑 */
 
-    /* --------第4頁：範例圖片尺寸/外觀（可自行調整）--------*/
-    --sample-gap: 10px;         /* 圖片之間的間距（可調） */
-    --sample-max-h: 180px;      /* 圖片最大高度（可調） */
-    --sample-pad: 8px;          /* 每張圖外框內距（可調） */
-    --sample-bg: rgba(255,255,255,0.04); /* 圖片外框底色（可調） */
-    --sample-radius: 12px;      /* 圖片外框圓角（可調） */
-  }
+        /* --------第4頁：範例圖片尺寸/外觀（可自行調整）--------*/
+        --sample-gap: 10px; /* 圖片之間的間距（可調） */
+        --sample-max-h: 180px; /* 圖片最大高度（可調） */
+        --sample-pad: 8px; /* 每張圖外框內距（可調） */
+        --sample-bg: rgba(255,255,255,0.04); /* 圖片外框底色（可調） */
+        --sample-radius: 12px; /* 圖片外框圓角（可調） */
+        }
 
-  /* ===== 全站背景底色 ===== */
-  html, body { height: 100%; margin: 0; overflow-x: hidden; }
-  body {
-    font-family:
-      "GenSenRounded",
-      "Yuanti TC",
-      "Hiragino Maru Gothic ProN",
-      "M PLUS Rounded 1c",
-      "PingFang TC",
-      "Noto Sans TC",
-      "Microsoft JhengHei",
-      "Segoe UI",
-      Arial,
-      sans-serif;
+        /* ===== 全站背景底色 ===== */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow-x: hidden;
+        }
 
-    color: var(--ink);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    touch-action: pan-y;              /* 僅允許垂直滑動 */
-    overscroll-behavior-y: contain;   /* 抑制彈性回彈干擾 */
-    background: #000;                 /* 背景底色（面板漸層會覆蓋） */
-  }
+        body {
+            font-family: "GenSenRounded", "Yuanti TC", "Hiragino Maru Gothic ProN", "M PLUS Rounded 1c", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Segoe UI", Arial, sans-serif;
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            touch-action: pan-y; /* 僅允許垂直滑動 */
+            overscroll-behavior-y: contain; /* 抑制彈性回彈干擾 */
+            background: #000; /* 背景底色（面板漸層會覆蓋） */
+        }
 
-  /* 面板（上下貼齊、內容內捲、固定底部操作列 + 頁尾） */
-  .container {
-    width: min(var(--card-w), 100vw);
-    height: 100svh; /* 使用 svh，受視口可視高度影響，鍵盤彈出更穩定 */
-    margin: 0 auto;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-    display: grid;
-    grid-template-rows: auto 1fr auto auto; /* header / content / actionbar / footer */
-    overflow: hidden;
-    background: var(--panel-bg) !important; /* 以變數為最終背景 */
-  }
+        /* 面板（上下貼齊、內容內捲、固定底部操作列 + 頁尾） */
+        .container {
+            width: min(var(--card-w), 100vw);
+            height: 100svh; /* 使用 svh，受視口可視高度影響，鍵盤彈出更穩定 */
+            margin: 0 auto;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+            display: grid;
+            grid-template-rows: auto 1fr auto auto; /* header / content / actionbar / footer */
+            overflow: hidden;
+            background: var(--panel-bg) !important; /* 以變數為最終背景 */
+        }
 
-  /* ===== 用 data-scheme 控制黑/紫兩種底色 ===== */
-  .container[data-scheme="black"]{
-    --panel-bg: linear-gradient(0deg,rgba(43,37,37,1) 0%, rgba(0,0,0,1) 100%);
-  }
-  .container[data-scheme="purple"]{
-    --panel-bg: linear-gradient(0deg,rgba(105,30,61,1) 0%, rgba(75,14,61,1) 83%, rgba(56,4,61,1) 100%);
-  }
+            /* ===== 用 data-scheme 控制黑/紫兩種底色 ===== */
+            .container[data-scheme="black"] {
+                --panel-bg: linear-gradient(0deg,rgba(43,37,37,1) 0%, rgba(0,0,0,1) 100%);
+            }
 
-  /* 頁首（中間置中標題；右上角顯示步驟） */
-  .header {
-    position: relative;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(2px);
-  }
-  .header-title {
-    font-weight: 900;                 /* 要粗體 */
-    font-size: var(--title-size);
-    text-align: center;
-    letter-spacing: 0.5px;
-    text-shadow: 0 1px 0 rgba(0,0,0,.6), 0 0 8px rgba(0,0,0,.35);
-  }
-  .header-step {
-    position: absolute;
-    right: 12px; top: 20px;
-    color: var(--muted);
-    font-size: var(--content-size);
-    font-weight: 700;
-  }
+            .container[data-scheme="purple"] {
+                --panel-bg: linear-gradient(0deg,rgba(105,30,61,1) 0%, rgba(75,14,61,1) 83%, rgba(56,4,61,1) 100%);
+            }
 
-  /* 內容：只在此區滾動；底部預留操作列與頁尾高度 */
-  .content {
-    padding: 16px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: calc(var(--actionbar-h) + var(--footer-h) + 16px);
-  }
+        /* 頁首（中間置中標題；右上角顯示步驟） */
+        .header {
+            position: relative;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(2px);
+        }
 
-  /* 步驟頁 */
-  .step { display: none; font-size: var(--content-size); }
-  .step.active { display: block; }
-  .step h2 {
-    margin: 0 0 10px 0;
-    font-size: var(--title-size);
-    text-align: center;
-    font-weight: 800;
-  }
+        .header-title {
+            font-weight: 900; /* 要粗體 */
+            font-size: var(--title-size);
+            text-align: center;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 0 rgba(0,0,0,.6), 0 0 8px rgba(0,0,0,.35);
+        }
 
-  /* 指定幾頁標題靠左（有驚嘆號那幾頁） */
-  .step[data-page="1"] h2,
-  .step[data-page="2"] h2,
-  .step[data-page="3"] h2,
-  .step[data-page="4"] h2,
-  .step[data-page="5"] h2,
-  .step[data-page="7"] h2,
-  .step[data-page="8"] h2 {
-    text-align: left !important;
-  }
+        .header-step {
+            position: absolute;
+            right: 12px;
+            top: 20px;
+            color: var(--muted);
+            font-size: var(--content-size);
+            font-weight: 700;
+        }
 
-      .note-list {
-          margin: 8px 0 16px 1.2em;
-          color: var(--muted);
-          line-height: 1.7;
-          font-size: 18px !important;
-      }
-      .note-list p{
-          margin-top: 0px;
-          margin-bottom: 15px;
-      }
+        /* 內容：只在此區滾動；底部預留操作列與頁尾高度 */
+        .content {
+            padding: 16px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: calc(var(--actionbar-h) + var(--footer-h) + 16px);
+        }
 
-  .fieldset {
-    border: 1px dashed var(--border);
-    border-radius: var(--control-radius);
-    padding: 14px;
-    margin-top: var(--section-gap);
-  }
+        /* 步驟頁 */
+        .step {
+            display: none;
+            font-size: var(--content-size);
+        }
 
-  /* 第1頁：整組置中 + 選項置中 */
-  .center-block { display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; }
-  .radio-row { display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
-  .exit {
-    background: rgba(250, 204, 21, .10);
-    border: 1px solid rgba(250, 204, 21, .45);
-    color: #fde68a;
-    padding: 12px; border-radius: 12px; margin-top: 8px; display: none;
-  }
-  .exit.show { display:block;}
+            .step.active {
+                display: block;
+            }
 
-  /* 表單控制項（統一寬高 + 與 ⏍ 同色） */
-  label { font-weight: 700; display:block; margin-bottom:6px; font-size: var(--label-size, var(--content-size)); }
-  label small { color: var(--muted); font-weight: 600; margin-left:4px; font-size: var(--hint-size, var(--content-size)); }
-  .row { margin-bottom: var(--section-gap); }
+            .step h2 {
+                margin: 0 0 10px 0;
+                font-size: var(--title-size);
+                text-align: center;
+                font-weight: 800;
+            }
 
-  input[type="text"], input[type="email"], select {
-    width: 100%;
-    padding: var(--control-pad);
-    background: var(--control-bg);
-    border: 1px solid var(--control-border);
-    border-radius: var(--control-radius);
-    outline: none;
-    color: var(--muted) !important;
-    font-size: var(--input-size);
-    height: var(--input-height);
-    box-sizing: border-box;
-  }
-  input::placeholder { font-size: var(--placeholder-size); color: var(--muted); }
-  input:focus, select:focus { border-color: var(--control-focus); box-shadow: 0 0 0 3px rgba(96,165,250,.25); }
+            /* 指定幾頁標題靠左（有驚嘆號那幾頁） */
+            .step[data-page="1"] h2,
+            .step[data-page="2"] h2,
+            .step[data-page="3"] h2,
+            .step[data-page="4"] h2,
+            .step[data-page="5"] h2,
+            .step[data-page="7"] h2,
+            .step[data-page="8"] h2 {
+                text-align: left !important;
+            }
 
-  .error { color: var(--danger); margin-top: 6px; font-size: var(--error-size); display:none; }
-  .radio-row label { font-size: var(--content-size); font-weight: 700; }
+        .note-list {
+            margin: 8px 0 16px 1.2em;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 18px !important;
+        }
 
-  /* iOS Safari：避免聚焦自動放大 */
-  @supports (-webkit-touch-callout: none) {
-    input[type="text"]:focus, input[type="email"]:focus, select:focus { font-size: 16px !important; }
-  }
+            .note-list p {
+                margin-top: 0px;
+                margin-bottom: 15px;
+            }
 
-  select { font-size: var(--input-size) !important; color: var(--muted) !important; }
+        .fieldset {
+            border: 1px dashed var(--border);
+            border-radius: var(--control-radius);
+            padding: 14px;
+            margin-top: var(--section-gap);
+        }
 
-  /* 檔案上傳（同一排顯示縮圖） */
-  .file-row {
-    display: grid;
-    grid-template-columns: 1fr auto 1.2fr;
-    gap: 10px; align-items: center; margin-bottom: var(--section-gap);
-  }
-  .file-name {
-    color: var(--muted); font-size: var(--content-size);
-    min-height: var(--input-height);
-    display:flex; align-items:center; gap:8px;
-    padding: 0 6px; border:1px dashed var(--control-border);
-    border-radius: var(--control-radius); background: rgba(255,255,255,0.02); box-sizing:border-box; overflow:hidden;
-  }
-  .thumb { width:48px; height:32px; object-fit:cover; border-radius:6px; display:none; }
+        /* 第1頁：整組置中 + 選項置中 */
+        .center-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
+        }
 
-  .file-input { position: relative; overflow: hidden; display: inline-block; }
-  .file-input input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-  .file-btn {
-    appearance: none; border: 1px solid var(--btn-border); background: var(--btn-bg); color: var(--ink);
-    padding: 10px 14px; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: var(--content-size); min-height: var(--input-height);
-    display: inline-flex; align-items: center;
-  }
+        .radio-row {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
 
-  .btn--nav { min-height: var(--nav-btn-min-h); padding: var(--nav-btn-pad); }
+        .exit {
+            background: rgba(250, 204, 21, .10);
+            border: 1px solid rgba(250, 204, 21, .45);
+            color: #fde68a;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 8px;
+            display: none;
+        }
 
-  /* 底部固定操作列（全頁共用） */
-  .actionbar {
-    position: relative; display:flex; gap:10px; justify-content:space-between; align-items:center;
-    padding: var(--actionbar-pad-y) var(--actionbar-pad-x) calc(var(--actionbar-pad-y) + env(safe-area-inset-bottom));
-    border-top: 1px solid var(--border); background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);
-    height:auto; transform: translateY(calc(-1 * var(--kv-offset)));
-    transition: opacity .18s ease;
-  }
-  .btn { appearance:none; border:1px solid var(--btn-border); background:var(--btn-bg); color:var(--ink);
-    padding:10px 14px; border-radius:12px; font-weight:800; cursor:pointer; font-size:var(--content-size); min-height:var(--input-height); }
-  .btn:disabled { opacity:.55; cursor:not-allowed; }
+            .exit.show {
+                display: block;
+            }
 
-  /* Sticky Footer（每頁都會看到） */
-  .footer {
-    border-top:1px solid var(--border);
-    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
-    text-align:center; color: var(--muted); font-size: var(--footer-size);
-    background:rgba(0,0,0,0.15); height:var(--footer-h);
-    transform: translateY(calc(-1 * var(--kv-offset)));
-  }
+        /* 表單控制項（統一寬高 + 與 ⏍ 同色） */
+        label {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 6px;
+            font-size: var(--label-size, var(--content-size));
+        }
 
-  /* footer Logo商標；版權  */
-  .footer-logo {
-    height: 25px;       /* 想改大小可以改這裡px */
-    width: auto;
-    vertical-align: middle;
-    margin-right: 6px;
-  }
+            label small {
+                color: var(--muted);
+                font-weight: 600;
+                margin-left: 4px;
+                font-size: var(--hint-size, var(--content-size));
+            }
 
-  /* 鍵盤開啟時：隱藏底部操作列，避免擋住視線 */
-  body.kb-open .actionbar { opacity:0; pointer-events:none; transform:translateY(0)!important; }
-  body.kb-open .content { padding-bottom: calc(var(--footer-h) + 16px); }
+        .row {
+            margin-bottom: var(--section-gap);
+        }
 
-  /* ========== 每頁獨立設定區（可逐頁覆蓋；字級） ========== */
-  .step[data-page="1"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="2"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="3"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="4"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="5"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="6"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="7"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="8"]{ --title-size: 15px; --content-size: 12px; }
-  .step[data-page="9"]{ --title-size: 15px; --content-size: 12px; }
+        input[type="text"], input[type="email"], select {
+            width: 100%;
+            padding: var(--control-pad);
+            background: var(--control-bg);
+            border: 1px solid var(--control-border);
+            border-radius: var(--control-radius);
+            outline: none;
+            color: var(--muted) !important;
+            font-size: var(--input-size);
+            height: var(--input-height);
+            box-sizing: border-box;
+        }
 
-  /* 第5頁：範例圖片改上下 */ 
-  #step-5 .samples {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--sample-gap);
-    align-items: start;
-    margin-top: 10px;
-  }
+        input::placeholder {
+            font-size: var(--placeholder-size);
+            color: var(--muted);
+        }
 
-  #step-5 .sample-box {
-    background: var(--sample-bg);
-    border: 1px dashed var(--control-border);
-    border-radius: var(--sample-radius);
-    padding: var(--sample-pad);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+        input:focus, select:focus {
+            border-color: var(--control-focus);
+            box-shadow: 0 0 0 3px rgba(96,165,250,.25);
+        }
 
-  #step-5 .sample-img {
-    width: 100%;
-    height: var(--sample-max-h);
-    object-fit: contain;
-    image-rendering: auto;
-  }
+        .error {
+            color: var(--danger);
+            margin-top: 6px;
+            font-size: var(--error-size);
+            display: none;
+        }
 
-  #step-5 .sample-cap {
-    margin-top: 6px;
-    font-size: var(--content-size);
-    color: var(--muted);
-    text-align: center;
-  }
+        .radio-row label {
+            font-size: var(--content-size);
+            font-weight: 700;
+        }
 
-  /* ====== 第5頁圖片縮圖 + 檔名置中 ====== */
-  #step-5 .file-name {
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* 水平置中縮圖 + 文字 */
-  text-align: center;    /* 文字置中 */
-  }
+        /* iOS Safari：避免聚焦自動放大 */
+        @supports (-webkit-touch-callout: none) {
+            input[type="text"]:focus, input[type="email"]:focus, select:focus {
+                font-size: 16px !important;
+            }
+        }
 
-  /* 縮圖本身置中（保險用） */
-  #step-5 .file-name .thumb {
-  display: block;
-  margin: 0 auto;
-  }
+        select {
+            font-size: var(--input-size) !important;
+            color: var(--muted) !important;
+        }
+
+        /* 檔案上傳（同一排顯示縮圖） */
+        .file-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1.2fr;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: var(--section-gap);
+        }
+
+        .file-name {
+            color: var(--muted);
+            font-size: var(--content-size);
+            min-height: var(--input-height);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 6px;
+            border: 1px dashed var(--control-border);
+            border-radius: var(--control-radius);
+            background: rgba(255,255,255,0.02);
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .thumb {
+            width: 48px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .file-input {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+            .file-input input[type="file"] {
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+        .file-btn {
+            appearance: none;
+            border: 1px solid var(--btn-border);
+            background: var(--btn-bg);
+            color: var(--ink);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: var(--content-size);
+            min-height: var(--input-height);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn--nav {
+            min-height: var(--nav-btn-min-h);
+            padding: var(--nav-btn-pad);
+        }
+
+        /* 底部固定操作列（全頁共用） */
+        .actionbar {
+            position: relative;
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--actionbar-pad-y) var(--actionbar-pad-x) calc(var(--actionbar-pad-y) + env(safe-area-inset-bottom));
+            border-top: 1px solid var(--border);
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(4px);
+            height: auto;
+            transform: translateY(calc(-1 * var(--kv-offset)));
+            transition: opacity .18s ease;
+        }
+
+        .btn {
+            appearance: none;
+            border: 1px solid var(--btn-border);
+            background: var(--btn-bg);
+            color: var(--ink);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: var(--content-size);
+            min-height: var(--input-height);
+        }
+
+            .btn:disabled {
+                opacity: .55;
+                cursor: not-allowed;
+            }
+
+        /* Sticky Footer（每頁都會看到） */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+            text-align: center;
+            color: var(--muted);
+            font-size: var(--footer-size);
+            background: rgba(0,0,0,0.15);
+            height: var(--footer-h);
+            transform: translateY(calc(-1 * var(--kv-offset)));
+        }
+
+        /* footer Logo商標；版權  */
+        .footer-logo {
+            height: 25px; /* 想改大小可以改這裡px */
+            width: auto;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        /* 鍵盤開啟時：隱藏底部操作列，避免擋住視線 */
+        body.kb-open .actionbar {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(0) !important;
+        }
+
+        body.kb-open .content {
+            padding-bottom: calc(var(--footer-h) + 16px);
+        }
+
+        /* ========== 每頁獨立設定區（可逐頁覆蓋；字級） ========== */
+        .step[data-page="1"] {
+            --title-size: 18px;
+            --content-size: 12px;
+        }
+
+        .step[data-page="2"] {
+            --title-size: 18px;
+            --content-size: 12px;
+        }
+
+        .step[data-page="3"] {
+            --title-size: 18px;
+            --content-size: 12px;
+        }
+
+        .step[data-page="4"] {
+            --title-size: 18px;
+            --content-size: 12px;
+        }
+
+        .step[data-page="5"] {
+            --title-size: 18px;
+            --content-size: 12px;
+        }
+
+        .step[data-page="6"] {
+            --title-size: 18px;
+            --content-size: 12px;
+        }
+
+        .step[data-page="7"] {
+            --title-size: 18px;
+            --content-size: 12px;
+        }
+
+        .step[data-page="8"] {
+            --title-size: 18px;
+            --content-size: 12px;
+        }
+
+        .step[data-page="9"] {
+            --title-size: 18px;
+            --content-size: 12px;
+        }
+
+        /* 第5頁：範例圖片改上下 */
+        #step-5 .samples {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--sample-gap);
+            align-items: start;
+            margin-top: 10px;
+        }
+
+        #step-5 .sample-box {
+            background: var(--sample-bg);
+            border: 1px dashed var(--control-border);
+            border-radius: var(--sample-radius);
+            padding: var(--sample-pad);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #step-5 .sample-img {
+            width: 100%;
+            height: var(--sample-max-h);
+            object-fit: contain;
+            image-rendering: auto;
+        }
+
+        #step-5 .sample-cap {
+            margin-top: 6px;
+            font-size: var(--content-size);
+            color: var(--muted);
+            text-align: center;
+        }
+
+        /* ====== 第5頁圖片縮圖 + 檔名置中 ====== */
+        #step-5 .file-name {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 水平置中縮圖 + 文字 */
+            text-align: center; /* 文字置中 */
+        }
+
+            /* 縮圖本身置中（保險用） */
+            #step-5 .file-name .thumb {
+                display: block;
+                margin: 0 auto;
+            }
 
 
-  /* ====== 登入遮罩樣式（沿用樣式當密碼鎖） ====== */
-  .gate{ position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; }
-  .gate-card{ width:min(520px, 92vw); background:rgba(30,30,30,0.95); border:1px solid var(--border); border-radius:16px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.45); }
-  .gate h3{ margin:0 0 10px 0; font-size:16px; text-align:center; }
-  .gate p{ margin:6px 0; color:var(--muted); font-size:13px; text-align:center; }
-  .gate .row{ margin-top:12px; text-align:center; }
-  .gate .row label{ text-align:center; }
-  .gate .row input{ display:block; margin:0 auto; text-align:center; max-width:320px; }
-  .gate .error{ text-align:center; display:none; }
-  .gate-actions{ display:flex; gap:10px; justify-content:center; margin-top:12px; }
-  </style>
+        /* ====== 登入遮罩樣式（沿用樣式當密碼鎖） ====== */
+        .gate {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gate-card {
+            width: min(520px, 92vw);
+            background: rgba(30,30,30,0.95);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.45);
+        }
+
+        .gate h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .gate p {
+            margin: 6px 0;
+            color: var(--muted);
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .gate .row {
+            margin-top: 12px;
+            text-align: center;
+        }
+
+            .gate .row label {
+                text-align: center;
+            }
+
+            .gate .row input {
+                display: block;
+                margin: 0 auto;
+                text-align: center;
+                max-width: 320px;
+            }
+
+        .gate .error {
+            text-align: center;
+            display: none;
+        }
+
+        .gate-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+    </style>
 </head>
 <body>
-  <!-- 密碼進入遮罩 -->
-  <div class="gate" id="passGate">
-    <div class="gate-card">
-      <h3>輸入密碼後即可填寫</h3>
-      <p>請向人資承辦索取密碼🔐</p>
-      <div class="row">
-        <label for="gatePwd">請輸入金鑰🔑</label>
-        <input id="gatePwd" type="password" placeholder="請輸入密碼" />
-        <button type="button" id="togglePwdVisibility">顯示密碼</button>
-        <div class="error" id="gatePwdErr">❌ 密碼錯誤，請再試一次</div>
-      </div>
-      <div class="gate-actions">
-        <button class="btn" id="gatePwdStart" type="button">確定</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="container" role="region" aria-label="勞工名卡建檔表 分步表單" data-scheme="black">
-    <header class="header">
-      <div class="header-title">📑 報到須知單</div>
-      <div class="header-step" id="headerStep">第01頁/共09頁</div>
-    </header>
-
-    <main class="content" id="content">
-      <!-- 第1頁：注意事項 -->
-      <section class="step active" data-page="1" id="step-1">
-        <h2> 　　⏰ 注意事項</h2>
-        <ol class="note-list">
-          <li>此表單僅限錄取者使用.</li>
-          <li>若非上述身分請立即退出此表單.</li>
-          <li>請依照下列表單順序執行填寫.</li>
-          <li>上傳之個人資料悉依個資相關法令規範辦理保存.</li>
-          <li>填寫表單若遇到困難請向報到群組提出職場禮貌詢問.</li>
-          <li>若對表單有疑問不確定資訊,請先詢問後再填寫.</li>
-        </ol>
-
-        <div class="fieldset center-block">
-          <div style="font-weight:800;">是否了解上述注意事項</div>
-          <div class="radio-row" role="radiogroup" aria-label="是否了解上述注意事項">
-            <label><input type="radio" name="agree1" value="yes"> 了解</label>
-            <label><input type="radio" name="agree1" value="no"> 有異議</label>
-          </div>
-          <div class="exit" id="exitMsg1">🚨 若有疑問,可詢問人資承辦...</div>
+    <!-- 密碼進入遮罩 -->
+    <div class="gate" id="passGate">
+        <div class="gate-card">
+            <h3>輸入密碼後即可填寫</h3>
+            <p>請向人資承辦索取密碼🔐</p>
+            <div class="row">
+                <label for="gatePwd">請輸入金鑰🔑</label>
+                <input id="gatePwd" type="password" placeholder="請輸入密碼" />
+                <button type="button" id="togglePwdVisibility">顯示密碼</button>
+                <div class="error" id="gatePwdErr">❌ 密碼錯誤，請再試一次</div>
+            </div>
+            <div class="gate-actions">
+                <button class="btn" id="gatePwdStart" type="button">確定</button>
+            </div>
         </div>
-      </section>
-
-      <!-- 第2頁：FAQ（薪資轉帳＋體健檢報告＋報到文件用途） -->
-      <section class="step" data-page="2" id="step-2">
-        <!-- FAQ-薪資轉帳相關 -->
-        <h2> 　　💰 FAQ-薪資轉帳相關</h2>
-        <ol class="note-list">
-            <li>本公司配合薪資轉帳銀:</li>
-            <p >❗️台新銀行</p>
-            <li>是否能接受數位帳戶:</li>
-            <p >❗️公司可受理綜合活期儲蓄存款及活期性存款.</p>
-            <li>已有上述符合之帳戶是否還要開立帳戶:</li>
-            <p >❗️毋須開立.</p>
-            <li >若沒有帳戶是否要去臨櫃開立:</li>
-            <p >
-                ⏍ 毋須開立.</br>
-                ⏍ 本公司與該行是薪轉戶專案,將提供限定證明去辦理開戶.</br>
-                ⏍ 須完成報到程序後給予.
-            </p>
-            <li>是否能使用別間銀行存摺:</li>
-            <p >❗️不能</p>
-        </ol>
-
-        <!-- FAQ-體健檢報告相關 -->
-        <h2>🩺 FAQ-體健檢報告相關</h2>
-        <ol class="note-list">
-          <li>是否可以僅繳交一份體健檢報告:</li>
-          <p >❗️可以僅繳交一份,但請注意:</br>
-             ⏍ 未滿40歲,提交的體檢報告必須在5年內.</br>
-             ⏍ 40歲以上,未滿65歲,提交的體檢報告必須在3年內.</br>
-             ⏍ 年滿65歲,提交的體檢報告必須在1年內.</br>
-             ⏍ 符合上述原則,可以不必再實施體檢.</p>
-          <li>糞便傷寒必須要檢查,若檢核無該選項:</li>
-          <p >❗️請重新或補做傷寒檢查項目.</p>
-          <li>是否可使用之前任職公司的體健檢報告:</li>
-          <p >❗️回應與第一則則相同.</p> 
-          <li>查詢認證體檢醫院機構:</li>
-          <p >❗️<a href="https://hrpts.osha.gov.tw/Home/CertifiedHospInfoSearch" target="_blank" style="color:#60a5fa; text-decoration:underline;">請點擊此文字連結查詢</a>.</p>
-          <li>體檢費用:</li>
-          <p >❗️第一年自行負擔;第二年公司負責.</p> 
-        </ol>
-
-        <!-- 報到文件用途說明 -->
-        <h2> 　　📑 報到文件用途說明</h2>
-        <ol class="note-list">
-          <li>一般勞工體格檢查報告:</li>
-          <p >❗️依據《職業安全衛生法》§20,勞工健康保護規則§16~17</br> 
-             ⏍ 未滿40歲,提交的體檢報告必須在5年內.</br> 
-             ⏍ 40歲以上,未滿65歲,提交的體檢報告必須在3年內.</br> 
-             ⏍ 年滿65歲,提交的體檢報告必須在1年內.</br> 
-             ⏍ 符合上述原則,可以不必再實施體檢.</p>
-          <li>食品從業人員體檢報告：</li> 
-          <p >❗️依據《食品安全衛生管理法》§8,食品良好衛生規範準則§5</p>
-          <li>檢查期限:</li>
-          <p>❗️回應與第一則則相同.</p>
-          <li>查詢認證體檢醫院機構:</li>
-          <p>本年度-近一年.</p>
-          <li>身分證:</li>
-          <p>❗️用於加、退保使用.</p>
-          <li>兩吋照片一張:</li>
-          <p>❗️用於個人資料建檔使用.</p>
-          <li>最高學歷證書,學生證,學費單,請擇一驗證:</li>
-          <p>❗️複驗學歷證明.</p>
-        </ol>
-
-        <div class="fieldset center-block">
-          <div style="font-weight:800;">是否了解上述 FAQ 與報到文件用途</div>
-          <div class="radio-row" role="radiogroup" aria-label="是否了解上述 FAQ 與報到文件用途">
-            <label><input type="radio" name="agree2" value="yes"> 了解</label>
-            <label><input type="radio" name="agree2" value="no"> 有異議</label>
-          </div>
-          <div class="exit" id="exitMsg2">🚨 若有疑問,可詢問人資承辦...</div>
-        </div>
-      </section>
-
-      <!-- 第3頁：擁有文件 -->
-      <section class="step" data-page="3" id="step-3">
-        <h2>　❗️擁有下列文件請打勾</h2>
-        <div class="fieldset">
-          <div class="checks">
-            <label><input type="checkbox" id="ownChk1"> 1. 台新國際商業銀行</label>
-            <label><input type="checkbox" id="ownChk2"> 2. 中餐證照</label>
-            <label><input type="checkbox" id="ownChk3"> 3. 西餐證照</label>
-            <label><input type="checkbox" id="ownChk4"> 4. AH&LA 證書</label>
-          </div>
-          <div class="note-list" style="margin-left:0;">
-            📣 不接受PDF檔,如須上傳PDF檔,請先轉成JPG檔後再上傳.
-          </div>
-        </div>
-      </section>
-
-      <!-- 第4頁：報到日必要繳交文件 -->
-      <section class="step" data-page="4" id="step-4">
-        <h2>　❗️報到日必要繳交五大文件</h2>
-        <div class="fieldset">
-          <div class="checks">
-            <label><input type="checkbox" id="needChk1"> 1. 經認證醫療機構-勞工體格檢查報告</label>
-            <label><input type="checkbox" id="needChk2"> 2. 經認證醫療機構-近一年食品從業人員體檢報告</label>
-            <label><input type="checkbox" id="needChk3"> 3. 身分證</label>
-            <label><input type="checkbox" id="needChk4"> 4. 兩吋照片一張</label>
-            <label><input type="checkbox" id="needChk5"> 5. 最高學歷證書、學生證、學費證明擇一驗證</label>
-          </div>
-          <div class="note-list" style="margin-left:0;">
-            📣 準備完成後,才行下一步開始上傳檔案,填寫基本資料.
-          </div>
-        </div>
-      </section>
-
-      <!-- 第5頁：上傳檔案說明＋同意 -->
-      <section class="step" data-page="5" id="step-5">
-        <h2> 　　⏫ 上傳檔案</h2>
-        <ol class="note-list">
-          <li>上傳之個人準備文件.</li>
-          <li>有正確及錯誤範例.</li>
-          <li>檔案須符合本公司限定規格.</li>
-          <li>哀鳳手機請用手機內建備忘錄掃描.</li>
-        </ol>
-
-        <!-- 範例改上下 -->
-        <div class="samples" aria-label="身分證範本">
-
-    <!-- 操作影片★★★ -->
-    <figure class="sample-box">
-      <video class="sample-img" controls playsinline style="max-height:220px; width:100%; object-fit:contain;">
-        <source src="assets/ios掃描範例.mp4" type="video/mp4">
-        ❌ 您的裝置不支援影片播放
-      </video>
-      <figcaption class="sample-cap">📹 iPhone 備忘錄掃描文件操作示範</figcaption>
-    </figure>
-
-    <figure class="sample-box">
-      <img class="sample-img" src="assets/體檢報告範本.jpg" alt="❗️體檢報告範本.jpg">
-      <figcaption class="sample-cap">✅ 正確範例-體檢報告上傳限定規格</figcaption>
-    </figure>
-    <figure class="sample-box">
-      <img class="sample-img" src="assets/錯誤範例-1.jpg" alt="❗️錯誤範例-1">
-      <figcaption class="sample-cap">❌ 錯誤範例-雖格式正確但須要好閱讀</figcaption>
-    </figure>
-    <figure class="sample-box">
-      <img class="sample-img" src="assets/錯誤範例-2.jpg" alt="❗️錯誤範例-2.jpg">
-      <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角</figcaption>
-    </figure>
-    <figure class="sample-box">
-      <img class="sample-img" src="assets/錯誤範例-3.jpg" alt="❗️錯誤範例-3.jpg">
-      <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角且有小手入鏡</figcaption>
-    </figure>
-  </div>
-
-  <div class="fieldset" style="margin-top:16px;">
-    <div style="font-weight:800; margin-bottom:8px; text-align:center;">是否同意上述事項</div>
-    <div class="radio-row" role="radiogroup">
-      <label><input type="radio" name="agreeUpload" value="yes"> 同意</label>
-      <label><input type="radio" name="agreeUpload" value="no"> 不同意</label>
-    </div>
-    <div class="error" id="errAgreeUpload" style="text-align:center;">⚠️ 需同意才能繼續填寫</div>
-  </div>
-      </section>
-
-      <!-- 第6頁：上傳文件相關 -->
-      <section class="step" data-page="6" id="step-6">
-        <div class="file-row">
-          <div>台新國際商業銀行戶頭</div>
-          <label class="file-input">
-            <span class="file-btn">選擇檔案</span>
-            <input id="idFront" type="file" accept=".pdf,image/*" />
-          </label>
-          <div class="file-name" id="nameFront">
-            <img class="thumb" id="thumbFront" alt="縮圖預覽"><span id="nameFrontTxt">尚未選取檔案</span>
-          </div>
-        </div>
-        <div class="error" id="errFront">⚠️ 請選擇台新國際商業銀行戶頭檔案</div>
-
-        <div class="file-row">
-          <div>勞工體格檢查報告</div>
-          <label class="file-input">
-            <span class="file-btn">選擇檔案</span>
-            <input id="idLaborCheck" type="file" accept=".pdf,image/*" />
-          </label>
-          <div class="file-name" id="nameLaborCheck">
-            <img class="thumb" id="thumbLaborCheck" alt="縮圖預覽"><span id="nameLaborCheckTxt">尚未選取檔案</span>
-          </div>
-        </div>
-        <div class="error" id="errLaborCheck">⚠️ 請選擇勞工體格檢查報告檔案</div>
-
-        <div class="file-row">
-          <div>食品從業人員體檢報告</div>
-          <label class="file-input">
-            <span class="file-btn">選擇檔案</span>
-            <input id="idFoodCheck" type="file" accept=".pdf,image/*" />
-          </label>
-          <div class="file-name" id="nameFoodCheck">
-            <img class="thumb" id="thumbFoodCheck" alt="縮圖預覽"><span id="nameFoodCheckTxt">尚未選取檔案</span>
-          </div>
-        </div>
-        <div class="error" id="errFoodCheck">⚠️ 請選擇食品從業人員體檢報告檔案</div>
-
-        <div class="fieldset">
-          <div class="checks">
-            <label><input type="checkbox" id="fileChk1"> 1. 文件清晰且無反光</label>
-            <label><input type="checkbox" id="fileChk2"> 2. 文件四邊完整入鏡</label>
-            <label><input type="checkbox" id="fileChk3"> 3. 文件「完整」對準在框框內</label>
-            <label><input type="checkbox" id="fileChk4"> 4. 上述都已確認完成動作</label>
-          </div>
-          <div class="note-list" style="margin-left:0;">
-            📣 不接受PDF檔,如須上傳PDF檔,請先轉成JPG檔後再上傳.
-          </div>
-        </div>
-      </section>
-
-      <!-- 第7頁：員工基本資料 -->
-      <section class="step" data-page="7" id="step-7">
-          <h2>📋 員工基本資料</h2>
-
-          <div class="row">
-              <label for="company">© 公司名稱 <small>⏍ 請確認後再行點選</small></label>
-              <select id="company">
-                  <option value="" selected disabled>請選擇</option>
-                  <option>Drunk Caffee 爛醉咖啡</option>
-                  <option>FIZZ FIZZ.TEIPEI</option>
-                  <option>Social Company 有趣人類社交局</option>
-              </select>
-              <div class="error" id="errcompany">⚠️ 尚未選擇公司</div>
-          </div>
-
-          <div class="row">
-              <label for="team">© 隸屬團隊 <small>⏍ 若不確定歸屬,請詢問面試主管後再行點選</small></label>
-              <select id="team">
-                  <option value="" selected disabled>請選擇</option>
-                  <option>外場-Serve Teams</option>
-                  <option>吧檯-Bar Teams</option>
-                  <option>內廚-Kitchen Teams</option>
-                  <option>收銀-Cashier Teams</option>
-                  <option>公關-Public Relations Teams</option>
-                  <option>其他-Other</option>
-              </select>
-              <div class="error" id="errTeam">⚠️ 尚未選擇隸屬團隊</div>
-          </div>
-          <div class="row">
-              <label for="team">© 隸屬團隊 <small>⏍ 若不確定歸屬,請詢問面試主管後再行點選</small></label>
-              <select id="team">
-                  <option value="" selected disabled>請選擇</option>
-                  <option>外場-Serve Teams</option>
-                  <option>吧檯-Bar Teams</option>
-                  <option>內廚-Kitchen Teams</option>
-                  <option>收銀-Cashier Teams</option>
-                  <option>公關-Public Relations Teams</option>
-                  <option>其他-Other</option>
-              </select>
-              <div class="error" id="errTeam">⚠️ 尚未選擇隸屬團隊</div>
-          </div>
-
-          <div class="row">
-              <label for="workType">© 工作型態 <small>⏍ 若不確定部門,請詢問面試主管後再行點選</small></label>
-              <select id="workType">
-                  <option value="" selected disabled>請選擇</option>
-                  <option>正職/全時工時-Full Time</option>
-                  <option>兼職/部分工時-Part Time</option>
-              </select>
-              <div class="error" id="errWorkType">⚠️ 尚未選擇工作型態</div>
-          </div>
-      </section>
-  
-      <!-- 第8頁：資料送出前-核檢區 -->
-      <section class="step" data-page="8" id="step-8">
-        <h2>　❗️資料送出前-核檢區</h2>
-        <div class="fieldset">
-          <div class="checks">
-            <label><input type="checkbox" id="preA"> 1. 以上輸入資料都進行雙重確認.</label>
-            <label><input type="checkbox" id="preB"> 2. 本人聲明無偽造之不法情形.</label>
-            <label><input type="checkbox" id="preC"> 3. 上傳檔案都符合本公司格式.</label>
-            <label><input type="checkbox" id="preD"> 4. 請仔細思考認真填寫此表單.</label>
-            <label><input type="checkbox" id="preE"> 5. 提交表單後無法更改資訊,請確認填寫資料正確再提交.</label>
-            <label><input type="checkbox" id="preF"> 6. 提交表單後,請完成截圖回報機制.</label>
-          </div>
-        </div>
-        <div class="right-actions" style="display:flex; gap:10px; justify-content:center; position:relative; bottom:0">
-          <button class="btn btn--nav" id="btnSubmit" type="button" disabled>提交</button>
-        </div>
-      </section>
-
-      <!-- 第9頁：全數完成 -->
-      <section class="step" data-page="9" id="step-9">
-        <h2>✅ 全數完成</h2>
-        <div style="text-align:center; line-height:1.8;">
-          © 報到須知單
-          <hr style="border:0;border-top:1px solid var(--border);margin:10px 0;">
-          <div>❗️請截圖此畫面給承辦人</div>
-          <hr style="border:0;border-top:1px solid var(--border);margin:10px 0;">
-          <div>系統已收到資料,將進入處理排程,表單已填寫完畢.</div>
-          <div style="margin-top:10px;color:var(--muted);font-size:11px;">
-            建立時間：<span id="stampCreated">—</span>　提交時間：<span id="stampUpdated">—</span>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- 底部固定操作列（全頁共用） -->
-    <div class="actionbar" id="actionbar">
-      <div class="left-actions">
-        <button class="btn btn--nav" id="btnPrev" type="button">上一頁</button>
-      </div>
-      <div class="right-actions" style="display:flex; gap:10px;">
-        <button class="btn btn--nav" id="btnNext" type="button">下一頁</button>
-      </div>
     </div>
 
-　　<!-- 商標；版權 -->
-    <footer class="footer" id="footer">
-      <img src="assets/MYs_logo_去背1.png" alt="MYs Logo" class="footer-logo">
-      ︳© Copyright 2025 MYs System-b1.0.0.11.19-2025
-    </footer>
-  </div>
-
-<script>
-/* --------系統常數（可調）-------- */
-const TOTAL_STEPS = 9;  /* 總頁數（顯示用） */
-const $ = (sel) => document.querySelector(sel);
-const $$ = (sel) => document.querySelectorAll(sel);
-
-/* 表單時間戳（建立/更新） */
-const FORM_META = { createdAt: null, updatedAt: null };
-function fmtTW(d) {
-  try {
-    return new Intl.DateTimeFormat('zh-TW', {
-      year: 'numeric', month: '2-digit', day: '2-digit',
-      hour: '2-digit', minute: '2-digit', second: '2-digit',
-      hour12: false, timeZone: 'Asia/Taipei'
-    }).format(d);
-  } catch (e) {
-    return d.toLocaleString();
-  }
-}
-
-function setCreatedNow() {
-  if (!FORM_META.createdAt) {
-    FORM_META.createdAt = new Date();
-    updateStampUI();
-  }
-}
-
-function setUpdatedNow() {
-  FORM_META.updatedAt = new Date();
-  updateStampUI();
-}
-
-function updateStampUI() {
-  const c = $("#stampCreated"), u = $("#stampUpdated");
-  if (c) { c.textContent = FORM_META.createdAt ? fmtTW(FORM_META.createdAt) : "—"; }
-  if (u) { u.textContent = FORM_META.updatedAt ? fmtTW(FORM_META.updatedAt) : "—"; }
-}
-
-/* ====== 密碼進入遮罩 ====== */
-const PASSWORDS = ["MYsDC20251115", "MYsFZ20251115", "MYsSC20251115"];
-(function passGateInit() {
-  const gate = $("#passGate"),
-        pwd = $("#gatePwd"),
-        btn = $("#gatePwdStart"),
-        err = $("#gatePwdErr");
-  const togglePwdButton = $("#togglePwdVisibility");
-
-  if (!gate) return;
-
-  let isPasswordVisible = false;
-  togglePwdButton.addEventListener("click", () => {
-    isPasswordVisible = !isPasswordVisible;
-    pwd.type = isPasswordVisible ? "text" : "password";
-    togglePwdButton.textContent = isPasswordVisible ? "隱藏密碼" : "顯示密碼";
-  });
-
-  err.style.display = "none";
-  btn.addEventListener("click", () => {
-    const v = (pwd.value || "").trim().toLowerCase();
-    const isValid = PASSWORDS.some(pwd => pwd.toLowerCase() === v);
-
-    if (!isValid) {
-      err.style.display = "block";
-      return;
-    }
-
-    err.style.display = "none";
-    gate.style.display = "none";
-    setCreatedNow();
-    autoFitActionbarHeight();
-  });
-})();
-
-/* ====== 鍵盤與縮放控制（iOS） ====== */
-(function keyboardLift() {
-  const vv = window.visualViewport;
-  if (!vv) return;
-
-  function apply() {
-    const bottomInset = (window.innerHeight - vv.height - vv.offsetTop);
-    document.documentElement.style.setProperty('--kv-offset', bottomInset > 0 ? `${bottomInset}px` : '0px');
-
-    if (bottomInset > 80) {
-      document.body.classList.add('kb-open');
-    } else {
-      document.body.classList.remove('kb-open');
-    }
-
-    autoFitActionbarHeight();
-  }
-
-  vv.addEventListener('resize', apply);
-  vv.addEventListener('scroll', apply);
-  window.addEventListener('resize', apply);
-  apply();
-})();
-
-/* 焦點自動可視（避免被鍵盤或操作列擋住） */
-(function focusAutoScroll() {
-  document.addEventListener('focusin', (e) => {
-    const el = e.target;
-    if (!(el instanceof HTMLInputElement) && !(el instanceof HTMLSelectElement)) return;
-    setTimeout(() => { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 50);
-  });
-})();
-
-/* ====== 步驟顯示與背景配色 ====== */
-let currentPage = 1;
-let IS_LOCKED = false;
-function pad2(n) { return String(n).padStart(2, '0'); }
-
-/* 指定頁為紫色：1, 2, 3, 4, 5, 8 ；其餘黑色 */
-function pageIsPurple(n) { return [1, 2, 3, 4, 5, 8].includes(n); }
-
-function updateHeaderStep() {
-  $("#headerStep").textContent = `第${pad2(currentPage)}頁/共${TOTAL_STEPS}頁`;
-  const scheme = pageIsPurple(currentPage) ? "purple" : "black";
-  $(".container").setAttribute("data-scheme", scheme);
-}
-
-function lockAllAndHideNav() {
-  IS_LOCKED = true;
-  document.querySelectorAll('input, select, button, textarea').forEach(el => { el.disabled = true; });
-  const prev = $("#btnPrev"), next = $("#btnNext");
-  if (prev) { prev.style.display = "none"; }
-  if (next) { next.style.display = "none"; }
-}
-
-function showStep(pageNumber) {
-  if (IS_LOCKED && pageNumber !== TOTAL_STEPS) return;
-
-  $$(".step").forEach(s => s.classList.remove("active"));
-  const el = document.getElementById(`step-${pageNumber}`);
-  if (el) el.classList.add("active");
-
-  currentPage = pageNumber;
-  updateHeaderStep();
-  $("#content").scrollTo({ top: 0, behavior: "instant" });
-  updateNavState();
-
-  if (pageNumber === TOTAL_STEPS) {
-    setUpdatedNow();
-    setTimeout(() => { lockAllAndHideNav(); updateNavState(); }, 0);
-  }
-}
-
-/* ====== 第 5 頁圖片縮小（恢復小圖片） ====== */
-document.querySelectorAll("#step-5 .sample-img").forEach((img) => {
-  img.style.maxHeight = "160px";
-  img.style.objectFit = "contain";
-});
-
-/* ====== 第 6 頁檔案預覽（PDF、圖片皆可） ====== */
-function bindFilePreview(inputId, txtId, thumbId) {
-  const input = $(inputId);
-  const txt = $(txtId);
-  const thumb = $(thumbId);
-
-  input?.addEventListener("change", () => {
-    const file = input.files[0];
-
-    if (!file) {
-      txt.textContent = "尚未選取檔案";
-      thumb.style.display = "none";
-      thumb.src = "";
-      return;
-    }
-
-    txt.textContent = file.name;
-
-    if (file.type === "application/pdf") {
-      thumb.src =
-        "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg";
-      thumb.style.display = "block";
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      thumb.src = e.target.result;
-      thumb.style.display = "block";
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-bindFilePreview("#idFront", "#nameFrontTxt", "#thumbFront");
-bindFilePreview("#idLaborCheck", "#nameLaborCheckTxt", "#thumbLaborCheck");
-bindFilePreview("#idFoodCheck", "#nameFoodCheckTxt", "#thumbFoodCheck");
-
-/* ====== 各頁驗證（submit=false：不顯示紅字；true：顯示紅字） ====== */
-function validatePage(n, submit=false){
-  switch(n){
-
-    /* ------ 第1頁：注意事項 ------ */
-    case 1: {
-      const yes = $('input[name="agree1"][value="yes"]')?.checked;
-      const no  = $('input[name="agree1"][value="no"]')?.checked;
-      $("#exitMsg1").classList.toggle("show", !!no);
-      return !!yes;
-    }
-
-    /* ------ 第2頁：FAQ＋文件用途說明 ------ */
-    case 2: {
-      const yes = $('input[name="agree2"][value="yes"]')?.checked;
-      const no  = $('input[name="agree2"][value="no"]')?.checked;
-      $("#exitMsg2").classList.toggle("show", !!no);
-      return !!yes;
-    }
-
-    /* ------ 第3頁：擁有文件（全部情況可下一步） ------ */
-    case 3: {
-      return true;
-    }
-
-    /* ------ 第4頁：報到日必要繳交五大文件（需 5 個都打勾） ------ */
-    case 4:
-      return [...$("#step-4").querySelectorAll("input[type=checkbox]")].every(
-        (c) => c.checked
-      );
-
-    /* ------ 第5頁：上傳檔案同意（需同意才可下一步） ------ */
-case 5: {
-  const yes = $(`input[name="agreeUpload"][value="yes"]`).checked;
-  const no  = $(`input[name="agreeUpload"][value="no"]`).checked;
-
-  /* ★ 按「不同意」立即顯示錯誤 */
-  if (no) {
-    $("#errAgreeUpload").style.display = "block";
-  }
-
-  /* ★ 按「同意」立即隱藏錯誤 */
-  if (yes) {
-    $("#errAgreeUpload").style.display = "none";
-  }
-
-  /* ★ 點下一步（submit=true）時，也要觸發一次 */
-  if (!yes && submit) {
-    $("#errAgreeUpload").style.display = "block";
-  }
-
-  return yes;
-}
-
-    /* ------ 第6頁：上傳檔案（勞工體檢＋食品體檢必上傳） ------ */
-    case 6: {
-      const labor = $("#idLaborCheck").files.length > 0;
-      const food = $("#idFoodCheck").files.length > 0;
-      const checks = ["#fileChk1", "#fileChk2", "#fileChk3", "#fileChk4"].every(
-        (id) => $(id).checked
-      );
-      $("#errLaborCheck").style.display = !labor && submit ? "block" : "none";
-      $("#errFoodCheck").style.display = !food && submit ? "block" : "none";
-      return labor && food && checks;
-    }
-
-    /* ------ 第7頁：基本資料 ------ */
-    case 7: {
-  const a = $("#company").value !== "";
-  const b = $("#team").value !== "";
-  const c = $("#workType").value !== "";
-
-  /* ★ 本名 & 性別 */
-  const d = $("#fullName").value.trim() !== "";
-  const e = $("#gender").value !== "";
-
-  if (submit) {
-    $("#errcompany").style.display = !a ? "block" : "none";
-    $("#errTeam").style.display = !b ? "block" : "none";
-    $("#errWorkType").style.display = !c ? "block" : "none";
-
-    /* ★ 錯誤提示 */
-    $("#errFullName").style.display = !d ? "block" : "none";
-    $("#errGender").style.display = !e ? "block" : "none";
-  }
-
-  return a && b && c && d && e;   /* ★ 新增 d & e */
-  return a && b && c && d && e; 
-}
-
-    /* ------ 第8頁：核檢 6 項 ------ */
-    case 8:
-      return ["#preA", "#preB", "#preC", "#preD", "#preE", "#preF"].every(
-        (id) => $(id).checked
-      );
-
-    /* ------ 第9頁：完成頁 ------ */
-    case 9:
-      return true;
-  }
-  return false;
-}
-
-/* ====== 底部操作列：狀態控制 ====== */
-function updateNavState(){
-  const btnPrev = $("#btnPrev"),
-        btnNext = $("#btnNext");
-
-  const onLast = currentPage===TOTAL_STEPS;
-
-  if (btnPrev) {
-    btnPrev.disabled = IS_LOCKED || currentPage<=1;
-    btnPrev.style.display = onLast ? "none" : "inline-block";
-  }
-
-  if (!btnNext) return;
-
-  btnNext.style.display = onLast ? "none" : "inline-block";
-
-  const validNow = validatePage(currentPage, false);
-
-  /* 預設：不通過就不能下一頁 */
-  let disabled = IS_LOCKED || !validNow;
-
-  btnNext.disabled = disabled;
-}
-
-/* 清除當頁（目前沒有按鈕呼叫，函式保留） */
-function clearCurrentPage(){
-  const cur = $(`.step.active`);
-  if(!cur) return;
-
-  cur.querySelectorAll('input[type="text"],input[type="email"]').forEach(i=> i.value="");
-  cur.querySelectorAll('select').forEach(s=> s.selectedIndex = 0);
-  cur.querySelectorAll('input[type="radio"],input[type="checkbox"]').forEach(c=> c.checked=false);
-
-  cur.querySelectorAll('.error').forEach(e=> e.style.display="none");
-
-  if(cur.id==="step-1"){ $("#exitMsg1").classList.remove("show"); }
-  if(cur.id==="step-2"){ $("#exitMsg2").classList.remove("show"); }
-
-  updateNavState();
-}
-
-/* ====== 事件綁定 ====== */
-function bindLiveValidation(){
-
-  /* 第1頁：了解 / 有異議 */
-  $$('input[name="agree1"]').forEach(r =>
-    r.addEventListener('change', () => {
-      updateNavState();
-    })
-  );
-
-  /* 第2頁：了解 / 有異議 */
-  $$('input[name="agree2"]').forEach(r =>
-    r.addEventListener('change', () => {
-      updateNavState();
-    })
-  );
-
-  /* 第5頁：上傳檔案同意 */
-  $$('input[name="agreeUpload"]').forEach(r =>
-    r.addEventListener('change', () => {
-      updateNavState();
-    })
-  );
-
-  /* 所有 checkbox（第3、4、6、8頁等） */
-  $$('input[type="checkbox"]').forEach(c =>
-    c.addEventListener('change', () => updateNavState())
-  );
-
-  /* 上傳檔案 */
-  $$('input[type="file"]').forEach(f =>
-    f.addEventListener('change', () => updateNavState())
-  );
-
-  /* 基本資料 select */
-  $$('select').forEach(s =>
-    s.addEventListener('change', () => updateNavState())
-  );
-
-  /* ★ 本名（即時驗證） */
-  $("#fullName")?.addEventListener("input", () => updateNavState());
-
-  /* ★ 性別（即時驗證） */
-  $("#gender")?.addEventListener("change", () => updateNavState());
-}
-
-/* 高度調整 */
-function autoFitActionbarHeight(){
-  const bar = $("#actionbar"); if(!bar) return;
-  const h = bar.offsetHeight;
-  document.documentElement.style.setProperty('--actionbar-h', `${h}px`);
-}
-(function observeBar(){
-  const bar=$("#actionbar");
-  if(!bar || !('ResizeObserver' in window)) return;
-  const ro = new ResizeObserver(()=> autoFitActionbarHeight());
-  ro.observe(bar);
-})();
-
-/* ====== 導航按鈕 ====== */
-function bindActionBar(){
-  $("#btnPrev").addEventListener("click", ()=>{
-    if(!IS_LOCKED && currentPage>1){
-      showStep(currentPage-1);
-    }
-  });
-
-  $("#btnNext").addEventListener("click", ()=>{
-    if(IS_LOCKED) return;
-
-    const ok = validatePage(currentPage, true);
-    if(ok && currentPage<TOTAL_STEPS){
-      setUpdatedNow();
-      showStep(currentPage+1);
-    }
-  });
-}
-
-/* ====== 初始化 ====== */
-document.addEventListener("DOMContentLoaded", ()=>{
-  showStep(1);
-  bindLiveValidation();
-  bindActionBar();
-  autoFitActionbarHeight();
-  updateStampUI();
-});
-</script>
+    <div class="container" role="region" aria-label="勞工名卡建檔表 分步表單" data-scheme="black">
+        <header class="header">
+            <div class="header-title">📑 報到須知單</div>
+            <div class="header-step" id="headerStep">第01頁/共09頁</div>
+        </header>
+
+        <main class="content" id="content">
+            <!-- 第1頁：注意事項 -->
+            <section class="step active" data-page="1" id="step-1">
+                <h2> 　　⏰ 注意事項</h2>
+                <ol class="note-list">
+                    <li>此表單僅限錄取者使用.</li>
+                    <li>若非上述身分請立即退出此表單.</li>
+                    <li>請依照下列表單順序執行填寫.</li>
+                    <li>上傳之個人資料悉依個資相關法令規範辦理保存.</li>
+                    <li>填寫表單若遇到困難請向報到群組提出職場禮貌詢問.</li>
+                    <li>若對表單有疑問不確定資訊,請先詢問後再填寫.</li>
+                </ol>
+
+                <div class="fieldset center-block">
+                    <div style="font-weight:800;">是否了解上述注意事項</div>
+                    <div class="radio-row" role="radiogroup" aria-label="是否了解上述注意事項">
+                        <label><input type="radio" name="agree1" value="yes"> 了解</label>
+                        <label><input type="radio" name="agree1" value="no"> 有異議</label>
+                    </div>
+                    <div class="exit" id="exitMsg1">🚨 若有疑問,可詢問人資承辦...</div>
+                </div>
+            </section>
+
+            <!-- 第2頁：FAQ（薪資轉帳＋體健檢報告＋報到文件用途） -->
+            <section class="step" data-page="2" id="step-2">
+                <!-- FAQ-薪資轉帳相關 -->
+                <h2> 　　💰 FAQ-薪資轉帳相關</h2>
+                <ol class="note-list">
+                    <li>本公司配合薪資轉帳銀:</li>
+                    <p>❗️台新銀行</p>
+                    <li>是否能接受數位帳戶:</li>
+                    <p>❗️公司可受理綜合活期儲蓄存款及活期性存款.</p>
+                    <li>已有上述符合之帳戶是否還要開立帳戶:</li>
+                    <p>❗️毋須開立.</p>
+                    <li>若沒有帳戶是否要去臨櫃開立:</li>
+                    <p>
+                        ⏍ 毋須開立.</br>
+                        ⏍ 本公司與該行是薪轉戶專案,將提供限定證明去辦理開戶.</br>
+                        ⏍ 須完成報到程序後給予.
+                    </p>
+                    <li>是否能使用別間銀行存摺:</li>
+                    <p>❗️不能</p>
+                </ol>
+
+                <!-- FAQ-體健檢報告相關 -->
+                <h2> 　　FAQ-體健檢報告相關</h2>
+                <ol class="note-list">
+                    <li>是否可以僅繳交一份體健檢報告:</li>
+                    <p>
+                        ❗️可以僅繳交一份,但請注意:</br>
+                        ⏍ 未滿40歲,提交的體檢報告必須在5年內.</br>
+                        ⏍ 40歲以上,未滿65歲,提交的體檢報告必須在3年內.</br>
+                        ⏍ 年滿65歲,提交的體檢報告必須在1年內.</br>
+                        ⏍ 符合上述原則,可以不必再實施體檢.
+                    </p>
+                    <li>糞便傷寒必須要檢查,若檢核無該選項:</li>
+                    <p>❗️請重新或補做傷寒檢查項目.</p>
+                    <li>是否可使用之前任職公司的體健檢報告:</li>
+                    <p>❗️回應與第一則則相同.</p>
+                    <li>查詢認證體檢醫院機構:</li>
+                    <p>❗️<a href="https://hrpts.osha.gov.tw/Home/CertifiedHospInfoSearch" target="_blank" style="color:#60a5fa; text-decoration:underline;">請點擊此文字連結查詢</a>.</p>
+                    <li>體檢費用:</li>
+                    <p>❗️第一年自行負擔;第二年公司負責.</p>
+                </ol>
+
+                <!-- 報到文件用途說明 -->
+                <h2> 　　📑 報到文件用途說明</h2>
+                <ol class="note-list">
+                    <li>一般勞工體格檢查報告:</li>
+                    <p>
+                        ❗️依據《職業安全衛生法》§20,勞工健康保護規則§16~17</br>
+                        ⏍ 未滿40歲,提交的體檢報告必須在5年內.</br>
+                        ⏍ 40歲以上,未滿65歲,提交的體檢報告必須在3年內.</br>
+                        ⏍ 年滿65歲,提交的體檢報告必須在1年內.</br>
+                        ⏍ 符合上述原則,可以不必再實施體檢.
+                    </p>
+                    <li>食品從業人員體檢報告：</li>
+                    <p>❗️依據《食品安全衛生管理法》§8,食品良好衛生規範準則§5</p>
+                    <li>檢查期限:</li>
+                    <p>❗️回應與第一則則相同.</p>
+                    <li>查詢認證體檢醫院機構:</li>
+                    <p>本年度-近一年.</p>
+                    <li>身分證:</li>
+                    <p>❗️用於加、退保使用.</p>
+                    <li>兩吋照片一張:</li>
+                    <p>❗️用於個人資料建檔使用.</p>
+                    <li>最高學歷證書,學生證,學費單,請擇一驗證:</li>
+                    <p>❗️複驗學歷證明.</p>
+                </ol>
+
+                <div class="fieldset center-block">
+                    <div style="font-weight:800;">是否了解上述 FAQ 與報到文件用途</div>
+                    <div class="radio-row" role="radiogroup" aria-label="是否了解上述 FAQ 與報到文件用途">
+                        <label><input type="radio" name="agree2" value="yes"> 了解</label>
+                        <label><input type="radio" name="agree2" value="no"> 有異議</label>
+                    </div>
+                    <div class="exit" id="exitMsg2">🚨 若有疑問,可詢問人資承辦...</div>
+                </div>
+            </section>
+
+            <!-- 第3頁：擁有文件 -->
+            <section class="step" data-page="3" id="step-3">
+                <h2>　❗️擁有下列文件請打勾</h2>
+                <div class="fieldset">
+                    <div class="checks">
+                        <label><input type="checkbox" id="ownChk1"> 1. 台新國際商業銀行</label>
+                        <label><input type="checkbox" id="ownChk2"> 2. 中餐證照</label>
+                        <label><input type="checkbox" id="ownChk3"> 3. 西餐證照</label>
+                        <label><input type="checkbox" id="ownChk4"> 4. AH&LA 證書</label>
+                    </div>
+                    <div class="note-list" style="margin-left:0;">
+                        📣 不接受PDF檔,如須上傳PDF檔,請先轉成JPG檔後再上傳.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第4頁：報到日必要繳交文件 -->
+            <section class="step" data-page="4" id="step-4">
+                <h2>　❗️報到日必要繳交五大文件</h2>
+                <div class="fieldset">
+                    <div class="checks">
+                        <label><input type="checkbox" id="needChk1"> 1. 經認證醫療機構-勞工體格檢查報告</label>
+                        <label><input type="checkbox" id="needChk2"> 2. 經認證醫療機構-近一年食品從業人員體檢報告</label>
+                        <label><input type="checkbox" id="needChk3"> 3. 身分證</label>
+                        <label><input type="checkbox" id="needChk4"> 4. 兩吋照片一張</label>
+                        <label><input type="checkbox" id="needChk5"> 5. 最高學歷證書、學生證、學費證明擇一驗證</label>
+                    </div>
+                    <div class="note-list" style="margin-left:0;">
+                        📣 準備完成後,才行下一步開始上傳檔案,填寫基本資料.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第5頁：上傳檔案說明＋同意 -->
+            <section class="step" data-page="5" id="step-5">
+                <h2> 　　⏫ 上傳檔案</h2>
+                <ol class="note-list">
+                    <li>上傳之個人準備文件.</li>
+                    <li>有正確及錯誤範例.</li>
+                    <li>檔案須符合本公司限定規格.</li>
+                    <li>哀鳳手機請用手機內建備忘錄掃描.</li>
+                </ol>
+
+                <!-- 範例改上下 -->
+                <div class="samples" aria-label="身分證範本">
+
+                    <!-- 操作影片★★★ -->
+                    <figure class="sample-box">
+                        <video class="sample-img" controls playsinline style="max-height:220px; width:100%; object-fit:contain;">
+                            <source src="assets/ios掃描範例.mp4" type="video/mp4">
+                            ❌ 您的裝置不支援影片播放
+                        </video>
+                        <figcaption class="sample-cap">📹 iPhone 備忘錄掃描文件操作示範</figcaption>
+                    </figure>
+
+                    <figure class="sample-box">
+                        <img class="sample-img" src="assets/體檢報告範本.jpg" alt="❗️體檢報告範本.jpg">
+                        <figcaption class="sample-cap">✅ 正確範例-體檢報告上傳限定規格</figcaption>
+                    </figure>
+                    <figure class="sample-box">
+                        <img class="sample-img" src="assets/錯誤範例-1.jpg" alt="❗️錯誤範例-1">
+                        <figcaption class="sample-cap">❌ 錯誤範例-雖格式正確但須要好閱讀</figcaption>
+                    </figure>
+                    <figure class="sample-box">
+                        <img class="sample-img" src="assets/錯誤範例-2.jpg" alt="❗️錯誤範例-2.jpg">
+                        <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角</figcaption>
+                    </figure>
+                    <figure class="sample-box">
+                        <img class="sample-img" src="assets/錯誤範例-3.jpg" alt="❗️錯誤範例-3.jpg">
+                        <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角且有小手入鏡</figcaption>
+                    </figure>
+                </div>
+
+                <div class="fieldset" style="margin-top:16px;">
+                    <div style="font-weight:800; margin-bottom:8px; text-align:center;">是否同意上述事項</div>
+                    <div class="radio-row" role="radiogroup">
+                        <label><input type="radio" name="agreeUpload" value="yes"> 同意</label>
+                        <label><input type="radio" name="agreeUpload" value="no"> 不同意</label>
+                    </div>
+                    <div class="error" id="errAgreeUpload" style="text-align:center;">⚠️ 需同意才能繼續填寫</div>
+                </div>
+            </section>
+
+            <!-- 第6頁：上傳文件相關 -->
+            <section class="step" data-page="6" id="step-6">
+                <div class="file-row">
+                    <div>台新國際商業銀行戶頭</div>
+                    <label class="file-input">
+                        <span class="file-btn">選擇檔案</span>
+                        <input id="idFront" type="file" accept=".pdf,image/*" />
+                    </label>
+                    <div class="file-name" id="nameFront">
+                        <img class="thumb" id="thumbFront" alt="縮圖預覽"><span id="nameFrontTxt">尚未選取檔案</span>
+                    </div>
+                </div>
+                <div class="error" id="errFront">⚠️ 請選擇台新國際商業銀行戶頭檔案</div>
+
+                <div class="file-row">
+                    <div>勞工體格檢查報告</div>
+                    <label class="file-input">
+                        <span class="file-btn">選擇檔案</span>
+                        <input id="idLaborCheck" type="file" accept=".pdf,image/*" />
+                    </label>
+                    <div class="file-name" id="nameLaborCheck">
+                        <img class="thumb" id="thumbLaborCheck" alt="縮圖預覽"><span id="nameLaborCheckTxt">尚未選取檔案</span>
+                    </div>
+                </div>
+                <div class="error" id="errLaborCheck">⚠️ 請選擇勞工體格檢查報告檔案</div>
+
+                <div class="file-row">
+                    <div>食品從業人員體檢報告</div>
+                    <label class="file-input">
+                        <span class="file-btn">選擇檔案</span>
+                        <input id="idFoodCheck" type="file" accept=".pdf,image/*" />
+                    </label>
+                    <div class="file-name" id="nameFoodCheck">
+                        <img class="thumb" id="thumbFoodCheck" alt="縮圖預覽"><span id="nameFoodCheckTxt">尚未選取檔案</span>
+                    </div>
+                </div>
+                <div class="error" id="errFoodCheck">⚠️ 請選擇食品從業人員體檢報告檔案</div>
+
+                <div class="fieldset">
+                    <div class="checks">
+                        <label><input type="checkbox" id="fileChk1"> 1. 文件清晰且無反光</label>
+                        <label><input type="checkbox" id="fileChk2"> 2. 文件四邊完整入鏡</label>
+                        <label><input type="checkbox" id="fileChk3"> 3. 文件「完整」對準在框框內</label>
+                        <label><input type="checkbox" id="fileChk4"> 4. 上述都已確認完成動作</label>
+                    </div>
+                    <div class="note-list" style="margin-left:0;">
+                        📣 不接受PDF檔,如須上傳PDF檔,請先轉成JPG檔後再上傳.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第7頁：員工基本資料 -->
+            <section class="step" data-page="7" id="step-7">
+                <h2>📋 員工基本資料</h2>
+                <div class="row">
+                    <label for="company">© 公司名稱 <small>⏍ 請確認後再行點選</small></label>
+                    <select id="company">
+                        <option value="" selected disabled>請選擇</option>
+                        <option>Drunk Caffee 爛醉咖啡</option>
+                        <option>FIZZ FIZZ.TEIPEI</option>
+                        <option>Social Company 有趣人類社交局</option>
+                    </select>
+                    <div class="error" id="errcompany">⚠️ 尚未選擇公司</div>
+                </div>
+                <div class="row">
+                    <label for="team">© 隸屬團隊 <small>⏍ 若不確定歸屬,請詢問面試主管後再行點選</small></label>
+                    <select id="team">
+                        <option value="" selected disabled>請選擇</option>
+                        <option>外場-Serve Teams</option>
+                        <option>吧檯-Bar Teams</option>
+                        <option>內廚-Kitchen Teams</option>
+                        <option>收銀-Cashier Teams</option>
+                        <option>公關-Public Relations Teams</option>
+                        <option>其他-Other</option>
+                    </select>
+                    <div class="error" id="errTeam">⚠️ 尚未選擇隸屬團隊</div>
+                </div>
+                <div class="row">
+                    <label for="workType">© 工作型態 <small>⏍ 若不確定部門,請詢問面試主管後再行點選</small></label>
+                    <select id="workType">
+                        <option value="" selected disabled>請選擇</option>
+                        <option>正職/全時工時-Full Time</option>
+                        <option>兼職/部分工時-Part Time</option>
+                    </select>
+                    <div class="error" id="errWorkType">⚠️ 尚未選擇工作型態</div>
+                </div>
+
+                <div class="row">
+                    <label for="fullName">© 本名</label>
+                    <input id="fullName" type="text" placeholder="請輸入本名" />
+                    <div class="error" id="errFullName">⚠️ 此欄位不得為空</div>
+                </div>
+
+                <div class="row">
+                    <label for="gender">© 性別 <small>⏍ 以身分證為主</small></label>
+                    <select id="gender">
+                        <option value="" selected disabled>請選擇</option>
+                        <option>男</option>
+                        <option>女</option>
+                        <option>多元</option>
+                    </select>
+                    <div class="error" id="errGender">⚠️ 尚未選擇性別</div>
+                </div>
+            </section>
+
+            <!-- 第8頁：資料送出前-核檢區 -->
+            <section class="step" data-page="8" id="step-8">
+                <h2>　❗️資料送出前-核檢區</h2>
+                <div class="fieldset">
+                    <div class="checks">
+                        <label><input type="checkbox" id="preA"> 1. 以上輸入資料都進行雙重確認.</label>
+                        <label><input type="checkbox" id="preB"> 2. 本人聲明無偽造之不法情形.</label>
+                        <label><input type="checkbox" id="preC"> 3. 上傳檔案都符合本公司格式.</label>
+                        <label><input type="checkbox" id="preD"> 4. 請仔細思考認真填寫此表單.</label>
+                        <label><input type="checkbox" id="preE"> 5. 提交表單後無法更改資訊,請確認填寫資料正確再提交.</label>
+                        <label><input type="checkbox" id="preF"> 6. 提交表單後,請完成截圖回報機制.</label>
+                    </div>
+                </div>
+                <div class="right-actions" style="display:flex; gap:10px; justify-content:center; position:relative; bottom:0">
+                    <button class="btn btn--nav" id="btnSubmit" type="button" disabled>提交</button>
+                </div>
+            </section>
+
+            <!-- 第9頁：全數完成 -->
+            <section class="step" data-page="9" id="step-9">
+                <h2>✅ 全數完成</h2>
+                <div style="text-align:center; line-height:1.8;">
+                    © 報到須知單
+                    <hr style="border:0;border-top:1px solid var(--border);margin:10px 0;">
+                    <div>❗️請截圖此畫面給承辦人</div>
+                    <hr style="border:0;border-top:1px solid var(--border);margin:10px 0;">
+                    <div>系統已收到資料,將進入處理排程,表單已填寫完畢.</div>
+                    <div style="margin-top:10px;color:var(--muted);font-size:11px;">
+                        建立時間：<span id="stampCreated">—</span>　提交時間：<span id="stampUpdated">—</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 底部固定操作列（全頁共用） -->
+        <div class="actionbar" id="actionbar">
+            <div class="left-actions">
+                <button class="btn btn--nav" id="btnPrev" type="button">上一頁</button>
+            </div>
+            <div class="right-actions" style="display:flex; gap:10px;">
+                <button class="btn btn--nav" id="btnNext" type="button">下一頁</button>
+            </div>
+        </div>
+
+        <!-- 商標；版權 -->
+        <footer class="footer" id="footer">
+            <img src="assets/MYs_logo_去背1.png" alt="MYs Logo" class="footer-logo">
+            ︳© Copyright 2025 MYs System-b1.0.0.11.19-2025
+        </footer>
+    </div>
+
+    <script>
+        /* --------系統常數（可調）-------- */
+        const TOTAL_STEPS = 9;  /* 總頁數（顯示用） */
+        const $ = (sel) => document.querySelector(sel);
+        const $$ = (sel) => document.querySelectorAll(sel);
+
+        /* 表單時間戳（建立/更新） */
+        const FORM_META = { createdAt: null, updatedAt: null };
+        function fmtTW(d) {
+            try {
+                return new Intl.DateTimeFormat('zh-TW', {
+                    year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    hour12: false, timeZone: 'Asia/Taipei'
+                }).format(d);
+            } catch (e) {
+                return d.toLocaleString();
+            }
+        }
+
+        function setCreatedNow() {
+            if (!FORM_META.createdAt) {
+                FORM_META.createdAt = new Date();
+                updateStampUI();
+            }
+        }
+
+        function setUpdatedNow() {
+            FORM_META.updatedAt = new Date();
+            updateStampUI();
+        }
+
+        function updateStampUI() {
+            const c = $("#stampCreated"), u = $("#stampUpdated");
+            if (c) { c.textContent = FORM_META.createdAt ? fmtTW(FORM_META.createdAt) : "—"; }
+            if (u) { u.textContent = FORM_META.updatedAt ? fmtTW(FORM_META.updatedAt) : "—"; }
+        }
+
+        /* ====== 密碼進入遮罩 ====== */
+        const PASSWORDS = ["MYsDC20251115", "MYsFZ20251115", "MYsSC20251115"];
+        (function passGateInit() {
+            const gate = $("#passGate"),
+                pwd = $("#gatePwd"),
+                btn = $("#gatePwdStart"),
+                err = $("#gatePwdErr");
+            const togglePwdButton = $("#togglePwdVisibility");
+
+            if (!gate) return;
+
+            let isPasswordVisible = false;
+            togglePwdButton.addEventListener("click", () => {
+                isPasswordVisible = !isPasswordVisible;
+                pwd.type = isPasswordVisible ? "text" : "password";
+                togglePwdButton.textContent = isPasswordVisible ? "隱藏密碼" : "顯示密碼";
+            });
+
+            err.style.display = "none";
+            btn.addEventListener("click", () => {
+                const v = (pwd.value || "").trim().toLowerCase();
+                const isValid = PASSWORDS.some(pwd => pwd.toLowerCase() === v);
+
+                if (!isValid) {
+                    err.style.display = "block";
+                    return;
+                }
+
+                err.style.display = "none";
+                gate.style.display = "none";
+                setCreatedNow();
+                autoFitActionbarHeight();
+            });
+        })();
+
+        /* ====== 鍵盤與縮放控制（iOS） ====== */
+        (function keyboardLift() {
+            const vv = window.visualViewport;
+            if (!vv) return;
+
+            function apply() {
+                const bottomInset = (window.innerHeight - vv.height - vv.offsetTop);
+                document.documentElement.style.setProperty('--kv-offset', bottomInset > 0 ? `${bottomInset}px` : '0px');
+
+                if (bottomInset > 80) {
+                    document.body.classList.add('kb-open');
+                } else {
+                    document.body.classList.remove('kb-open');
+                }
+
+                autoFitActionbarHeight();
+            }
+
+            vv.addEventListener('resize', apply);
+            vv.addEventListener('scroll', apply);
+            window.addEventListener('resize', apply);
+            apply();
+        })();
+
+        /* 焦點自動可視（避免被鍵盤或操作列擋住） */
+        (function focusAutoScroll() {
+            document.addEventListener('focusin', (e) => {
+                const el = e.target;
+                if (!(el instanceof HTMLInputElement) && !(el instanceof HTMLSelectElement)) return;
+                setTimeout(() => { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 50);
+            });
+        })();
+
+        /* ====== 步驟顯示與背景配色 ====== */
+        let currentPage = 1;
+        let IS_LOCKED = false;
+        function pad2(n) { return String(n).padStart(2, '0'); }
+
+        /* 指定頁為紫色：1, 2, 3, 4, 5, 8 ；其餘黑色 */
+        function pageIsPurple(n) { return [1, 2, 3, 4, 5, 8].includes(n); }
+
+        function updateHeaderStep() {
+            $("#headerStep").textContent = `第${pad2(currentPage)}頁/共${TOTAL_STEPS}頁`;
+            const scheme = pageIsPurple(currentPage) ? "purple" : "black";
+            $(".container").setAttribute("data-scheme", scheme);
+        }
+
+        function lockAllAndHideNav() {
+            IS_LOCKED = true;
+            document.querySelectorAll('input, select, button, textarea').forEach(el => { el.disabled = true; });
+            const prev = $("#btnPrev"), next = $("#btnNext");
+            if (prev) { prev.style.display = "none"; }
+            if (next) { next.style.display = "none"; }
+        }
+
+        function showStep(pageNumber) {
+            if (IS_LOCKED && pageNumber !== TOTAL_STEPS) return;
+
+            $$(".step").forEach(s => s.classList.remove("active"));
+            const el = document.getElementById(`step-${pageNumber}`);
+            if (el) el.classList.add("active");
+
+            currentPage = pageNumber;
+            updateHeaderStep();
+            $("#content").scrollTo({ top: 0, behavior: "instant" });
+            updateNavState();
+
+            if (pageNumber === TOTAL_STEPS) {
+                setUpdatedNow();
+                setTimeout(() => { lockAllAndHideNav(); updateNavState(); }, 0);
+            }
+        }
+
+        /* ====== 第 5 頁圖片縮小（恢復小圖片） ====== */
+        document.querySelectorAll("#step-5 .sample-img").forEach((img) => {
+            img.style.maxHeight = "160px";
+            img.style.objectFit = "contain";
+        });
+
+        /* ====== 第 6 頁檔案預覽（PDF、圖片皆可） ====== */
+        function bindFilePreview(inputId, txtId, thumbId) {
+            const input = $(inputId);
+            const txt = $(txtId);
+            const thumb = $(thumbId);
+
+            input?.addEventListener("change", () => {
+                const file = input.files[0];
+
+                if (!file) {
+                    txt.textContent = "尚未選取檔案";
+                    thumb.style.display = "none";
+                    thumb.src = "";
+                    return;
+                }
+
+                txt.textContent = file.name;
+
+                if (file.type === "application/pdf") {
+                    thumb.src =
+                        "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg";
+                    thumb.style.display = "block";
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    thumb.src = e.target.result;
+                    thumb.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        bindFilePreview("#idFront", "#nameFrontTxt", "#thumbFront");
+        bindFilePreview("#idLaborCheck", "#nameLaborCheckTxt", "#thumbLaborCheck");
+        bindFilePreview("#idFoodCheck", "#nameFoodCheckTxt", "#thumbFoodCheck");
+
+        /* ====== 各頁驗證（submit=false：不顯示紅字；true：顯示紅字） ====== */
+        function validatePage(n, submit = false) {
+            switch (n) {
+
+                /* ------ 第1頁：注意事項 ------ */
+                case 1: {
+                    const yes = $('input[name="agree1"][value="yes"]')?.checked;
+                    const no = $('input[name="agree1"][value="no"]')?.checked;
+                    $("#exitMsg1").classList.toggle("show", !!no);
+                    return !!yes;
+                }
+
+                /* ------ 第2頁：FAQ＋文件用途說明 ------ */
+                case 2: {
+                    const yes = $('input[name="agree2"][value="yes"]')?.checked;
+                    const no = $('input[name="agree2"][value="no"]')?.checked;
+                    $("#exitMsg2").classList.toggle("show", !!no);
+                    return !!yes;
+                }
+
+                /* ------ 第3頁：擁有文件（全部情況可下一步） ------ */
+                case 3: {
+                    return true;
+                }
+
+                /* ------ 第4頁：報到日必要繳交五大文件（需 5 個都打勾） ------ */
+                case 4:
+                    return [...$("#step-4").querySelectorAll("input[type=checkbox]")].every(
+                        (c) => c.checked
+                    );
+
+                /* ------ 第5頁：上傳檔案同意（需同意才可下一步） ------ */
+                case 5: {
+                    const yes = $(`input[name="agreeUpload"][value="yes"]`).checked;
+                    const no = $(`input[name="agreeUpload"][value="no"]`).checked;
+
+                    /* ★ 按「不同意」立即顯示錯誤 */
+                    if (no) {
+                        $("#errAgreeUpload").style.display = "block";
+                    }
+
+                    /* ★ 按「同意」立即隱藏錯誤 */
+                    if (yes) {
+                        $("#errAgreeUpload").style.display = "none";
+                    }
+
+                    /* ★ 點下一步（submit=true）時，也要觸發一次 */
+                    if (!yes && submit) {
+                        $("#errAgreeUpload").style.display = "block";
+                    }
+
+                    return yes;
+                }
+
+                /* ------ 第6頁：上傳檔案（勞工體檢＋食品體檢必上傳） ------ */
+                case 6: {
+                    const labor = $("#idLaborCheck").files.length > 0;
+                    const food = $("#idFoodCheck").files.length > 0;
+                    const checks = ["#fileChk1", "#fileChk2", "#fileChk3", "#fileChk4"].every(
+                        (id) => $(id).checked
+                    );
+                    $("#errLaborCheck").style.display = !labor && submit ? "block" : "none";
+                    $("#errFoodCheck").style.display = !food && submit ? "block" : "none";
+                    return labor && food && checks;
+                }
+
+                /* ------ 第7頁：基本資料 ------ */
+                case 7: {
+                    const a = $("#company").value !== "";
+                    const b = $("#team").value !== "";
+                    const c = $("#workType").value !== "";
+
+                    /* ★ 本名 & 性別 */
+                    const d = $("#fullName").value.trim() !== "";
+                    const e = $("#gender").value !== "";
+
+                    if (submit) {
+                        $("#errcompany").style.display = !a ? "block" : "none";
+                        $("#errTeam").style.display = !b ? "block" : "none";
+                        $("#errWorkType").style.display = !c ? "block" : "none";
+
+                        /* ★ 錯誤提示 */
+                        $("#errFullName").style.display = !d ? "block" : "none";
+                        $("#errGender").style.display = !e ? "block" : "none";
+                    }
+
+                    return a && b && c && d && e;   /* ★ 新增 d & e */
+                    return a && b && c && d && e;
+                }
+
+                /* ------ 第8頁：核檢 6 項 ------ */
+                case 8:
+                    return ["#preA", "#preB", "#preC", "#preD", "#preE", "#preF"].every(
+                        (id) => $(id).checked
+                    );
+
+                /* ------ 第9頁：完成頁 ------ */
+                case 9:
+                    return true;
+            }
+            return false;
+        }
+
+        /* ====== 底部操作列：狀態控制 ====== */
+        function updateNavState() {
+            const btnPrev = $("#btnPrev"),
+                btnNext = $("#btnNext");
+
+            const onLast = currentPage === TOTAL_STEPS;
+
+            if (btnPrev) {
+                btnPrev.disabled = IS_LOCKED || currentPage <= 1;
+                btnPrev.style.display = onLast ? "none" : "inline-block";
+            }
+
+            if (!btnNext) return;
+
+            btnNext.style.display = onLast ? "none" : "inline-block";
+
+            const validNow = validatePage(currentPage, false);
+
+            /* 預設：不通過就不能下一頁 */
+            let disabled = IS_LOCKED || !validNow;
+
+            btnNext.disabled = disabled;
+        }
+
+        /* 清除當頁（目前沒有按鈕呼叫，函式保留） */
+        function clearCurrentPage() {
+            const cur = $(`.step.active`);
+            if (!cur) return;
+
+            cur.querySelectorAll('input[type="text"],input[type="email"]').forEach(i => i.value = "");
+            cur.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
+            cur.querySelectorAll('input[type="radio"],input[type="checkbox"]').forEach(c => c.checked = false);
+
+            cur.querySelectorAll('.error').forEach(e => e.style.display = "none");
+
+            if (cur.id === "step-1") { $("#exitMsg1").classList.remove("show"); }
+            if (cur.id === "step-2") { $("#exitMsg2").classList.remove("show"); }
+
+            updateNavState();
+        }
+
+        /* ====== 事件綁定 ====== */
+        function bindLiveValidation() {
+
+            /* 第1頁：了解 / 有異議 */
+            $$('input[name="agree1"]').forEach(r =>
+                r.addEventListener('change', () => {
+                    updateNavState();
+                })
+            );
+
+            /* 第2頁：了解 / 有異議 */
+            $$('input[name="agree2"]').forEach(r =>
+                r.addEventListener('change', () => {
+                    updateNavState();
+                })
+            );
+
+            /* 第5頁：上傳檔案同意 */
+            $$('input[name="agreeUpload"]').forEach(r =>
+                r.addEventListener('change', () => {
+                    updateNavState();
+                })
+            );
+
+            /* 所有 checkbox（第3、4、6、8頁等） */
+            $$('input[type="checkbox"]').forEach(c =>
+                c.addEventListener('change', () => updateNavState())
+            );
+
+            /* 上傳檔案 */
+            $$('input[type="file"]').forEach(f =>
+                f.addEventListener('change', () => updateNavState())
+            );
+
+            /* 基本資料 select */
+            $$('select').forEach(s =>
+                s.addEventListener('change', () => updateNavState())
+            );
+
+            /* ★ 本名（即時驗證） */
+            $("#fullName")?.addEventListener("input", () => updateNavState());
+
+            /* ★ 性別（即時驗證） */
+            $("#gender")?.addEventListener("change", () => updateNavState());
+        }
+
+        /* 高度調整 */
+        function autoFitActionbarHeight() {
+            const bar = $("#actionbar"); if (!bar) return;
+            const h = bar.offsetHeight;
+            document.documentElement.style.setProperty('--actionbar-h', `${h}px`);
+        }
+        (function observeBar() {
+            const bar = $("#actionbar");
+            if (!bar || !('ResizeObserver' in window)) return;
+            const ro = new ResizeObserver(() => autoFitActionbarHeight());
+            ro.observe(bar);
+        })();
+
+        /* ====== 導航按鈕 ====== */
+        function bindActionBar() {
+            $("#btnPrev").addEventListener("click", () => {
+                if (!IS_LOCKED && currentPage > 1) {
+                    showStep(currentPage - 1);
+                }
+            });
+
+            $("#btnNext").addEventListener("click", () => {
+                if (IS_LOCKED) return;
+
+                const ok = validatePage(currentPage, true);
+                if (ok && currentPage < TOTAL_STEPS) {
+                    setUpdatedNow();
+                    showStep(currentPage + 1);
+                }
+            });
+        }
+
+        /* ====== 初始化 ====== */
+        document.addEventListener("DOMContentLoaded", () => {
+            showStep(1);
+            bindLiveValidation();
+            bindActionBar();
+            autoFitActionbarHeight();
+            updateStampUI();
+        });
+    </script>
 </body>
 </html>
