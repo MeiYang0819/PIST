@@ -1372,6 +1372,7 @@
                 }
 
             } catch (err) {
+                // 【關鍵修正】這裡補上了原本漏掉的 + 號
                 alert("⚠️ 傳送失敗," + err + ",請聯繫人資承辦...");
                 console.error(err);
                 btn.textContent = "提交";
@@ -1418,13 +1419,13 @@
                 s.addEventListener('change', () => updateNavState())
             );
 
-            /* 本名（即時驗證） */
+            /* ★ 本名（即時驗證） */
             $("#fullName")?.addEventListener("input", () => updateNavState());
 
-            /* 性別（即時驗證） */
+            /* ★ 性別（即時驗證） */
             $("#gender")?.addEventListener("change", () => updateNavState());
 
-            /* 提交按鈕（第 8 頁） */
+            /* ★ 提交按鈕（第 8 頁） */
             $("#btnSubmit")?.addEventListener("click", () => {
                 submitData();
             });
@@ -1434,46 +1435,4 @@
         function autoFitActionbarHeight() {
             const bar = $("#actionbar"); if (!bar) return;
             const h = bar.offsetHeight;
-            document.documentElement.style.setProperty('--actionbar-h', `${h}px`);
-        }
-        (function observeBar() {
-            const bar = $("#actionbar");
-            const footer = $("#footer");
-            if (!bar || !('ResizeObserver' in window)) return;
-            
-            const ro = new ResizeObserver(() => autoFitActionbarHeight());
-            ro.observe(bar);
-        })();
-
-        /* ====== 導航按鈕 ====== */
-        function bindActionBar() {
-            $("#btnPrev").addEventListener("click", () => {
-                if (!IS_LOCKED && currentPage > 1) {
-                    showStep(currentPage - 1);
-                }
-            });
-
-            $("#btnNext").addEventListener("click", () => {
-                if (IS_LOCKED) return;
-
-                const ok = validatePage(currentPage, true);
-                if (ok && currentPage < TOTAL_STEPS) {
-                    setUpdatedNow();
-                    showStep(currentPage + 1);
-                }
-            });
-        }
-
-        /* ====== 初始化 ====== */
-        document.addEventListener("DOMContentLoaded", () => {
-            passGateInit();
-
-            showStep(1);
-            bindLiveValidation();
-            bindActionBar();
-            autoFitActionbarHeight();
-            updateStampUI();
-        });
-    </script>
-</body>
-</html>
+            document.documentElement.style.setProperty('--actionbar
