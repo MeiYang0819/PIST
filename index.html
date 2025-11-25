@@ -24,40 +24,40 @@
             --footer-size: 12px;   /* 商標；版權（可調） */
 
             /* --------全域字級控制變數（可自行調整）--------*/
-            --label-size: 15px;        /* 欄位標題字級（例如：公司名稱；可調） */
-            --hint-size: 11px;         /* 小字提示（label small；可調） */
-            --input-size: 14px;        /* 輸入框/選單內文字字級（可調） */
-            --placeholder-size: 14px;  /* placeholder 字級（可調） */
-            --error-size: 14px;        /* 錯誤訊息字級（可調） */
+            --label-size: 15px;         /* 欄位標題字級（例如：公司名稱；可調） */
+            --hint-size: 11px;          /* 小字提示（label small；可調） */
+            --input-size: 14px;         /* 輸入框/選單內文字字級（可調） */
+            --placeholder-size: 14px;   /* placeholder 字級（可調） */
+            --error-size: 14px;         /* 錯誤訊息字級（可調） */
 
-            --section-gap: 16px;       /* 區塊與段落間距（可調） */
-            --control-pad: 10px 12px;  /* 控制項內距（可調） */
-            --control-radius: 12px;    /* 控制項圓角（可調） */
-            --control-bg: #0f0f0f;     /* 控制項背景（可調） */
-            --control-border: #262626; /* 控制項邊框（可調） */
-            --control-focus: #60a5fa;  /* 控制項聚焦外框色（可調） */
+            --section-gap: 16px;        /* 區塊與段落間距（可調） */
+            --control-pad: 10px 12px;   /* 控制項內距（可調） */
+            --control-radius: 12px;     /* 控制項圓角（可調） */
+            --control-bg: #0f0f0f;      /* 控制項背景（可調） */
+            --control-border: #262626;  /* 控制項邊框（可調） */
+            --control-focus: #60a5fa;   /* 控制項聚焦外框色（可調） */
 
-            --input-height: 38px;      /* 控制項高度（讓框框同高；可調） */
+            --input-height: 38px;       /* 控制項高度（讓框框同高；可調） */
 
-            --actionbar-h: 64px;       /* 底部固定操作列高度（可調；JS 覆蓋實際高度） */
-            --footer-h: 44px;          /* 頁尾高度（可調） */
-            --kv-offset: 0px;          /* 鍵盤彈出時向上位移量（JS 寫入） */
+            --actionbar-h: 64px;        /* 底部固定操作列高度（可調；JS 覆蓋實際高度） */
+            --footer-h: 44px;           /* 頁尾高度（可調） */
+            --kv-offset: 0px;           /* 鍵盤彈出時向上位移量（JS 寫入） */
 
             /* -----------字級統整模組 同意；有異議----------- */
-            --fz-title: 28px;          /* ★ 大標題（步驟名稱、頁面大標） */
-            --fz-subtitle: 22px;       /* ★ 第二層標題（區塊名稱、子標題） */
-            --fz-section: 20px;        /* ★ 區段說明（多用於段落標語、章節開場） */
-            --fz-body: 18px;           /* ★ 內文正文（整份表單最常用的字） */
-            --fz-note: 16px;           /* ★ 備註、小提示、條文（例如：了解 有異議） */
-            --fz-xs: 14px;             /* ★ 特小字（很少用，通常是補充或版權） */
+            --fz-title: 28px;           /* ★ 大標題（步驟名稱、頁面大標） */
+            --fz-subtitle: 22px;        /* ★ 第二層標題（區塊名稱、子標題） */
+            --fz-section: 20px;         /* ★ 區段說明（多用於段落標語、章節開場） */
+            --fz-body: 18px;            /* ★ 內文正文（整份表單最常用的字） */
+            --fz-note: 16px;            /* ★ 備註、小提示、條文（例如：了解 有異議） */
+            --fz-xs: 14px;              /* ★ 特小字（很少用，通常是補充或版權） */
 
             /* 上一頁/下一頁縮小用（可調） */
-            --nav-btn-min-h: 32px;     /* 只影響「上一頁 / 下一頁」兩顆按鈕的最小高度（可調） */
-            --nav-btn-pad: 4px 10px;   /* 只影響「上一頁 / 下一頁」兩顆按鈕的內距（可調） */
+            --nav-btn-min-h: 32px;      /* 只影響「上一頁 / 下一頁」兩顆按鈕的最小高度（可調） */
+            --nav-btn-pad: 4px 10px;    /* 只影響「上一頁 / 下一頁」兩顆按鈕的內距（可調） */
 
             /* 操作列內距（可調，縮小整列高度） */
-            --actionbar-pad-y: 6px;    /* 操作列上下內距（可調） */
-            --actionbar-pad-x: 12px;   /* 操作列左右內距（可調） */
+            --actionbar-pad-y: 6px;     /* 操作列上下內距（可調） */
+            --actionbar-pad-x: 12px;    /* 操作列左右內距（可調） */
 
             /* 面板背景變數（由 data-* 控制） */
             --panel-bg: linear-gradient(0deg,rgba(43,37,37,1) 0%, rgba(0,0,0,1) 100%); /* 預設黑 */
@@ -268,7 +268,8 @@
             margin-bottom: var(--section-gap);
         }
 
-        input[type="text"], input[type="email"], select {
+        /* 【關鍵修正】新增 input[type="password"] 讓密碼框也吃到樣式 */
+        input[type="text"], input[type="email"], input[type="password"], select {
             width: 100%;
             padding: var(--control-pad);
             background: var(--control-bg);
@@ -607,7 +608,7 @@
             <div class="row">
                 <label for="gatePwd">請輸入金鑰🔑</label>
                 <input id="gatePwd" type="password" placeholder="請輸入密碼" />
-                <button type="button" id="togglePwdVisibility">顯示密碼</button>
+                <button type="button" class="btn" id="togglePwdVisibility" style="margin-top:8px;">顯示密碼</button>
                 <div class="error" id="gatePwdErr">❌ 密碼錯誤，請再試一次</div>
             </div>
             <div class="gate-actions">
@@ -987,9 +988,9 @@
             if (u) { u.textContent = FORM_META.updatedAt ? fmtTW(FORM_META.updatedAt) : "—"; }
         }
 
-        /* ====== 密碼進入遮罩 ====== */
+        /* ====== 密碼進入遮罩 (改為 function，由 DOMContentLoaded 呼叫) ====== */
         const PASSWORDS = ["MYsDC20251115", "MYsFZ20251115", "MYsSC20251115"];
-        (function passGateInit() {
+        function passGateInit() {
             const gate = $("#passGate"),
                 pwd = $("#gatePwd"),
                 btn = $("#gatePwdStart"),
@@ -999,28 +1000,32 @@
             if (!gate) return;
 
             let isPasswordVisible = false;
-            togglePwdButton.addEventListener("click", () => {
-                isPasswordVisible = !isPasswordVisible;
-                pwd.type = isPasswordVisible ? "text" : "password";
-                togglePwdButton.textContent = isPasswordVisible ? "隱藏密碼" : "顯示密碼";
-            });
+            if (togglePwdButton) {
+                togglePwdButton.addEventListener("click", () => {
+                    isPasswordVisible = !isPasswordVisible;
+                    pwd.type = isPasswordVisible ? "text" : "password";
+                    togglePwdButton.textContent = isPasswordVisible ? "隱藏密碼" : "顯示密碼";
+                });
+            }
 
             err.style.display = "none";
-            btn.addEventListener("click", () => {
-                const v = (pwd.value || "").trim().toLowerCase();
-                const isValid = PASSWORDS.some(pwd => pwd.toLowerCase() === v);
+            if (btn) {
+                btn.addEventListener("click", () => {
+                    const v = (pwd.value || "").trim().toLowerCase();
+                    const isValid = PASSWORDS.some(pwd => pwd.toLowerCase() === v);
 
-                if (!isValid) {
-                    err.style.display = "block";
-                    return;
-                }
+                    if (!isValid) {
+                        err.style.display = "block";
+                        return;
+                    }
 
-                err.style.display = "none";
-                gate.style.display = "none";
-                setCreatedNow();
-                autoFitActionbarHeight();
-            });
-        })();
+                    err.style.display = "none";
+                    gate.style.display = "none";
+                    setCreatedNow();
+                    autoFitActionbarHeight();
+                });
+            }
+        }
 
         /* ====== 鍵盤與縮放控制（iOS） ====== */
         (function keyboardLift() {
@@ -1340,7 +1345,7 @@
                 const f2 = $("#idLaborCheck").files[0];
                 const f3 = $("#idFoodCheck").files[0];
 
-                if (f1) payload.fileFront      = await fileToBase64(f1);
+                if (f1) payload.fileFront       = await fileToBase64(f1);
                 if (f2) payload.fileLaborCheck = await fileToBase64(f2);
                 if (f3) payload.fileFoodCheck  = await fileToBase64(f3);
 
@@ -1367,7 +1372,7 @@
                 }
 
             } catch (err) {
-                alert("⚠️ 傳送失敗," + err ",請聯繫人資承辦"...);
+                alert("⚠️ 傳送失敗," + err + ",請聯繫人資承辦...");
                 console.error(err);
                 btn.textContent = "提交";
                 btn.disabled = false;
@@ -1413,13 +1418,13 @@
                 s.addEventListener('change', () => updateNavState())
             );
 
-            /* ★ 本名（即時驗證） */
+            /* 本名（即時驗證） */
             $("#fullName")?.addEventListener("input", () => updateNavState());
 
-            /* ★ 性別（即時驗證） */
+            /* 性別（即時驗證） */
             $("#gender")?.addEventListener("change", () => updateNavState());
 
-            /* ★ 提交按鈕（第 8 頁） */
+            /* 提交按鈕（第 8 頁） */
             $("#btnSubmit")?.addEventListener("click", () => {
                 submitData();
             });
@@ -1461,6 +1466,8 @@
 
         /* ====== 初始化 ====== */
         document.addEventListener("DOMContentLoaded", () => {
+            passGateInit();
+
             showStep(1);
             bindLiveValidation();
             bindActionBar();
