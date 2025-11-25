@@ -1361,13 +1361,13 @@
                     btn.textContent = "提交";
                     btn.disabled = false;
                 } else {
-                    alert("❌ 錯誤：" + (res.message || "未知原因"));
+                    alert("❌ 錯誤," + (res.message || "未知原因"));
                     btn.textContent = "提交";
                     btn.disabled = false;
                 }
 
             } catch (err) {
-                alert("⚠️ 傳送失敗：" + err);
+                alert("⚠️ 傳送失敗," + err ",請聯繫人資承辦"...);
                 console.error(err);
                 btn.textContent = "提交";
                 btn.disabled = false;
