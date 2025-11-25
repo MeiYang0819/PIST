@@ -7,6 +7,7 @@
 
     <style>
         :root {
+            /* -----------GAS部署網址在656行----------- */
             /* --------系統共用常數（可全站調整）-------- */
             --card-w: 980px; /* 表單面板最大寬度（可調） */
             --radius: 16px; /* 面板圓角（可調） */
@@ -762,26 +763,26 @@
 
                     <figure class="sample-box">
                         <video class="sample-img" controls playsinline style="max-height:220px; width:100%; object-fit:contain;">
-                            <source src="https://mys0819.github.io/PIST/assets/ios掃描範例.mp4" type="video/mp4">
+                            <source src="assets/ios掃描範例.mp4" type="video/mp4">
                             ❌ 您的裝置不支援影片播放
                         </video>
                         <figcaption class="sample-cap">📹 iPhone 備忘錄掃描文件操作示範</figcaption>
                     </figure>
 
                     <figure class="sample-box">
-                        <img class="sample-img" src="https://mys0819.github.io/PIST/assets/體檢報告範本.jpg" alt="❗️體檢報告範本.jpg">
+                        <img class="sample-img" src="assets/體檢報告範本.jpg" alt="❗️體檢報告範本.jpg">
                         <figcaption class="sample-cap">✅ 正確範例-體檢報告上傳限定規格</figcaption>
                     </figure>
                     <figure class="sample-box">
-                        <img class="sample-img" src="https://mys0819.github.io/PIST/assets/錯誤範例-1.jpg" alt="❗️錯誤範例-1">
+                        <img class="sample-img" src="assets/錯誤範例-1.jpg" alt="❗️錯誤範例-1">
                         <figcaption class="sample-cap">❌ 錯誤範例-雖格式正確但須要好閱讀</figcaption>
                     </figure>
                     <figure class="sample-box">
-                        <img class="sample-img" src="https://mys0819.github.io/PIST/assets/錯誤範例-2.jpg" alt="❗️錯誤範例-2.jpg">
+                        <img class="sample-img" src="assets/錯誤範例-2.jpg" alt="❗️錯誤範例-2.jpg">
                         <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角</figcaption>
                     </figure>
                     <figure class="sample-box">
-                        <img class="sample-img" src="https://mys0819.github.io/PIST/assets/錯誤範例-3.jpg" alt="❗️錯誤範例-3.jpg">
+                        <img class="sample-img" src="assets/錯誤範例-3.jpg" alt="❗️錯誤範例-3.jpg">
                         <figcaption class="sample-cap">❌ 錯誤範例-四角未對四個角且有小手入鏡</figcaption>
                     </figure>
                 </div>
@@ -942,7 +943,7 @@
 
         <footer class="footer" id="footer">
             <img src="https://mys0819.github.io/PIST/assets/MYs_logo_去背1.png" alt="MYs Logo" class="footer-logo">
-            ︳© Copyright 2025 MYs System-b1.0.0.11.19-2025
+            ︳© Copyright 2025 MYs System-b1.0.0.11-19~11-25
         </footer>
     </form>
 
@@ -953,7 +954,7 @@
         const $$ = (sel) => document.querySelectorAll(sel);
 
         /* ★★★ GAS部署網址 WEBHOOK ★★★ */
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbzydITCB9S3f60g2g-C-JpxxLa89YYi1qJ5mhxLVxUiC3BvAADJgNU4GUSNBBU3vuXL/exec";
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbw9CUVtGk4OrN2T_fo9-nRh-cYTE9yQDJJg_S2JXXsiAVFVgk1JQy6PbrawwUMvGcuE/exec";
 
         /* 表單時間戳（建立/更新） */
         const FORM_META = { createdAt: null, updatedAt: null };
