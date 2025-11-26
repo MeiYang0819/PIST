@@ -942,7 +942,7 @@
 
         <footer class="footer" id="footer">
             <img src="assets/MYs_logo_去背.png" alt="MYs Logo" class="footer-logo">
-            ︳© Copyright 2025 MYs System-b1.0.68-11/19~11/27
+            ︳© Copyright 2025 MYs System-b1.0.69-11/19~11/27
         </footer>
     </form>
 
@@ -988,7 +988,7 @@
     }
 
     /* ====== 密碼進入遮罩 ====== */
-    const PASSWORDS = ["MYsDC819", "MYsFZ819", "MYsSC819"];
+    const PASSWORDS = ["MYsDC20251115", "MYsFZ20251115", "MYsSC20251115"];
     (function passGateInit() {
         const gate = $("#passGate"),
             pwd = $("#gatePwd"),
@@ -1256,7 +1256,7 @@
 
         /* 下一頁按鈕 */
         if (btnNext) {
-            /* 在第 8 頁隱藏全域下一頁，改由提交按鈕控制 */
+            /* 【關鍵修正】在第 8 頁隱藏全域下一頁，改由提交按鈕控制 */
             if (currentPage === 8) {
                 btnNext.style.display = "none";
             } else {
@@ -1309,7 +1309,7 @@
 
         /* 鎖定按鈕避免重複點擊 */
         const originalText = btn.textContent;
-        btn.textContent = "⏳ 資料傳送中,請勿關閉此介面...";
+        btn.textContent = "⏳ 資料傳送中...";
         btn.disabled = true;
 
         // 1. 收集文字資料
@@ -1322,7 +1322,7 @@
         const ownDocsStr = ownDocs.length > 0 ? ownDocs.join(', ') : '無';
 
         const payload = {
-            formType: "laborReport", /* 注意：這裡若為報到須知，可能需要改為 originalForm 或 laborReport，請確認您的 GAS 接收端 */
+            formType: "reportForm", /* ★★★ 修正：改為 reportForm，避免跑到勞報建檔 ★★★ */
             createdAt: FORM_META.createdAt ? fmtTW(FORM_META.createdAt) : '', // 傳送前端的建立時間
             ownDocs: ownDocsStr, // 傳送擁有文件字串
             company:  $("#company").value,
@@ -1358,18 +1358,18 @@
                 showStep(9);
             } else if (res.status === 'duplicate') {
                 alert("❌ 提交失敗,你/妳已經填寫過...");
-                btn.textContent = originalText;
+                btn.textContent = "提交";
                 btn.disabled = false;
             } else {
                 alert("❌ 錯誤," + (res.message || "未知原因"));
-                btn.textContent = originalText;
+                btn.textContent = "提交";
                 btn.disabled = false;
             }
 
         } catch (err) {
             alert("⚠️ 傳送失敗,請聯繫人資承辦...");
             console.error(err);
-            btn.textContent = originalText;
+            btn.textContent = "提交";
             btn.disabled = false;
         }
     }
