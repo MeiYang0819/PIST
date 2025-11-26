@@ -105,8 +105,7 @@
         html, body {
             height: 100%;
             margin: 0;
-            /* overflow-x: hidden; */ /* 移除舊設定 */
-            overflow: hidden; /* 【關鍵修正】鎖定外部卷軸，只讓內部 Flex 滾動 */
+            overflow: hidden; /* 鎖定外部卷軸，只讓內部 Flex 滾動 */
         }
 
         body {
@@ -175,7 +174,7 @@
             padding: 16px;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
-            touch-action: pan-y; /* 【新增】強化 iOS 觸控判定 */
+            touch-action: pan-y; /* 強化 iOS 觸控判定 */
             padding-bottom: calc(var(--actionbar-h) + var(--footer-h) + 16px);
         }
 
@@ -384,7 +383,7 @@
 
         /* 底部固定操作列（全頁共用） */
         .actionbar {
-            flex-shrink: 0; /* 【新增】防止被壓縮 */
+            flex-shrink: 0; /* 防止被壓縮 */
             position: relative;
             display: flex;
             gap: 10px;
@@ -943,7 +942,7 @@
 
         <footer class="footer" id="footer">
             <img src="assets/MYs_logo_去背.png" alt="MYs Logo" class="footer-logo">
-            ︳© Copyright 2025 MYs System-b1.0.66-11-19~11-25
+            ︳© Copyright 2025 MYs System-b1.0.67-11-19~11-27
         </footer>
     </form>
 
@@ -954,7 +953,7 @@
     const $$ = (sel) => document.querySelectorAll(sel);
 
     /* ★★★ GAS部署網址 WEBHOOK ★★★ */
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbwptYsUxW572V-UjYzA-qDCVVbyWhIm-HRx-QNgKvMO2v2Y_tEtntXzKNWDHG_NM9Sk/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbyncVzIPUAQ4U9Mx_ahlGX-wCFwVAIr9hyXYf7LIAhJ-kNwrwwCrzBA3fP4Litq_bQ/exec";
 
     /* 表單時間戳（建立/更新） */
     const FORM_META = { createdAt: null, updatedAt: null };
@@ -989,7 +988,7 @@
     }
 
     /* ====== 密碼進入遮罩 ====== */
-    const PASSWORDS = ["MYsDC20251115", "MYsFZ20251115", "MYsSC20251115"];
+    const PASSWORDS = ["MYsDC819", "MYsFZ819", "MYsSC819"];
     (function passGateInit() {
         const gate = $("#passGate"),
             pwd = $("#gatePwd"),
@@ -1257,7 +1256,7 @@
 
         /* 下一頁按鈕 */
         if (btnNext) {
-            /* 【關鍵修正】在第 8 頁隱藏全域下一頁，改由提交按鈕控制 */
+            /* 在第 8 頁隱藏全域下一頁，改由提交按鈕控制 */
             if (currentPage === 8) {
                 btnNext.style.display = "none";
             } else {
@@ -1310,7 +1309,7 @@
 
         /* 鎖定按鈕避免重複點擊 */
         const originalText = btn.textContent;
-        btn.textContent = "⏳ 資料傳送中...";
+        btn.textContent = "⏳ 資料傳送中,請勿關閉此介面...";
         btn.disabled = true;
 
         // 1. 收集文字資料
