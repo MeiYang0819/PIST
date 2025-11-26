@@ -1251,12 +1251,13 @@
         /* 上一頁按鈕 */
         if (btnPrev) {
             btnPrev.disabled = IS_LOCKED || currentPage <= 1;
-            btnPrev.style.display = onLast ? "none" : "inline-block";
+            /* 第 1 頁或是最後一頁時，隱藏按鈕 ★★★ */
+            btnPrev.style.display = (onLast || currentPage === 1) ? "none" : "inline-block";
         }
 
         /* 下一頁按鈕 */
         if (btnNext) {
-            /* 【關鍵修正】在第 8 頁隱藏全域下一頁，改由提交按鈕控制 */
+            /* 在第 8 頁隱藏全域下一頁，改由提交按鈕控制 */
             if (currentPage === 8) {
                 btnNext.style.display = "none";
             } else {
@@ -1322,7 +1323,7 @@
         const ownDocsStr = ownDocs.length > 0 ? ownDocs.join(', ') : '無';
 
         const payload = {
-            formType: "reportForm", /* ★★★ 修正：改為 reportForm，避免跑到勞報建檔 ★★★ */
+            formType: "reportForm", /* 改為 reportForm，避免跑到勞報建檔 ★★★ */
             createdAt: FORM_META.createdAt ? fmtTW(FORM_META.createdAt) : '', // 傳送前端的建立時間
             ownDocs: ownDocsStr, // 傳送擁有文件字串
             company:  $("#company").value,
@@ -1413,13 +1414,13 @@
             s.addEventListener('change', () => updateNavState())
         );
 
-        /* ★ 本名（即時驗證） */
+        /* 本名（即時驗證） */
         $("#fullName")?.addEventListener("input", () => updateNavState());
 
-        /* ★ 性別（即時驗證） */
+        /* 性別（即時驗證） */
         $("#gender")?.addEventListener("change", () => updateNavState());
 
-        /* ★ 提交按鈕（第 8 頁） */
+        /* 提交按鈕（第 8 頁） */
         $("#btnSubmit")?.addEventListener("click", () => {
             submitData();
         });
