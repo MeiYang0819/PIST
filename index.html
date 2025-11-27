@@ -546,26 +546,26 @@
             background: rgba(0,0,0,0.75);
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center;border-radius
         }
 
         .gate-card {
             width: min(520px, 92vw);
             background: rgba(30,30,30,0.95);
             border: 1px solid var(--border);
-            border-radius: 16px;
+            : 16px;
             padding: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,.45);
         }
 
         .gate h3 {
-            margin: 0 0 10px 0;
+            margin: 0 0 2px 0; /* 【間距】標題與副標的距離 */
             font-size: 16px;
             text-align: center;
         }
 
         .gate p {
-            margin: 6px 0;
+            margin: 1px 0; /* 【間距】副標與輸入區的距離 */
             color: var(--muted);
             font-size: 14px;
             text-align: center;
@@ -582,7 +582,7 @@
 
             .gate .row input {
                 display: block;
-                margin: 0 auto;
+                margin: 0 auto 7px auto; /* 【間距】輸入框與「顯示密碼」的距離 */
                 text-align: center;
                 max-width: 320px;
             }
@@ -596,7 +596,7 @@
             display: flex;
             gap: 10px;
             justify-content: center;
-            margin-top: 12px;
+            margin-top: 5px; /* 【間距】確定按鈕與上方的距離 */
         }
     </style>
 </head>
@@ -941,7 +941,7 @@
 
         <footer class="footer" id="footer">
             <img src="assets/MYs_logo_去背.png" alt="MYs Logo" class="footer-logo">
-            ︳© Copyright 2025 MYs System-b1.0.78-11/19~11/27
+            ︳© Copyright 2025 MYs System-b1.0.79-11/19~11/27
         </footer>
     </form>
 
