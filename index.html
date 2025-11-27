@@ -7,7 +7,7 @@
 
     <style>
         :root {
-            /* -----------GAS部署網址在956行----------- */
+            /* -----------GAS部署網址在954行----------- */
             /* --------系統共用常數（可全站調整）-------- */
             --card-w: 980px; /* 表單面板最大寬度（可調） */
             --radius: 16px; /* 面板圓角（可調） */
@@ -143,7 +143,7 @@
 
         /* 頁首（中間置中標題；右上角顯示步驟） */
         .header {
-            flex-shrink: 0; /* 【新增】防止被壓縮 */
+            flex-shrink: 0; /* 防止被壓縮 */
             position: relative;
             padding: 12px 16px;
             border-bottom: 1px solid var(--border);
@@ -641,7 +641,7 @@
                         <label class="fz-note"><input type="radio" name="agree1" value="yes"> 了解</label>
                         <label class="fz-note"><input type="radio" name="agree1" value="no"> 有異議</label>
                     </div>
-                    <div class="exit fz-xs" id="exitMsg1">🚨 若有疑問,可詢問人資承辦...</div>
+                    <div class="exit fz-xs" id="exitMsg1">🚨 若有疑問，可詢問人資承辦</div>
                 </div>
             </section>
 
@@ -700,12 +700,12 @@
                     <p>❗️回應與第一則則相同.</p>
                     <li>查詢認證體檢醫院機構:</li>
                     <p>本年度-近一年.</p>
-                    <li>身分證:</li>
-                    <p>❗️用於加、退保使用.</p>
+                    <li>前份工作離職證明:</li>
+                    <p>❗️檢核文件.</p>
+                    <li>前份工作勞健保轉出證明:</li>
+                    <p>❗️檢核後於個人加退保使用.</p>
                     <li>兩吋照片一張:</li>
                     <p>❗️用於個人資料建檔使用.</p>
-                    <li>最高學歷證書,學生證,學費單,請擇一驗證:</li>
-                    <p>❗️複驗學歷證明.</p>
                 </ol>
 
                 <div class="fieldset center-block">
@@ -728,7 +728,7 @@
                         <label><input type="checkbox" id="ownChk4"> 4. AH&LA 證書</label>
                     </div>
                     <div class="note-list" style="margin-left:0;">
-                        📣 如須上傳PDF檔,請先轉成JPG檔後再上傳.
+                        📣 如須上傳PDF檔，請先轉成JPG檔後再上傳
                     </div>
                 </div>
             </section>
@@ -739,12 +739,12 @@
                     <div class="checks">
                         <label><input type="checkbox" id="needChk1"> 1. 經認證醫療機構-勞工體格檢查報告</label>
                         <label><input type="checkbox" id="needChk2"> 2. 經認證醫療機構-食品從業人員體檢報告</label>
-                        <label><input type="checkbox" id="needChk3"> 3. 身分證</label>
-                        <label><input type="checkbox" id="needChk4"> 4. 兩吋照片一張</label>
-                        <label><input type="checkbox" id="needChk5"> 5. 最高學歷證書、學生證、學費證明擇一</label>
+                        <label><input type="checkbox" id="needChk3"> 3. 前份工作之勞健保轉出證明</label>
+                        <label><input type="checkbox" id="needChk4"> 4. 前份工作之離職證明</label>
+                        <label><input type="checkbox" id="needChk5"> 5. 兩吋照片一張</label>
                     </div>
                     <div class="note-list" style="margin-left:0;">
-                        📣 確認準備完成後,才行下一步.
+                        📣 確認準備完成後，才行下一步
                     </div>
                 </div>
             </section>
@@ -763,9 +763,9 @@
                     <figure class="sample-box">
                         <video class="sample-img" controls playsinline style="max-height:220px; width:100%; object-fit:contain;">
                             <source src="assets/ios掃描範例.mp4" type="video/mp4">
-                            ❌ 您的裝置不支援影片播放
+                            ❌ 你/妳的裝置不支援影片播放
                         </video>
-                        <figcaption class="sample-cap">📹 iPhone 備忘錄掃描文件操作示範</figcaption>
+                        <figcaption class="sample-cap">📹 iPhone備忘錄掃描文件操作示範</figcaption>
                     </figure>
 
                     <figure class="sample-box">
@@ -807,7 +807,6 @@
                         <img class="thumb" id="thumbFront" alt="縮圖預覽"><span id="nameFrontTxt">尚未選取檔案</span>
                     </div>
                 </div>
-                <div class="error" id="errFront">⚠️ 請選擇台新國際商業銀行戶頭檔案</div>
 
                 <div class="file-row">
                     <div>勞工體格檢查報告</div>
@@ -841,7 +840,7 @@
                         <label><input type="checkbox" id="fileChk4"> 4. 上述都已確認完成動作</label>
                     </div>
                     <div class="note-list" style="margin-left:0;">
-                        📣 如須上傳PDF檔,請先轉成JPG檔後再上傳.
+                        📣 如須上傳PDF檔，請先轉成JPG檔後再上傳
                     </div>
                 </div>
             </section>
@@ -923,7 +922,7 @@
                     <hr style="border:0;border-top:1px solid var(--border);margin:10px 0;">
                     <div>❗️請截圖此畫面給承辦人</div>
                     <hr style="border:0;border-top:1px solid var(--border);margin:10px 0;">
-                    <div>系統已收到資料,將進入處理排程.</div>
+                    <div>系統已收到資料，將進入處理排程</div>
                     <div style="margin-top:10px;color:var(--muted);font-size:11px;">
                         建立時間：<span id="stampCreated">—</span>　提交時間：<span id="stampUpdated">—</span>
                     </div>
@@ -942,7 +941,7 @@
 
         <footer class="footer" id="footer">
             <img src="assets/MYs_logo_去背.png" alt="MYs Logo" class="footer-logo">
-            ︳© Copyright 2025 MYs System-b1.0.69-11/19~11/27
+            ︳© Copyright 2025 MYs System-b1.0.78-11/19~11/27
         </footer>
     </form>
 
@@ -1310,7 +1309,7 @@
 
         /* 鎖定按鈕避免重複點擊 */
         const originalText = btn.textContent;
-        btn.textContent = "⏳ 資料傳送,請勿關閉阿...";
+        btn.textContent = "⏳ 資料傳送中，請稍後，請勿退出此介面...";
         btn.disabled = true;
 
         // 1. 收集文字資料
@@ -1323,7 +1322,7 @@
         const ownDocsStr = ownDocs.length > 0 ? ownDocs.join(', ') : '無';
 
         const payload = {
-            formType: "reportForm", /* 改為 reportForm，避免跑到勞報建檔 ★★★ */
+            formType: "reportForm", /* 改為 reportForm */
             createdAt: FORM_META.createdAt ? fmtTW(FORM_META.createdAt) : '', // 傳送前端的建立時間
             ownDocs: ownDocsStr, // 傳送擁有文件字串
             company:  $("#company").value,
@@ -1358,17 +1357,17 @@
                 /* 成功 -> 前往第 9 頁（完成頁） */
                 showStep(9);
             } else if (res.status === 'duplicate') {
-                alert("❌ 提交失敗,你/妳已經填寫過...");
+                alert("❌ 提交失敗，你/妳已經填寫過");
                 btn.textContent = "提交";
                 btn.disabled = false;
             } else {
-                alert("❌ 錯誤," + (res.message || "未知原因"));
+                alert("❌ 錯誤，" + (res.message || "未知原因"));
                 btn.textContent = "提交";
                 btn.disabled = false;
             }
 
         } catch (err) {
-            alert("⚠️ 傳送失敗,請聯繫人資承辦...");
+            alert("⚠️ 傳送失敗，請聯繫人資承辦");
             console.error(err);
             btn.textContent = "提交";
             btn.disabled = false;
